@@ -40,7 +40,109 @@ reject decision on its own. It is not qualified for production use.
 
 ## Status
 
-Early. Nothing measured yet.
+Module 01, the split generator, is built and tested. No model exists yet — that
+is deliberate: the evaluation is built first so the project cannot drift into
+chasing a number.
+
+```sh
+python -m vinspect.data.mvtec  --root data/mvtec_ad --check-load   # inventory
+python -m vinspect.data.grouping --root data/mvtec_ad --cache scratch/scores.json
+python -m vinspect.data.splits --root data/mvtec_ad --categories bottle hazelnut carpet
+```
+
+## What the split generator found
+
+MVTec AD ships **no physical-instance IDs**. Filenames are just `000.png`,
+`001.png` within each defect type, so "do not let two views of the same
+component straddle the split" cannot be read off the metadata. Identity has to
+be recovered from the pixels, and how you do that turns out to matter a lot.
+
+**Perceptual hashing does not work here, and the reason is structural rather
+than a tuning problem.** Every image in an MVTec category is the same object
+type, centred, in a fixed rig, under fixed lighting. The coarse layout a
+difference hash encodes is therefore constant across the whole category by
+construction, while what distinguishes two physical parts is fine surface
+texture — exactly what the hash is built to discard. Sweeping it shows no
+stable operating point: cluster size jumps from 1 straight into the hundreds
+with no plateau, because the similarity graph is nearly complete and
+single-linkage chains across it. The method is kept in the repo as a measured
+negative control rather than deleted.
+
+**Keypoint matching does work.** ORB features, a Lowe ratio test, then RANSAC
+under a partial-affine model — rotation, translation and uniform scale, which
+is exactly the transform a part undergoes when lifted and set back down on the
+rig. Genuine repeats separate cleanly from chance.
+
+And MVTec AD **does** reuse physical components: the same hazelnut appears in
+multiple images at different rotations, identifiable by matching shell
+striations. A random split would put those on both sides of the boundary.
+
+**Single linkage chains, and it matters.** Connected components over the match
+graph merges A and C whenever both match B, even when A and C do not match each
+other at all. That produced a 22-image hazelnut "component" of visibly
+different nuts, held together by cracked shells sharing exposed-kernel texture
+pairwise. Complete linkage — requiring the cluster to be a clique above the
+threshold — is the shape the claim actually has, since *all* images of one part
+should match each other, and it removes the chaining entirely.
+
+**Thresholds are calibrated per category against that category's own chance
+level**, at twice its 99th-percentile pair score with a floor. Per-category is
+necessary rather than fussy: on the three categories measured, the 99th
+percentile of pair scores ranges from 4 to 18, because how much structure two
+*different* parts of the same type share is a property of the part. A size cap
+is retained as an assertion — if it ever binds, the matcher is not separating on
+that category and the split is refused rather than built.
+
+Cluster contact sheets are written for visual sign-off. A threshold nobody has
+looked at is not a justified threshold, and every rejected variant above was
+rejected by looking at what it merged.
+
+## The split, as generated
+
+Three categories, 1,190 images, at 60/20/20. Committed under `splits/` with a
+content hash, so a result can be tied to the split it was measured on.
+
+| | train | val | test |
+|---|---:|---:|---:|
+| images | 714 (60.0%) | 239 (20.1%) | 237 (19.9%) |
+| defective | 133 | 45 | 44 |
+
+Calibrated thresholds: `bottle` 36, `hazelnut` 22, `carpet` 20 — the spread is
+the point, and it comes from each category's own chance level.
+
+Grouping recovered **972 components from 1,190 images**. 393 images (33%) sit
+in a group with at least one other image; the largest group has 5 members, and
+the size distribution is `{1: 797, 2: 141, 3: 27, 4: 5, 5: 2}`.
+
+**The headline number:**
+
+| split | components straddling a boundary |
+|---|---:|
+| grouped | **0** of 972 |
+| random | **107** of 972 |
+
+So a random split — stratified by category and label, i.e. the strongest
+reasonable version of the naive approach, not a strawman — puts 107 physical
+components on both sides of the boundary. Whatever score that split reports is
+partly a score for recognising parts the model has already seen. How much it
+inflates by is the module 02 measurement; that it inflates at all is now
+established rather than assumed.
+
+One honest cost of grouping: in `bottle`, val and test each cover 2 of the 3
+defect types under the grouped split, against 3 under the random one. With 63
+defective bottles across 3 types, the group constraint is tight enough to drop
+a type from the smaller splits. Per-defect-type reporting on `bottle` will have
+a gap, and that is preferable to closing it with a leaky split.
+
+## Data
+
+MVTec AD, 5,354 images, of which **1,258 are defective**. That second number is
+the one that constrains everything: recall, calibration and the risk-coverage
+curve are all measured on defective images. See [DATA.md](DATA.md) for
+provenance, licence and the full per-category inventory.
+
+The splits cover three categories rather than fifteen — one texture and two
+object — so that each split holds enough defective images to calibrate on.
 
 ## Data and licence
 

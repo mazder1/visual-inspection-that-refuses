@@ -10,13 +10,16 @@ data.
 from __future__ import annotations
 
 from collections import defaultdict
+from itertools import combinations
 
 import pytest
 
 from vinspect.data.grouping import (
     DEFAULT_INLIER_THRESHOLD,
     calibrate_thresholds,
+    complete_linkage,
     geometric_inliers,
+    single_linkage,
     load_scores,
     save_scores,
     group_by_hash,
@@ -146,43 +149,65 @@ def test_threshold_must_be_positive(planted_root):
         group_by_keypoints(records, threshold=0)
 
 
-def test_calibration_respects_the_group_size_cap(planted_root):
-    records = index_mvtec(planted_root)
-    scores = inlier_distribution(records)
-    # The largest planted component has three members, so a cap below that is
-    # unsatisfiable by construction and is covered separately.
-    for cap in (3, 5, 12):
-        thresholds = calibrate_thresholds(records, scores, max_group_size=cap)
-        grouping = group_by_keypoints(records, scores=scores, per_category=thresholds)
-        assert grouping.largest <= cap
+# Calibration is tested against hand-built score distributions rather than the
+# image fixture. On a fixture small enough to render, genuine repeats are a
+# double-digit share of all pairs, whereas on real data they are a fraction of
+# a percent -- so a percentile taken over the fixture would sit inside the
+# signal rather than inside the null, and the test would measure nothing.
 
 
-def test_calibration_picks_the_smallest_threshold_that_fits(planted_root):
-    # Erring toward merging is the safe direction: a missed group leaks across
-    # the split, an over-merged one only costs training data.
-    records = index_mvtec(planted_root)
-    scores = inlier_distribution(records)
-    candidates = list(range(5, 200, 5))
-    thresholds = calibrate_thresholds(
-        records, scores, max_group_size=3, candidates=candidates
+def test_threshold_scales_with_each_category_null(fake_mvtec_root):
+    records = index_mvtec(fake_mvtec_root)
+    chosen = calibrate_thresholds(
+        records,
+        scores={"bottle": [], "grid": []},
+        stats={"bottle": {"p99": 4.0}, "grid": {"p99": 30.0}},
     )
-    for category, chosen in thresholds.items():
-        smaller = [c for c in candidates if c < chosen]
-        for candidate in smaller:
-            grouping = group_by_keypoints(
-                records, scores=scores, per_category={**thresholds, category: candidate}
-            )
-            assert grouping.largest > 3, (
-                f"{category} threshold {chosen} was not minimal; "
-                f"{candidate} also satisfies the cap"
-            )
+    assert chosen["grid"] == 60, "should be twice the category's own p99"
+    assert chosen["bottle"] == 20, "a tight null should be held at the floor"
 
 
-def test_calibration_reports_a_category_it_cannot_separate(planted_root):
-    records = index_mvtec(planted_root)
-    scores = inlier_distribution(records)
+def test_calibration_rejects_a_category_it_cannot_separate(fake_mvtec_root):
+    records = index_mvtec(fake_mvtec_root)
+    bottle = sorted(r.key for r in records if r.category == "bottle")
+    # Every bottle matches every other bottle strongly, while the null looks
+    # tight. That is the signature of a matcher keying on something all parts
+    # of this type share, and it must be refused rather than split on.
+    scores = {
+        "bottle": [(1000, a, b) for a, b in combinations(bottle, 2)],
+        "grid": [],
+    }
+    stats = {"bottle": {"p99": 1.0}, "grid": {"p99": 1.0}}
     with pytest.raises(ValueError, match="not separating"):
-        calibrate_thresholds(records, scores, max_group_size=1, candidates=[1, 2])
+        calibrate_thresholds(records, scores, stats=stats, max_group_size=3)
+
+
+def test_calibration_needs_statistics_for_every_category(fake_mvtec_root):
+    records = index_mvtec(fake_mvtec_root)
+    with pytest.raises(ValueError, match="no pair statistics"):
+        calibrate_thresholds(
+            records, scores={"bottle": []}, stats={"bottle": {"p99": 4.0}}
+        )
+
+
+def test_complete_linkage_refuses_to_chain(fake_mvtec_root):
+    # A matches B and B matches C, but A and C do not match. Single linkage
+    # merges all three; complete linkage must not.
+    records = index_mvtec(fake_mvtec_root)
+    keys = sorted(r.key for r in records if r.category == "bottle")[:3]
+    a, b, c = keys
+    scored = [(100, a, b), (100, b, c)]
+
+    assert len(complete_linkage(keys, scored, 20)) == 2
+    assert len(single_linkage(keys, scored, 20)) == 1
+
+
+def test_complete_linkage_merges_a_clique(fake_mvtec_root):
+    records = index_mvtec(fake_mvtec_root)
+    keys = sorted(r.key for r in records if r.category == "bottle")[:3]
+    a, b, c = keys
+    scored = [(100, a, b), (100, b, c), (100, a, c)]
+    assert [sorted(g) for g in complete_linkage(keys, scored, 20)] == [sorted(keys)]
 
 
 def test_per_category_thresholds_must_cover_every_category(planted_root):
@@ -197,8 +222,12 @@ def test_score_cache_round_trips(planted_root, tmp_path):
     scores = inlier_distribution(records)
     path = save_scores(tmp_path / "scores.json", scores, min_score=5)
 
-    reloaded, floor = load_scores(path)
-    assert floor == 5
+    reloaded, meta = load_scores(path)
+    assert meta["min_score"] == 5
+    # Percentiles must be computed before the low-scoring pairs are dropped,
+    # since those pairs are the null the threshold is calibrated against.
+    assert set(meta["stats"]) == {r.category for r in records}
+    assert all(s["n_pairs"] > 0 for s in meta["stats"].values())
     # Grouping above the cache floor must be identical either way.
     from_live = group_by_keypoints(records, threshold=20, scores=scores)
     from_cache = group_by_keypoints(records, threshold=20, scores=reloaded)
