@@ -12,6 +12,9 @@ venv/
 # Notebooks
 .ipynb_checkpoints/
 
+# Throwaway diagnostics: cluster contact sheets and similar
+scratch/
+
 # Data, models, outputs
 data/
 datasets/

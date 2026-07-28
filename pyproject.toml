@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vinspect"
+version = "0.1.0"
+description = "Defect segmentation that abstains when the evidence is weak"
+requires-python = ">=3.9"
+dependencies = [
+    "torch>=2.0",
+    "pillow>=10.0",
+    "numpy>=1.24",
+    # Used only by the split generator, to recover component identity that
+    # MVTec AD does not ship. Not a training-time dependency.
+    "opencv-python-headless>=4.8",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
