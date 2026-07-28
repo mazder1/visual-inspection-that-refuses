@@ -1,0 +1,38 @@
+# Project brief, kept local
+briefvisualinspection.md
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Data, models, outputs
+data/
+datasets/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+runs/
+outputs/
+wandb/
+mlruns/
+
+# Tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
