@@ -113,12 +113,19 @@ def build_loaders(
         seed=config.seed,
     )
 
+    # persistent_workers matters a lot here. Without it, DataLoader tears down
+    # and respawns its workers every epoch, and Windows spawns processes rather
+    # than forking -- each respawn re-imports torch in four processes. On an
+    # epoch that is otherwise about two seconds of work, that overhead dominates
+    # everything else.
+    persistent = config.num_workers > 0
     loaders = {
         "train": DataLoader(
             augmented,
             batch_sampler=sampler,
             num_workers=config.num_workers,
             pin_memory=True,
+            persistent_workers=persistent,
         )
     }
     for split in ("val", "test"):
@@ -128,6 +135,7 @@ def build_loaders(
             shuffle=False,
             num_workers=config.num_workers,
             pin_memory=True,
+            persistent_workers=persistent,
         )
     return loaders, per_split, sampler, prior
 
