@@ -108,6 +108,11 @@ class FocalTverskyLoss(nn.Module):
             raise ValueError(f"expected (B, 1, H, W), got {tuple(logits.shape)}")
         targets = targets.to(logits.dtype)
 
+        # Forced to float32 because the Tversky term sums 262,144 values per
+        # image. Under bfloat16 autocast sigmoid returns bfloat16, which carries
+        # roughly three significant decimal digits, and a sum that long
+        # accumulates enough error to make TP, FP and FN unreliable.
+        logits = logits.float()
         # binary_cross_entropy_with_logits is exactly -log(p_t), computed in a
         # numerically stable way. Never sigmoid-then-log by hand: at |logit| of
         # 50 the naive version underflows to log(0).
