@@ -134,6 +134,42 @@ defective bottles across 3 types, the group constraint is tight enough to drop
 a type from the smaller splits. Per-defect-type reporting on `bottle` will have
 a gap, and that is preferable to closing it with a leaky split.
 
+## The segmenter, as specified
+
+U-Net implemented from the paper. Every choice below was made deliberately and
+is enforced by a test in `tests/test_unet.py`, so none of them can drift.
+
+| decision | choice | why |
+|---|---|---|
+| Upsampling | bilinear + conv | transposed convolution's uneven kernel overlap produces checkerboard artifacts, which land directly on mask boundaries |
+| Skip connections | concatenate | encoder detail and decoder context are different kinds of information; concatenation lets the next conv learn the mixing rather than pre-committing to a sum |
+| Convolutions | **padded** | *deviates from the paper* — see below |
+| Normalisation | GroupNorm, 8 groups | statistics independent of batch size, and identical in train and eval; the service handles one image at a time |
+| Width / depth | base 16, depth 4 | ~2.2M parameters against 133 defective images; base 64 would be ~34M |
+| Dropout | decoder, p≈0.1 | MC dropout in module 03 needs it present in the trained weights |
+| Loss | Focal(γ=2) + Tversky(α=0.3, β=0.7) | focal decides which pixels get gradient, Tversky what the region should look like and which way to err |
+| Resolution | 512×512 | carpet defects average 1.67% of pixels; thin threads do not survive 256 |
+| Models | three, one per category | the categories are visually unrelated; a shared model spends capacity telling them apart |
+
+### The one deviation from the paper
+
+The 2015 paper uses **unpadded** convolutions, so a 572×572 input yields a
+388×388 output and full images need the overlap-tile strategy. That was a
+workaround for the GPU memory of the time.
+
+This implementation pads, so output size equals input size and the predicted
+mask aligns with the ground truth directly, with no cropping step in the
+evaluation path. Nothing is gained by reproducing a memory workaround on
+hardware that does not need it, and the cropping would be one more place for an
+off-by-one to hide.
+
+### On the loss
+
+Both alternatives run from configuration rather than a code change, because the
+region term should earn its place by measurement: `tversky_weight=0` gives focal
+alone — which is what DRAEM uses for its own U-Net-shaped segmentation head, at
+near-SOTA on this dataset — and `alpha=beta=0.5` gives plain Dice.
+
 ## Data
 
 MVTec AD, 5,354 images, of which **1,258 are defective**. That second number is
