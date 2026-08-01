@@ -263,3 +263,61 @@ def test_calibration_is_a_percentile_of_real_defect_sizes():
 def test_calibration_needs_defective_masks():
     with pytest.raises(ValueError, match="no defective masks"):
         calibrate_min_area([torch.zeros(1, SIZE, SIZE)])
+
+
+# --- hysteresis -----------------------------------------------------------
+
+
+def _chain_prediction(strong_value=0.7, bridge_value=0.4, passes=6):
+    """Two strong fragments joined by a weak bridge -- a faint defect's shape."""
+    mean = torch.full((SIZE, SIZE), 0.01)
+    mean[20, 5:15] = strong_value    # fragment A
+    mean[20, 15:25] = bridge_value   # the valley between them
+    mean[20, 25:35] = strong_value   # fragment B
+    stack = mean.unsqueeze(0).repeat(passes, 1, 1)
+    return MCPrediction(mean=mean, std=stack.std(dim=0), passes=stack)
+
+
+def test_hysteresis_reconnects_fragments_across_a_weak_bridge():
+    shattered = extract_regions(_chain_prediction(), threshold=0.5)
+    joined = extract_regions(_chain_prediction(), threshold=0.5, weak_threshold=0.33)
+
+    assert len(shattered) == 2, "one hard threshold shatters the chain"
+    assert len(joined) == 1, "the weak bridge must reconnect it"
+    # The joined region's evidence is the SUM of both fragments' cores.
+    assert joined[0].logodds == pytest.approx(
+        shattered[0].logodds + shattered[1].logodds, rel=1e-4
+    )
+
+
+def test_weak_pixels_connect_but_do_not_add_evidence():
+    """At p < 0.5 the log-odds are negative; letting bridges into the sum would
+    make a defect's evidence shrink as more of it comes into faint view."""
+    joined = extract_regions(_chain_prediction(), threshold=0.5, weak_threshold=0.33)[0]
+    assert joined.extent > joined.area, "bridge is in the footprint"
+    assert joined.area == 20, "core is only the strong pixels"
+    assert joined.logodds > 0
+
+
+def test_weak_whisper_without_a_seed_never_activates():
+    mean = torch.full((SIZE, SIZE), 0.01)
+    mean[10:20, 10:20] = 0.4  # a big whisper, no pixel above 0.5
+    stack = mean.unsqueeze(0).repeat(4, 1, 1)
+    prediction = MCPrediction(mean=mean, std=stack.std(dim=0), passes=stack)
+
+    assert extract_regions(prediction, threshold=0.5, weak_threshold=0.33) == []
+    score = score_image(prediction, weak_threshold=0.33)
+    assert score.defect_score == 0.0
+
+
+def test_hysteresis_changes_nothing_when_evidence_is_compact():
+    prediction = _prediction(_blob())
+    plain = score_image(prediction)
+    hysteresis = score_image(prediction, weak_threshold=0.33)
+    assert hysteresis.defect_score == pytest.approx(plain.defect_score, rel=1e-4)
+    assert hysteresis.n_regions == plain.n_regions
+
+
+def test_weak_threshold_must_sit_below_strong():
+    with pytest.raises(ValueError, match="below threshold"):
+        extract_regions(_chain_prediction(), threshold=0.5, weak_threshold=0.6)

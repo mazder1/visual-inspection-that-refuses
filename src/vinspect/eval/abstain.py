@@ -34,6 +34,13 @@ from vinspect.models.unet import UNet
 from vinspect.uncertainty.mc_dropout import mc_predict_batch
 from vinspect.uncertainty.regions import score_image
 
+#: Sensitivity level for the weak-evidence check. Below the 0.5 decision line,
+#: the model still emits graded evidence; at 0.33 the inspected clean panels
+#: showed at most 7 px while faint novel defects showed hundreds. Chosen while
+#: looking at the held-out cuts, so treat any number derived from them as
+#: dev-set performance until confirmed on a fresh held-out class.
+WEAK_EVIDENCE_THRESHOLD = 0.33
+
 
 def score_split(
     checkpoint_path: Path,
@@ -66,7 +73,17 @@ def score_split(
         images = torch.stack([sample["image"] for sample in batch])
         predictions = mc_predict_batch(model, images, passes=passes)
         for sample, prediction in zip(batch, predictions):
-            image_score = score_image(prediction, threshold=config["threshold"])
+            # Hysteresis extraction: weak pixels bridge strong fragments into
+            # one region but contribute no evidence themselves. Verified on dev
+            # to merge fragmented defect evidence at zero cost to clean parts.
+            image_score = score_image(
+                prediction,
+                threshold=config["threshold"],
+                weak_threshold=WEAK_EVIDENCE_THRESHOLD,
+            )
+            weak_pixels = int(
+                (prediction.mean > WEAK_EVIDENCE_THRESHOLD).sum()
+            )
             results.append(
                 {
                     "key": sample["key"],
@@ -76,9 +93,11 @@ def score_split(
                     "mass_score": image_score.mass_score,
                     "n_regions": image_score.n_regions,
                     "largest_area": image_score.largest_area,
+                    "largest_extent": image_score.largest_extent,
                     "persistence": image_score.persistence,
                     "area_cv": image_score.area_cv,
                     "interior_std": image_score.interior_std,
+                    "weak_evidence_px": weak_pixels,
                 }
             )
     return results

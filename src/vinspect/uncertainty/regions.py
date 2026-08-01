@@ -54,9 +54,20 @@ LOGIT_CLIP = 1e-6
 
 @dataclass(frozen=True)
 class Region:
-    """One connected blob and how it behaved across the MC passes."""
+    """One connected blob and how it behaved across the MC passes.
+
+    Under hysteresis extraction, ``area`` and every evidence statistic refer to
+    the **core** -- the pixels above the strong threshold -- while ``extent`` is
+    the full weak-connected footprint. Weak pixels establish connectivity and
+    nothing else: at p < 0.5 their log-odds are negative, so letting them into
+    the sum would make a defect's evidence *shrink* as more of it comes into
+    faint view.
+    """
 
     area: int
+    #: Full footprint including the weak bridges. Equals ``area`` when no weak
+    #: threshold is used.
+    extent: int
     mass: float  # summed probability: area x mean_probability
     #: Summed log-odds. Evidence accumulates additively in log-odds, not in
     #: probability: logit(0.99) is 11x logit(0.6), where 0.99 is only 1.65x
@@ -97,6 +108,9 @@ class ImageScore:
     mass_score: float  # summed probability, for contrast
     n_regions: int
     largest_area: int
+    #: Weak-connected footprint of the biggest region; equals largest_area
+    #: without hysteresis.
+    largest_extent: int
     #: Taken from the region carrying the most mass, since that is the one the
     #: verdict rests on.
     persistence: float
@@ -112,32 +126,35 @@ class ImageScore:
 
 def _region_stats(
     member: np.ndarray,
+    core: np.ndarray,
     mean_map: np.ndarray,
     logit_map: np.ndarray,
     std_map: np.ndarray,
     above: Optional[np.ndarray],
     bbox: Tuple[int, int, int, int],
 ) -> Region:
-    area = int(member.sum())
-    mass = float(mean_map[member].sum())
-    logodds = float(logit_map[member].sum())
+    area = int(core.sum())
+    extent = int(member.sum())
+    mass = float(mean_map[core].sum())
+    logodds = float(logit_map[core].sum())
 
     if above is None or above.shape[0] == 0:
         persistence, area_cv = 1.0, 0.0
     else:
-        per_pass = above[:, member].sum(axis=1).astype(np.float64)
+        per_pass = above[:, core].sum(axis=1).astype(np.float64)
         persistence = float((per_pass >= SURVIVAL_SHARE * area).mean())
         mean_area = per_pass.mean()
         area_cv = float(per_pass.std() / mean_area) if mean_area > 0 else 0.0
 
-    interior = ndimage.binary_erosion(member, iterations=INTERIOR_EROSION)
+    interior = ndimage.binary_erosion(core, iterations=INTERIOR_EROSION)
     if not interior.any():
         # Regions thinner than the erosion have no interior; fall back to the
-        # whole region rather than reporting nothing.
-        interior = member
+        # whole core rather than reporting nothing.
+        interior = core
 
     return Region(
         area=area,
+        extent=extent,
         mass=mass,
         logodds=logodds,
         mean_probability=mass / max(area, 1),
@@ -153,20 +170,39 @@ def extract_regions(
     prediction: MCPrediction,
     threshold: float = 0.5,
     min_area: int = 0,
+    weak_threshold: Optional[float] = None,
 ) -> List[Region]:
-    """Connected regions of the mean map, above ``threshold`` and ``min_area``.
+    """Connected regions of the mean map, optionally with hysteresis.
+
+    With ``weak_threshold`` set, regions are connected components of the *weak*
+    mask that contain at least one *strong* pixel -- Canny's hysteresis rule.
+    A weak pixel alone is nothing; a weak pixel adjacent to strong evidence is
+    part of it. This exists because faint defects present as chains of strong
+    fragments separated by weak valleys: one hard threshold shatters the chain
+    into pieces individually indistinguishable from noise, while the weak mask
+    reconnects them into a single region. Diffuse clean-part whisper has no
+    strong seed to attach to and never activates.
+
+    Evidence statistics stay on the strong core; weak pixels only connect.
 
     Regions are found on the *mean* map rather than per pass, so there is one
     stable set of blobs to describe; the passes are then used to say how each
     one behaved.
     """
+    if weak_threshold is not None and not 0.0 < weak_threshold < threshold:
+        raise ValueError(
+            f"weak_threshold must sit below threshold, got "
+            f"{weak_threshold} vs {threshold}"
+        )
     mean_map = prediction.mean.numpy()
     std_map = prediction.std.numpy()
     clipped = np.clip(mean_map, LOGIT_CLIP, 1.0 - LOGIT_CLIP)
     logit_map = np.log(clipped / (1.0 - clipped))
-    binary = mean_map > threshold
 
-    labelled, count = ndimage.label(binary)
+    strong = mean_map > threshold
+    support = strong if weak_threshold is None else mean_map > weak_threshold
+
+    labelled, count = ndimage.label(support)
     if count == 0:
         return []
 
@@ -180,7 +216,11 @@ def extract_regions(
     regions = []
     for index, window in enumerate(slices, start=1):
         member = labelled == index
-        if member.sum() < min_area:
+        core = member & strong
+        if not core.any():
+            # Weak whisper with no strong seed: not evidence, by design.
+            continue
+        if core.sum() < min_area:
             continue
         bbox = (
             window[0].start,
@@ -189,7 +229,7 @@ def extract_regions(
             window[1].stop,
         )
         regions.append(
-            _region_stats(member, mean_map, logit_map, std_map, above, bbox)
+            _region_stats(member, core, mean_map, logit_map, std_map, above, bbox)
         )
 
     return sorted(regions, key=lambda r: -r.mass)
@@ -199,6 +239,7 @@ def score_image(
     prediction: MCPrediction,
     threshold: float = 0.5,
     min_area: int = 0,
+    weak_threshold: Optional[float] = None,
 ) -> ImageScore:
     """Collapse one image to a score plus the evidence behind it.
 
@@ -222,13 +263,14 @@ def score_image(
     defective, not how many defects it has, and the largest part is enough to
     make that call.
     """
-    regions = extract_regions(prediction, threshold, min_area)
+    regions = extract_regions(prediction, threshold, min_area, weak_threshold)
     if not regions:
         return ImageScore(
             defect_score=0.0,
             mass_score=0.0,
             n_regions=0,
             largest_area=0,
+            largest_extent=0,
             persistence=0.0,
             area_cv=0.0,
             interior_probability=0.0,
@@ -242,6 +284,7 @@ def score_image(
         mass_score=float(max(r.mass for r in regions)),
         n_regions=len(regions),
         largest_area=max(r.area for r in regions),
+        largest_extent=max(r.extent for r in regions),
         persistence=dominant.persistence,
         area_cv=dominant.area_cv,
         interior_probability=dominant.interior_probability,

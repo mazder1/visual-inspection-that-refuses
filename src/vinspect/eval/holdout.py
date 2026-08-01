@@ -93,15 +93,19 @@ def verdicts(
     probabilities: np.ndarray,
     supported: np.ndarray,
     weak_evidence_px: Optional[np.ndarray] = None,
+    weak_floor: float = float("inf"),
 ) -> List[str]:
     """fail / pass / no-call per image.
 
-    The weak-evidence rule: a confident pass additionally requires **zero**
-    pixels above the sensitivity level (0.33). The model emits graded evidence
-    below its 0.5 decision line, and a would-be pass that still shows weak
-    evidence becomes a no-call rather than a verdict. Parameter-free apart
-    from the level itself, which is dev-tuned and awaits confirmation on a
-    fresh held-out class.
+    The weak-evidence rule: a would-be pass whose pixels above the sensitivity
+    level (0.33) exceed ``weak_floor`` becomes a no-call. The floor is the 95th
+    percentile of *clean validation* images' weak-pixel counts, computed per
+    category -- so its cost is capped at ~5% of clean parts by construction and
+    the held-out class plays no part in setting it.
+
+    The parameter-free version (any weak pixel at all) was measured on the dev
+    sets and refuted: clean parts whisper routinely, and it would have routed
+    35-83% of them to review. The floor is what makes the rule affordable.
     """
     if weak_evidence_px is None:
         weak_evidence_px = np.zeros(len(probabilities))
@@ -111,7 +115,7 @@ def verdicts(
             out.append("no-call")
         elif p >= 0.5:
             out.append("fail")
-        elif weak > 0:
+        elif weak > weak_floor:
             out.append("no-call")
         else:
             out.append("pass")
@@ -132,7 +136,12 @@ def report(
     probabilities = calibrator.predict(scores)
     supported = calibrator.supported(scores)
     weak = np.array([row.get("weak_evidence_px", 0) for row in test])
-    calls = verdicts(probabilities, supported, weak)
+    # The floor comes from clean validation data only.
+    clean_validation = [
+        row.get("weak_evidence_px", 0) for row in validation if row["label"] == 0
+    ]
+    weak_floor = float(np.percentile(clean_validation, 95))
+    calls = verdicts(probabilities, supported, weak, weak_floor)
 
     def bucket(predicate) -> Dict[str, object]:
         rows = [
@@ -163,6 +172,7 @@ def report(
         "clean": clean,
         "n_validation": len(validation),
         "n_validation_defective": sum(r["label"] for r in validation),
+        "weak_floor": weak_floor,
         "calibrator": calibrator.summary(),
     }
 
