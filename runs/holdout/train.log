@@ -1,0 +1,33 @@
+hazelnut: 296 train (37 defective), 94 val (8 defective), 111 test
+measured defect-pixel rate 0.6565%, output bias initialised to match; batches are 12.5% defective against a natural 12.5%
+WARNING: 8 defective validation images. Differences between checkpoints will not be meaningful.
+  epoch   0  loss 2.5711 (focal 1.8344, tversky 0.7367)  val Dice 0.5435  false-alarm 0.0672%  *
+  epoch   2  loss 2.0676 (focal 1.3823, tversky 0.6853)  val Dice 0.7241  false-alarm 0.1422%  *
+  epoch   4  loss 1.6288 (focal 1.0346, tversky 0.5942)  val Dice 0.7897  false-alarm 0.0286%  *
+  epoch   5  loss 1.7375 (focal 1.1211, tversky 0.6164)  val Dice 0.5027  false-alarm 0.0001%
+  epoch   8  loss 1.4538 (focal 0.8903, tversky 0.5636)  val Dice 0.8228  false-alarm 0.0047%  *
+  epoch  10  loss 1.5305 (focal 0.9461, tversky 0.5844)  val Dice 0.7866  false-alarm 0.0395%
+  epoch  15  loss 1.4636 (focal 0.9096, tversky 0.5540)  val Dice 0.7983  false-alarm 0.0009%
+  epoch  19  loss 1.3749 (focal 0.8552, tversky 0.5197)  val Dice 0.8277  false-alarm 0.0047%  *
+  epoch  20  loss 2.3976 (focal 1.6477, tversky 0.7499)  val Dice 0.0526  false-alarm 0.0001%
+  epoch  25  loss 2.0395 (focal 1.3471, tversky 0.6924)  val Dice 0.5921  false-alarm 0.0021%
+  epoch  30  loss 1.5034 (focal 0.9409, tversky 0.5625)  val Dice 0.7889  false-alarm 0.0171%
+  epoch  35  loss 1.3796 (focal 0.8471, tversky 0.5325)  val Dice 0.7398  false-alarm 0.0252%
+  epoch  40  loss 1.4355 (focal 0.9170, tversky 0.5184)  val Dice 0.7965  false-alarm 0.0025%
+  epoch  45  loss 1.3145 (focal 0.7911, tversky 0.5234)  val Dice 0.8058  false-alarm 0.0097%
+  epoch  49  loss 1.2537 (focal 0.7755, tversky 0.4782)  val Dice 0.8042  false-alarm 0.0047%
+  stopping at epoch 49, no improvement for 30
+
+best epoch 19, val Dice 0.8277
+category / defect                     n      IoU     Dice
+---------------------------------------------------------
+hazelnut / cut                       17    0.205    0.304
+hazelnut / hole                       5    0.760    0.861
+hazelnut / print                      3    0.710    0.830
+---------------------------------------------------------
+hazelnut (all defects)               25    0.377    0.479
+---------------------------------------------------------
+clean images                         86   false-alarm area 0.0066%, 10.5% touched
+
+split digest 7aa3946e51331da5afcaf2e4fe70a125ef45eea8b3c479061ad4a303151a471f
+written to runs\holdout\hazelnut_grouped
