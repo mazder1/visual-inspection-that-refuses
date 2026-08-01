@@ -159,6 +159,25 @@ class IsotonicCalibrator:
         )
         return values[index]
 
+    def supported(self, scores: Sequence[float]) -> np.ndarray:
+        """Whether each score falls inside a fitted step's observed range.
+
+        A score in the gap *between* steps was never seen at fit time: the
+        probability returned for it is an extrapolation, not a measurement.
+        On this data the gaps are exactly where the misses hid -- bottle's
+        staircase jumps from 252 to 1,927, and two truly defective test images
+        scored 449 and 679, inside the gap, where the step value of 0.5% was
+        asserted on zero validation images. Scores beyond either end of the
+        staircase are likewise unsupported.
+        """
+        if not self.steps:
+            raise RuntimeError("fit() has not been called")
+        scores = np.asarray(scores, dtype=np.float64)
+        inside = np.zeros(scores.shape, dtype=bool)
+        for step in self.steps:
+            inside |= (scores >= step.lower) & (scores <= step.upper)
+        return inside
+
     def summary(self) -> Dict[str, object]:
         return {
             "n_steps": len(self.steps),
@@ -180,13 +199,18 @@ def reliability_bins(
     probabilities: Sequence[float],
     labels: Sequence[int],
     n_bins: int = 8,
+    max_claim_spread: float = 0.15,
 ) -> List[Dict[str, float]]:
-    """Claimed probability against observed rate, in equal-count bins.
+    """Claimed probability against observed rate, binned by claim level.
 
-    Equal-count rather than equal-width for the same reason the calibrator uses
-    adaptive steps: with skewed scores, equal-width bins rest some estimates on
-    two images. Each row carries its count so a reader can see how much
-    evidence sits behind it.
+    Equal-count binning misleads on clumpy distributions, which calibrated
+    staircase outputs always are: with 178 images claiming ~0% and 29 claiming
+    ~95%, a forced middle bin sweeps together claims from 1% to 90% and prints
+    their average as "42%", a level almost no image actually claimed. So bins
+    are grown over sorted claims and cut wherever the claim value jumps by more
+    than ``max_claim_spread`` -- images are only averaged with images making a
+    similar claim. ``n_bins`` caps how fine the result gets; each row carries
+    its count so a reader can see the evidence behind it.
     """
     probabilities = np.asarray(probabilities, dtype=np.float64)
     labels = np.asarray(labels, dtype=np.float64)
@@ -194,16 +218,30 @@ def reliability_bins(
         return []
 
     order = np.argsort(probabilities, kind="stable")
-    bins = np.array_split(order, min(n_bins, len(order)))
-    return [
-        {
-            "claimed": float(probabilities[chunk].mean()),
-            "observed": float(labels[chunk].mean()),
-            "count": int(len(chunk)),
-        }
-        for chunk in bins
-        if len(chunk)
-    ]
+    sorted_probabilities = probabilities[order]
+    sorted_labels = labels[order]
+
+    target = max(1, len(order) // max(n_bins, 1))
+    rows: List[Dict[str, float]] = []
+    start = 0
+    for i in range(1, len(order) + 1):
+        boundary = i == len(order)
+        if not boundary:
+            jump = sorted_probabilities[i] - sorted_probabilities[start]
+            boundary = i - start >= target and jump > 0
+            boundary = boundary or jump > max_claim_spread
+        if boundary:
+            chunk_p = sorted_probabilities[start:i]
+            chunk_l = sorted_labels[start:i]
+            rows.append(
+                {
+                    "claimed": float(chunk_p.mean()),
+                    "observed": float(chunk_l.mean()),
+                    "count": int(i - start),
+                }
+            )
+            start = i
+    return rows
 
 
 def expected_calibration_error(

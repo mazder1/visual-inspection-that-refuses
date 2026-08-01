@@ -40,8 +40,40 @@ reject decision on its own. It is not qualified for production use.
 
 ## Status
 
-Modules 01 and 02 are built, tested and measured. Modules 03 (abstention and
-calibration) and 04 (the service) are not started.
+Modules 01 and 02 are built, tested and measured. Module 03 (abstention and
+calibration) is built and measured except for the held-out-defect-class
+experiment. Module 04 (the service) is not started.
+
+## The headline
+
+On the pooled test set (237 images, 44 defective), with region-level scores
+calibrated per category on validation:
+
+> **At 100% coverage, defect recall is 93.2%. Routing the 5.1% least-confident
+> images to human review raises recall to 97.7%.**
+
+The remaining missed defect is invisible to the model — score zero, no region
+in any of 20 MC-dropout passes — so no abstention rule can rank it above a
+clean part. Catching what the model cannot see at all is the held-out-class
+problem, not an abstention-tuning problem, and it is stated here rather than
+absorbed into an average.
+
+Calibration quality on test, fitted on validation: pooled Brier 0.019 against
+0.15 for always-guessing the base rate. When the system claims ~95%, the
+observed rate is 100%; when it claims under 1%, the observed rate is 1.4%.
+
+Two design findings behind the curve, both measured:
+
+- **Scores are two piles and a valley.** Most parts score near zero or clearly
+  high; almost nothing sits between. The abstention band is therefore cheap —
+  5% review buys the recall gain — but the valley is measured on parts similar
+  to training, which is exactly what the held-out-class experiment probes.
+- **A calibrated probability is not a verdict when the calibrator never saw
+  that score.** Two of the three test misses had scores inside a gap of the
+  isotonic staircase, where the extrapolated "0.5%" read as confident-clean
+  while the model had actually found a 1,645 px region with persistence 0.85.
+  Scores without validation support are routed to review first — the brief's
+  own abstention case, evidence unlike the training distribution.
 
 ## Results
 

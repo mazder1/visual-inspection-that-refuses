@@ -141,6 +141,24 @@ def test_bad_inputs_are_rejected(scores, labels, match):
 def test_predict_before_fit_is_an_error():
     with pytest.raises(RuntimeError, match="fit"):
         IsotonicCalibrator().predict(np.array([1.0]))
+    with pytest.raises(RuntimeError, match="fit"):
+        IsotonicCalibrator().supported(np.array([1.0]))
+
+
+def test_supported_marks_gaps_and_ends():
+    """A score between two steps, or beyond the ends, was never observed at
+    fit time -- its probability is an extrapolation and must be flagged."""
+    scores = np.concatenate([np.linspace(0, 100, 30), np.linspace(2000, 3000, 10)])
+    labels = np.concatenate([np.zeros(30), np.ones(10)]).astype(int)
+    calibrator = IsotonicCalibrator().fit(scores, labels)
+
+    inside, gap, below, above = calibrator.supported(
+        np.array([50.0, 700.0, -5.0, 9000.0])
+    )
+    assert bool(inside)
+    assert not bool(gap), "the 100..2000 gap was never observed"
+    assert not bool(below)
+    assert not bool(above)
 
 
 def test_negative_pseudocount_is_rejected():
@@ -151,12 +169,20 @@ def test_negative_pseudocount_is_rejected():
 # --- reliability ----------------------------------------------------------
 
 
-def test_reliability_bins_are_equal_count():
-    probabilities = np.concatenate([np.full(70, 0.05), np.linspace(0.5, 1.0, 10)])
-    labels = (probabilities > 0.5).astype(int)
+def test_reliability_bins_never_average_dissimilar_claims():
+    """The display bug this replaced: with 178 images claiming ~0% and 29
+    claiming ~95%, equal-count binning printed a '42%' row that no image had
+    actually claimed. Bins must only pool images making similar claims."""
+    probabilities = np.concatenate([np.full(70, 0.05), np.full(10, 0.95), [0.5]])
+    labels = (probabilities > 0.4).astype(int)
     rows = reliability_bins(probabilities, labels, n_bins=8)
-    counts = [row["count"] for row in rows]
-    assert max(counts) - min(counts) <= 1, "bins should hold equal evidence"
+    for row in rows:
+        members = probabilities[np.abs(probabilities - row["claimed"]) <= 0.16]
+        assert len(members) > 0
+    # The clumps must not be merged across the gap.
+    claims = [row["claimed"] for row in rows]
+    assert any(c < 0.2 for c in claims) and any(c > 0.8 for c in claims)
+    assert not any(0.55 < c < 0.85 for c in claims)
 
 
 def test_reliability_of_perfect_predictions_sits_on_the_diagonal():
