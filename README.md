@@ -40,9 +40,65 @@ reject decision on its own. It is not qualified for production use.
 
 ## Status
 
-Module 01, the split generator, is built and tested. No model exists yet — that
-is deliberate: the evaluation is built first so the project cannot drift into
-chasing a number.
+Modules 01 and 02 are built, tested and measured. Modules 03 (abstention and
+calibration) and 04 (the service) are not started.
+
+## Results
+
+Three categories, U-Net from scratch, 2.16M parameters, 512×512, trained on the
+leakage-aware split. Per-pixel scores on the held-out test set, over defective
+images only — on a clean image an overlap metric is degenerate and rewards
+predicting nothing.
+
+| category | defective test images | IoU | Dice |
+|---|---:|---:|---:|
+| bottle | 12 | 0.503 | 0.630 |
+| carpet | 18 | 0.546 | 0.698 |
+| hazelnut | 14 | 0.795 | 0.882 |
+
+### The split delta — the finding
+
+Same architecture, same seed, same hyperparameters; the only difference is
+which split file was read. 95% percentile bootstrap over defective test images,
+because a point estimate on 12 to 18 images implies a precision that is not
+there.
+
+| category | components appearing more than once | delta IoU (random − grouped) | |
+|---|---:|---|---|
+| bottle | 6 of 286 (2%) | −0.113 [−0.311, +0.096] | not distinguishable from zero |
+| hazelnut | 72 of 423 (17%) | −0.027 [−0.118, +0.061] | not distinguishable from zero |
+| **carpet** | **97 of 263 (37%)** | **+0.125 [+0.055, +0.200]** | **excludes zero** |
+
+**The inflation appears where the leakage is.** The delta orders exactly with
+how much component reuse each category actually contains. Carpet, where more
+than a third of components appear in several images, is inflated by 0.125 IoU
+by a random split. Bottle, with 2% reuse, shows nothing measurable, and its
+negative point estimate is a small test set moving around.
+
+Reported as three numbers rather than one average on purpose. A single
+cross-category mean would have come to roughly zero and concluded, wrongly, that
+the split does not matter.
+
+### What this costs, stated plainly
+
+**Per-defect-type coverage is incomplete on the grouped split.** Keeping
+components together squeezed one defect class out of the test set for two of
+three categories — hazelnut's grouped test set covers `cut`, `hole` and `print`
+but not `crack`. That is a real gap, and preferable to closing it with a leaky
+split.
+
+**Clean parts are not clean.** On hazelnut, 40.7% of defect-free test images
+carry at least one false-positive pixel, though the area is tiny (0.02% of
+pixels). Nearly half of good parts would trigger something. That is the baseline
+module 03's abstention layer has to improve on, and it is the number that
+decides whether an operator keeps trusting the system.
+
+### Reproducing
+
+```sh
+python -m vinspect.train.run_all --root data/mvtec_ad --out runs   # ~77 min on an RTX 3070
+python -m vinspect.eval.compare --runs runs --metric iou
+```
 
 ```sh
 python -m vinspect.data.mvtec  --root data/mvtec_ad --check-load   # inventory

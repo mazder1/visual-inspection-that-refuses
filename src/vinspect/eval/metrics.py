@@ -16,7 +16,7 @@ this project exists to avoid.
 from __future__ import annotations
 
 from collections import defaultdict
-from typing import Dict, List, Sequence, Tuple
+from typing import Dict, List, Optional, Sequence, Tuple
 
 import torch
 from torch import Tensor
@@ -148,6 +148,42 @@ class SegmentationMetrics:
                 "iou": sum(float(r["iou"]) for r in rows) / len(rows),
             }
             for category, rows in sorted(grouped.items())
+        }
+
+    def bootstrap(
+        self,
+        metric: str = "iou",
+        category: Optional[str] = None,
+        resamples: int = 5000,
+        confidence: float = 0.95,
+        seed: int = 0,
+    ) -> Dict[str, float]:
+        """Percentile bootstrap interval over defective images.
+
+        With 12 to 18 defective test images per category, a bare point estimate
+        implies a precision the data does not have. Resampling the per-image
+        scores gives the width of what was actually measured.
+        """
+        rows = [
+            r
+            for r in self.defective
+            if category is None or r["category"] == category
+        ]
+        if not rows:
+            return {"n": 0, "point": 0.0, "low": 0.0, "high": 0.0}
+
+        values = torch.tensor([float(r[metric]) for r in rows])
+        generator = torch.Generator().manual_seed(seed)
+        draws = torch.randint(
+            len(values), (resamples, len(values)), generator=generator
+        )
+        means = values[draws].mean(dim=1)
+        tail = (1.0 - confidence) / 2.0
+        return {
+            "n": len(values),
+            "point": float(values.mean()),
+            "low": float(means.quantile(tail)),
+            "high": float(means.quantile(1.0 - tail)),
         }
 
     def summary(self) -> Dict[str, object]:

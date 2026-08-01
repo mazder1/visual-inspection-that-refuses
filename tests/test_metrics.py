@@ -104,6 +104,57 @@ def test_threshold_is_respected():
     assert strict.mean_dice() < loose.mean_dice()
 
 
+def _predict(rows):
+    """Confident prediction covering ``rows``, so overlap varies per image."""
+    return torch.where(_mask(rows=rows) > 0, BIG, -BIG)
+
+
+def test_bootstrap_brackets_the_point_estimate():
+    metrics = SegmentationMetrics()
+    target = _mask(rows=slice(0, 8))
+    # Genuinely different overlaps, so the scores have a spread to resample.
+    for rows in (slice(0, 8), slice(2, 10), slice(4, 12), slice(0, 6), slice(6, 14)):
+        metrics.update(_predict(rows), target, ["bottle"], ["crack"])
+
+    interval = metrics.bootstrap("iou", "bottle", resamples=2000)
+    assert interval["n"] == 5
+    assert interval["low"] <= interval["point"] <= interval["high"]
+    assert interval["high"] > interval["low"]
+
+
+def test_bootstrap_is_deterministic_and_ignores_clean_images():
+    metrics = SegmentationMetrics()
+    target = _mask()
+    metrics.update(torch.where(target > 0, BIG, -BIG), target, ["bottle"], ["crack"])
+    metrics.update(
+        torch.full_like(target, -BIG), torch.zeros_like(target), ["bottle"], ["good"]
+    )
+
+    first = metrics.bootstrap("iou", "bottle", resamples=500, seed=3)
+    again = metrics.bootstrap("iou", "bottle", resamples=500, seed=3)
+    assert first == again
+    assert first["n"] == 1, "the clean image leaked into the bootstrap sample"
+
+
+def test_bootstrap_narrows_as_images_are_added():
+    """More images, tighter interval. This is why the delta table needs one:
+    at 12 to 18 defective test images the interval is wide."""
+    target = _mask(rows=slice(0, 8))
+    widths = []
+    for count in (4, 40):
+        metrics = SegmentationMetrics()
+        for i in range(count):
+            rows = slice(0, 8) if i % 2 else slice(4, 12)
+            metrics.update(_predict(rows), target, ["bottle"], ["crack"])
+        interval = metrics.bootstrap("iou", "bottle", resamples=3000)
+        widths.append(interval["high"] - interval["low"])
+    assert widths[1] < widths[0]
+
+
+def test_bootstrap_on_an_empty_category_is_safe():
+    assert SegmentationMetrics().bootstrap("iou", "bottle")["n"] == 0
+
+
 def test_summary_and_report_render():
     metrics = SegmentationMetrics()
     target = _mask()

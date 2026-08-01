@@ -22,7 +22,8 @@ checkpoints/
 *.pt
 *.pth
 *.ckpt
-runs/
+# Training outputs: checkpoints are excluded by the *.pt rule above, but the
+# result JSONs and run logs are the project's findings and belong in the repo.
 outputs/
 wandb/
 mlruns/
@@ -39,3 +40,4 @@ htmlcov/
 Thumbs.db
 .vscode/
 .idea/
+runs/*.err
