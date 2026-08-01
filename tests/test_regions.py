@@ -51,6 +51,18 @@ def _scattered(count=100, seed=0):
 # --- the point of the whole module ----------------------------------------
 
 
+def test_scattered_pixels_score_far_below_a_blob_without_any_gate():
+    """With no minimum-area gate at all, the score alone must separate them.
+
+    This is what forces the score to take the strongest single region rather
+    than summing over all of them: a sum over regions is a sum over pixels in
+    disguise, and would score these two identically.
+    """
+    blob = score_image(_prediction(_blob()))
+    scattered = score_image(_prediction(_scattered(100)))
+    assert blob.defect_score > 20 * scattered.defect_score
+
+
 def test_a_blob_and_the_same_pixels_scattered_score_differently():
     """100 hot pixels in a 10x10 square against 100 spread at random.
 
@@ -86,7 +98,15 @@ def test_min_area_removes_small_regions():
     assert score_image(_prediction(small), min_area=50).n_regions == 0
 
 
-def test_multi_part_defects_are_summed_not_reduced_to_the_largest():
+def test_multi_part_defects_are_scored_by_their_largest_part():
+    """The documented cost of taking the maximum rather than the sum.
+
+    Summing over regions would raise the score here, but a sum over regions is
+    a sum over pixels in disguise and cannot tell a blob from scattered noise.
+    The second part is still recorded, it just does not inflate the verdict --
+    which is fine, since the question is whether the part is defective, not how
+    many defects it carries.
+    """
     rows, cols = _blob(slice(10, 20), slice(10, 20))
     rows2, cols2 = _blob(slice(40, 48), slice(40, 48))
     both = (torch.cat([rows, rows2]), torch.cat([cols, cols2]))
@@ -94,8 +114,11 @@ def test_multi_part_defects_are_summed_not_reduced_to_the_largest():
     one = score_image(_prediction(_blob()), min_area=20)
     two = score_image(_prediction(both), min_area=20)
 
-    assert two.n_regions == 2
-    assert two.defect_score > one.defect_score
+    assert two.n_regions == 2, "both parts must still be found and reported"
+    assert len(two.regions) == 2
+    assert two.defect_score == pytest.approx(one.defect_score), (
+        "the score comes from the strongest region, not the sum"
+    )
 
 
 def test_regions_come_back_ordered_by_mass():
@@ -136,12 +159,43 @@ def test_persistence_separates_a_believed_region_from_a_flickering_one():
     assert flickering.persistence > 0.0
 
 
+def test_a_small_certain_region_outweighs_a_large_uncertain_one():
+    """The property plain mass gets backwards.
+
+    Evidence adds in log-odds, not in probability: logit(0.99) is 11x
+    logit(0.6), while 0.99 is only 1.65x 0.6. So a small, very confident region
+    can outweigh a large, hesitant one -- which is what lets a genuine small
+    defect survive without needing a minimum-area gate to protect it.
+    """
+    small_certain = score_image(  # 20x20 = 400 px, very sure
+        _prediction(_blob(slice(10, 30), slice(10, 30)), hot_value=0.99)
+    )
+    large_unsure = score_image(  # 30x40 = 1200 px, hesitant
+        _prediction(_blob(slice(10, 40), slice(10, 50)), hot_value=0.60)
+    )
+
+    assert large_unsure.largest_area > small_certain.largest_area
+    assert large_unsure.mass_score > small_certain.mass_score, "mass prefers size"
+    assert small_certain.defect_score > large_unsure.defect_score, (
+        "log-odds should let confidence compensate for size"
+    )
+
+
+def test_no_minimum_area_is_needed_by_default():
+    # The gate is off: a real but small region must still produce a score
+    # rather than being deleted and the part called clean.
+    small = score_image(_prediction(_blob(slice(10, 18), slice(10, 18))))
+    assert small.n_regions == 1
+    assert small.defect_score > 0
+
+
 def test_region_features_are_populated():
     score = score_image(_prediction(_blob()), min_area=20)
     region = score.regions[0]
     assert region.area == 100
     assert region.mean_probability == pytest.approx(0.95, abs=0.01)
     assert region.mass == pytest.approx(95.0, abs=1.0)
+    assert region.logodds == pytest.approx(100 * torch.logit(torch.tensor(0.95)), rel=0.02)
     assert 0.0 <= region.persistence <= 1.0
     assert region.area_cv >= 0.0
     assert region.interior_probability > 0.0

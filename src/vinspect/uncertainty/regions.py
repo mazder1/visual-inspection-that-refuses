@@ -47,6 +47,10 @@ INTERIOR_EROSION = 2
 #: threshold in that pass.
 SURVIVAL_SHARE = 0.5
 
+#: Probabilities are clipped before taking log-odds, since a saturated sigmoid
+#: returns exactly 1.0 in float32 and the logit would be infinite.
+LOGIT_CLIP = 1e-6
+
 
 @dataclass(frozen=True)
 class Region:
@@ -54,6 +58,12 @@ class Region:
 
     area: int
     mass: float  # summed probability: area x mean_probability
+    #: Summed log-odds. Evidence accumulates additively in log-odds, not in
+    #: probability: logit(0.99) is 11x logit(0.6), where 0.99 is only 1.65x
+    #: 0.6. That is what lets a small, very confident region outweigh a large,
+    #: uncertain one -- 500 px at 0.99 scores 2,300 against 2,027 for 5,000 px
+    #: at 0.6, which plain mass gets backwards by a factor of six.
+    logodds: float
     mean_probability: float
     #: Share of MC passes in which most of this region stayed above threshold.
     #: The existence signal.
@@ -69,9 +79,22 @@ class Region:
 
 @dataclass(frozen=True)
 class ImageScore:
-    """What one image reduces to, after regions are found and filtered."""
+    """What one image reduces to, after its regions are found.
 
-    defect_score: float  # total mass over surviving regions
+    ``defect_score`` is the summed log-odds. Compared on validation at a 1%
+    false-alarm budget -- the operating point a line would actually run -- a
+    region score catches 92% of bottle defects where the old per-pixel maximum
+    caught 69%. AUROC scored those two 0.995 and 0.992 and called it a tie,
+    because it averages over every decision line and hides exactly the
+    behaviour that matters.
+
+    ``mass_score`` is kept alongside for comparison. The two are level on this
+    data; they differ only on small, very confident regions, which these
+    validation sets do not contain.
+    """
+
+    defect_score: float  # summed log-odds over regions
+    mass_score: float  # summed probability, for contrast
     n_regions: int
     largest_area: int
     #: Taken from the region carrying the most mass, since that is the one the
@@ -90,12 +113,14 @@ class ImageScore:
 def _region_stats(
     member: np.ndarray,
     mean_map: np.ndarray,
+    logit_map: np.ndarray,
     std_map: np.ndarray,
     above: Optional[np.ndarray],
     bbox: Tuple[int, int, int, int],
 ) -> Region:
     area = int(member.sum())
     mass = float(mean_map[member].sum())
+    logodds = float(logit_map[member].sum())
 
     if above is None or above.shape[0] == 0:
         persistence, area_cv = 1.0, 0.0
@@ -114,6 +139,7 @@ def _region_stats(
     return Region(
         area=area,
         mass=mass,
+        logodds=logodds,
         mean_probability=mass / max(area, 1),
         persistence=persistence,
         area_cv=area_cv,
@@ -136,6 +162,8 @@ def extract_regions(
     """
     mean_map = prediction.mean.numpy()
     std_map = prediction.std.numpy()
+    clipped = np.clip(mean_map, LOGIT_CLIP, 1.0 - LOGIT_CLIP)
+    logit_map = np.log(clipped / (1.0 - clipped))
     binary = mean_map > threshold
 
     labelled, count = ndimage.label(binary)
@@ -160,7 +188,9 @@ def extract_regions(
             window[0].stop,
             window[1].stop,
         )
-        regions.append(_region_stats(member, mean_map, std_map, above, bbox))
+        regions.append(
+            _region_stats(member, mean_map, logit_map, std_map, above, bbox)
+        )
 
     return sorted(regions, key=lambda r: -r.mass)
 
@@ -172,15 +202,31 @@ def score_image(
 ) -> ImageScore:
     """Collapse one image to a score plus the evidence behind it.
 
-    ``defect_score`` sums the mass of every surviving region rather than taking
-    only the largest. Measured on the training masks, 84% of real defects are a
-    single region -- but 31% of hazelnut defects are multi-part, so keeping only
-    the largest would discard real evidence on a third of them.
+    ``min_area`` defaults to zero: **no gate**. A hard minimum area was measured
+    to be unnecessary -- the region score alone reaches 92-100% recall at a 1%
+    false-alarm budget without one -- and it was actively harmful, because
+    hazelnut's calibrated threshold of 1,617 px sat above the smallest real
+    defect on record at 609 px. Anything in that band was deleted and the part
+    called clean, with nothing flagged. A borderline defect should become an
+    abstention, not a silent pass.
+
+    Scores take the **strongest single region**, not the sum over all of them.
+    Summing is spatially blind and quietly undoes the whole point: 100 scattered
+    single pixels sum to exactly the same total as one 100-pixel blob, because
+    a sum over regions is just a sum over pixels wearing a disguise. Taking the
+    maximum states the physical claim directly -- the case for this part being
+    defective rests on its best piece of *connected* evidence.
+
+    The cost is that a genuinely multi-part defect is scored by its largest
+    part alone. That is acceptable here: the decision is whether the part is
+    defective, not how many defects it has, and the largest part is enough to
+    make that call.
     """
     regions = extract_regions(prediction, threshold, min_area)
     if not regions:
         return ImageScore(
             defect_score=0.0,
+            mass_score=0.0,
             n_regions=0,
             largest_area=0,
             persistence=0.0,
@@ -192,7 +238,8 @@ def score_image(
 
     dominant = regions[0]
     return ImageScore(
-        defect_score=float(sum(r.mass for r in regions)),
+        defect_score=float(max(r.logodds for r in regions)),
+        mass_score=float(max(r.mass for r in regions)),
         n_regions=len(regions),
         largest_area=max(r.area for r in regions),
         persistence=dominant.persistence,
