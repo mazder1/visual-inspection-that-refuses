@@ -1,0 +1,211 @@
+"""Tests for region-level scoring.
+
+The first test is the one that matters: the same number of hot pixels, once
+scattered and once in a blob, must not score the same. Every per-pixel
+statistic fails it, which is why none of them belongs here.
+"""
+
+from __future__ import annotations
+
+import pytest
+import torch
+
+from vinspect.uncertainty.mc_dropout import MCPrediction
+from vinspect.uncertainty.regions import (
+    calibrate_min_area,
+    extract_regions,
+    ground_truth_region_areas,
+    score_image,
+)
+
+SIZE = 64
+
+
+def _prediction(hot, passes=8, hot_value=0.95, agreement=1.0):
+    """Build an MCPrediction whose mean is ``hot_value`` on ``hot``.
+
+    ``agreement`` is the share of passes in which the hot pixels stay high, so
+    a value below 1 simulates a region the model only sometimes believes in.
+    """
+    mean = torch.full((SIZE, SIZE), 0.01)
+    mean[hot] = hot_value
+
+    stack = torch.full((passes, SIZE, SIZE), 0.01)
+    believing = max(1, int(round(agreement * passes)))
+    stack[:believing, hot[0], hot[1]] = hot_value
+    return MCPrediction(mean=mean, std=stack.std(dim=0), passes=stack)
+
+
+def _blob(rows=slice(10, 20), cols=slice(10, 20)):
+    grid = torch.zeros(SIZE, SIZE, dtype=torch.bool)
+    grid[rows, cols] = True
+    return grid.nonzero(as_tuple=True)
+
+
+def _scattered(count=100, seed=0):
+    generator = torch.Generator().manual_seed(seed)
+    flat = torch.randperm(SIZE * SIZE, generator=generator)[:count]
+    return (flat // SIZE, flat % SIZE)
+
+
+# --- the point of the whole module ----------------------------------------
+
+
+def test_a_blob_and_the_same_pixels_scattered_score_differently():
+    """100 hot pixels in a 10x10 square against 100 spread at random.
+
+    Identical under max, top-k mean and area-above-threshold. A defect is
+    produced by a physical process and is contiguous, so these must differ.
+    """
+    blob = score_image(_prediction(_blob()), min_area=50)
+    scattered = score_image(_prediction(_scattered(100)), min_area=50)
+
+    assert blob.defect_score > 0
+    assert scattered.defect_score == 0.0
+    assert scattered.n_regions == 0
+
+
+def test_per_pixel_statistics_would_not_have_separated_them():
+    # Documents why the earlier design was wrong: the maximum and the mean of
+    # the top 100 pixels are identical for both layouts.
+    blob = _prediction(_blob())
+    scattered = _prediction(_scattered(100))
+
+    assert float(blob.mean.max()) == pytest.approx(float(scattered.mean.max()))
+    top_blob = blob.mean.flatten().topk(100).values.mean()
+    top_scattered = scattered.mean.flatten().topk(100).values.mean()
+    assert float(top_blob) == pytest.approx(float(top_scattered), abs=1e-6)
+
+
+# --- filtering ------------------------------------------------------------
+
+
+def test_min_area_removes_small_regions():
+    small = _blob(slice(10, 14), slice(10, 14))  # 16 px
+    assert score_image(_prediction(small), min_area=10).n_regions == 1
+    assert score_image(_prediction(small), min_area=50).n_regions == 0
+
+
+def test_multi_part_defects_are_summed_not_reduced_to_the_largest():
+    rows, cols = _blob(slice(10, 20), slice(10, 20))
+    rows2, cols2 = _blob(slice(40, 48), slice(40, 48))
+    both = (torch.cat([rows, rows2]), torch.cat([cols, cols2]))
+
+    one = score_image(_prediction(_blob()), min_area=20)
+    two = score_image(_prediction(both), min_area=20)
+
+    assert two.n_regions == 2
+    assert two.defect_score > one.defect_score
+
+
+def test_regions_come_back_ordered_by_mass():
+    rows, cols = _blob(slice(10, 20), slice(10, 20))
+    rows2, cols2 = _blob(slice(40, 45), slice(40, 45))
+    both = (torch.cat([rows, rows2]), torch.cat([cols, cols2]))
+
+    regions = extract_regions(_prediction(both), min_area=10)
+    assert [r.mass for r in regions] == sorted((r.mass for r in regions), reverse=True)
+    assert regions[0].area > regions[1].area
+
+
+def test_an_empty_prediction_scores_zero():
+    empty = MCPrediction(
+        mean=torch.zeros(SIZE, SIZE),
+        std=torch.zeros(SIZE, SIZE),
+        passes=torch.zeros(4, SIZE, SIZE),
+    )
+    score = score_image(empty)
+    assert score.defect_score == 0.0
+    assert not score.predicted_defective
+
+
+# --- region-level uncertainty ---------------------------------------------
+
+
+def test_persistence_separates_a_believed_region_from_a_flickering_one():
+    """Existence doubt, which a per-pixel average cannot express.
+
+    A blob present in every pass and one present in half carry very different
+    claims, even where their mean maps look similar.
+    """
+    solid = score_image(_prediction(_blob(), agreement=1.0), min_area=20)
+    flickering = score_image(_prediction(_blob(), agreement=0.5), min_area=20)
+
+    assert solid.persistence == pytest.approx(1.0)
+    assert flickering.persistence < 0.75
+    assert flickering.persistence > 0.0
+
+
+def test_region_features_are_populated():
+    score = score_image(_prediction(_blob()), min_area=20)
+    region = score.regions[0]
+    assert region.area == 100
+    assert region.mean_probability == pytest.approx(0.95, abs=0.01)
+    assert region.mass == pytest.approx(95.0, abs=1.0)
+    assert 0.0 <= region.persistence <= 1.0
+    assert region.area_cv >= 0.0
+    assert region.interior_probability > 0.0
+
+
+def test_interior_ignores_the_boundary_band():
+    # A region whose edge is uncertain but whose middle is solid should read as
+    # confident: only its outline is in doubt, not its existence.
+    hot = _blob(slice(10, 30), slice(10, 30))
+    prediction = _prediction(hot)
+    mean = prediction.mean.clone()
+    mean[10, 10:30] = 0.55  # a wobbly top edge
+    mean[29, 10:30] = 0.55
+    wobbly = MCPrediction(mean=mean, std=prediction.std, passes=prediction.passes)
+
+    region = extract_regions(wobbly, min_area=20)[0]
+    assert region.interior_probability > region.mean_probability
+
+
+def test_thin_regions_still_report_an_interior():
+    # Eroding a 2px-wide region would leave nothing; it must fall back rather
+    # than crash or report zero.
+    thin = _blob(slice(10, 40), slice(10, 12))
+    region = extract_regions(_prediction(thin), min_area=10)[0]
+    assert region.interior_probability > 0.0
+
+
+# --- calibrating the threshold --------------------------------------------
+
+
+def _mask_with(main_area, speck=True):
+    mask = torch.zeros(1, SIZE, SIZE)
+    side = int(main_area ** 0.5)
+    mask[0, 0:side, 0:side] = 1.0
+    if speck:
+        mask[0, SIZE - 1, SIZE - 1] = 1.0  # a one-pixel annotation artefact
+    return mask
+
+
+def test_calibration_ignores_annotation_specks():
+    """MVTec's masks are hand-drawn and carry stray single pixels.
+
+    Taking every region, hazelnut's 5th percentile comes out at 1 px because
+    49% of its ground-truth regions are specks. Calibrating on the largest
+    region per image is immune to that.
+    """
+    masks = [_mask_with(area) for area in (400, 625, 900, 1225, 1600)]
+
+    every = ground_truth_region_areas(masks)
+    largest = ground_truth_region_areas(masks, largest_only=True)
+    assert every.min() == 1.0, "the fixture should contain specks"
+    assert largest.min() > 100, "largest-only must not see them"
+
+    assert calibrate_min_area(masks, percentile=5.0) > 100
+
+
+def test_calibration_is_a_percentile_of_real_defect_sizes():
+    masks = [_mask_with(area, speck=False) for area in (400, 900, 1600, 2500)]
+    low = calibrate_min_area(masks, percentile=0.0)
+    high = calibrate_min_area(masks, percentile=50.0)
+    assert low == 400
+    assert low < high < 2500
+
+
+def test_calibration_needs_defective_masks():
+    with pytest.raises(ValueError, match="no defective masks"):
+        calibrate_min_area([torch.zeros(1, SIZE, SIZE)])
