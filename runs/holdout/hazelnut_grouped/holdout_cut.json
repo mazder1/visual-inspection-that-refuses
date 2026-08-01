@@ -2,29 +2,25 @@
   "held_out": {
     "n": 17,
     "fail": 2,
-    "no_call": 9,
-    "pass": 6,
+    "no_call": 13,
+    "pass": 2,
     "silent_pass_keys": [
-      "hazelnut/test/cut/000",
       "hazelnut/test/cut/003",
-      "hazelnut/test/cut/004",
-      "hazelnut/test/cut/011",
-      "hazelnut/test/cut/014",
-      "hazelnut/test/cut/016"
+      "hazelnut/test/cut/014"
     ]
   },
   "known_defects": {
     "n": 8,
-    "fail": 7,
-    "no_call": 1,
+    "fail": 8,
+    "no_call": 0,
     "pass": 0,
     "silent_pass_keys": []
   },
   "clean": {
     "n": 86,
     "fail": 1,
-    "no_call": 0,
-    "pass": 85,
+    "no_call": 7,
+    "pass": 78,
     "silent_pass_keys": [
       "hazelnut/train/good/005",
       "hazelnut/train/good/008",
@@ -40,7 +36,6 @@
       "hazelnut/train/good/056",
       "hazelnut/train/good/062",
       "hazelnut/train/good/078",
-      "hazelnut/train/good/084",
       "hazelnut/train/good/090",
       "hazelnut/train/good/093",
       "hazelnut/train/good/098",
@@ -48,7 +43,6 @@
       "hazelnut/train/good/123",
       "hazelnut/train/good/128",
       "hazelnut/train/good/133",
-      "hazelnut/train/good/140",
       "hazelnut/train/good/143",
       "hazelnut/train/good/151",
       "hazelnut/train/good/156",
@@ -59,7 +53,6 @@
       "hazelnut/train/good/186",
       "hazelnut/train/good/191",
       "hazelnut/train/good/194",
-      "hazelnut/train/good/197",
       "hazelnut/train/good/202",
       "hazelnut/train/good/208",
       "hazelnut/train/good/214",
@@ -67,16 +60,12 @@
       "hazelnut/train/good/220",
       "hazelnut/train/good/223",
       "hazelnut/train/good/230",
-      "hazelnut/train/good/236",
       "hazelnut/train/good/240",
-      "hazelnut/train/good/243",
       "hazelnut/train/good/251",
       "hazelnut/train/good/258",
       "hazelnut/train/good/263",
       "hazelnut/train/good/267",
-      "hazelnut/train/good/271",
       "hazelnut/train/good/274",
-      "hazelnut/train/good/277",
       "hazelnut/train/good/280",
       "hazelnut/train/good/283",
       "hazelnut/train/good/286",
@@ -115,6 +104,7 @@
   },
   "n_validation": 94,
   "n_validation_defective": 8,
+  "weak_floor": 473.0,
   "calibrator": {
     "n_steps": 2,
     "base_rate": 0.0851063829787234,
@@ -123,7 +113,7 @@
       {
         "scores": [
           0.0,
-          44.8397102355957
+          60.035797119140625
         ],
         "probability": 0.0009782342871117633,
         "count": 86,
@@ -131,8 +121,8 @@
       },
       {
         "scores": [
-          868.0521240234375,
-          11028.51171875
+          575.6809692382812,
+          16443.0703125
         ],
         "probability": 0.8983451536643027,
         "count": 8,
