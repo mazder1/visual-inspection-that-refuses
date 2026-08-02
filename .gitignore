@@ -51,3 +51,6 @@ runs/*.err
 # Local wheel-build artifacts
 /build/
 /scratch/
+
+# Exported inference graphs, rebuilt by vinspect.serve.onnx_export
+bundles/*/*.onnx

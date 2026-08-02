@@ -26,7 +26,7 @@ serve = [
     "python-multipart>=0.0.9",
 ]
 
-dev = ["pytest>=7", "httpx>=0.27"]
+dev = ["pytest>=7", "httpx>=0.27", "onnx>=1.16", "onnxruntime>=1.18"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
