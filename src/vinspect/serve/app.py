@@ -95,56 +95,12 @@ async def inspect(category: str, request: Request, file: UploadFile = File(...))
     return JSONResponse(result)
 
 
+INDEX_PATH = Path(__file__).parent / "static" / "index.html"
+
+
 @app.get("/", response_class=HTMLResponse)
 def index() -> str:
-    return """<!doctype html>
-<html><head><meta charset="utf-8"><title>Visual Inspection That Refuses</title>
-<style>
-  body { font-family: system-ui, sans-serif; max-width: 46rem; margin: 2rem auto; padding: 0 1rem; color: #111; }
-  h1 { font-size: 1.4rem; } .muted { color: #666; font-size: .9rem; }
-  select, input, button { font-size: 1rem; margin: .3rem 0; }
-  #result { white-space: pre-wrap; background: #f6f6f4; padding: 1rem; border-radius: 6px; font-family: monospace; font-size: .8rem; overflow-x: auto; }
-  #mask { image-rendering: pixelated; border: 1px solid #ccc; max-width: 256px; }
-  .verdict { font-size: 1.6rem; font-weight: 700; margin: .5rem 0; }
-</style></head><body>
-<h1>Visual Inspection That Refuses</h1>
-<p class="muted">Drop a photo of a part. The system returns a defect mask, a calibrated
-probability, and one of three verdicts: <b>fail</b>, <b>pass</b>, or <b>no-call</b> —
-which means “route this part to a human”. Decision support only; not qualified for
-production use. Expect ~5–10 s: the model runs 20 times per image to measure its own
-uncertainty.</p>
-<label>Category:
-  <select id="category"><option>bottle</option><option>carpet</option><option selected>hazelnut</option></select>
-</label><br>
-<input type="file" id="file" accept="image/*">
-<button id="go">Inspect</button>
-<div class="verdict" id="verdict"></div>
-<img id="mask" style="display:none">
-<div id="result"></div>
-<script>
-document.getElementById('go').onclick = async () => {
-  const file = document.getElementById('file').files[0];
-  if (!file) { alert('pick an image first'); return; }
-  const category = document.getElementById('category').value;
-  document.getElementById('verdict').textContent = 'inspecting…';
-  const body = new FormData(); body.append('file', file);
-  const started = performance.now();
-  const response = await fetch(`/inspect/${category}`, { method: 'POST', body });
-  const data = await response.json();
-  const total = Math.round(performance.now() - started);
-  if (!response.ok) {
-    document.getElementById('verdict').textContent = 'error';
-    document.getElementById('result').textContent = JSON.stringify(data, null, 2);
-    return;
-  }
-  const colours = { fail: '#c0392b', pass: '#1e8449', 'no-call': '#b7791f' };
-  const v = document.getElementById('verdict');
-  v.textContent = `${data.verdict.toUpperCase()}  (p=${data.probability_defective}, round-trip ${total} ms)`;
-  v.style.color = colours[data.verdict] || '#111';
-  const mask = document.getElementById('mask');
-  mask.src = 'data:image/png;base64,' + data.mask_png_base64;
-  mask.style.display = 'block';
-  const { mask_png_base64, ...rest } = data;
-  document.getElementById('result').textContent = JSON.stringify(rest, null, 2);
-};
-</script></body></html>"""
+    return INDEX_PATH.read_text(encoding="utf-8")
+
+
+
