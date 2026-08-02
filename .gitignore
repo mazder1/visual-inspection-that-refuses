@@ -19,9 +19,11 @@ scratch/
 # model weights are rebuilt by `python -m vinspect.serve.export`.
 bundles/*/model.pt
 
-# Data, models, outputs
-data/
-datasets/
+# Data, models, outputs. Root-anchored: an unanchored data/ also matched
+# src/vinspect/data and silently kept the whole loader package out of the
+# repo, which CI caught when a clean checkout could not import it.
+/data/
+/datasets/
 checkpoints/
 *.pt
 *.pth
@@ -45,3 +47,7 @@ Thumbs.db
 .vscode/
 .idea/
 runs/*.err
+
+# Local wheel-build artifacts
+/build/
+/scratch/

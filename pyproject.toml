@@ -9,6 +9,7 @@ description = "Defect segmentation that abstains when the evidence is weak"
 requires-python = ">=3.9"
 dependencies = [
     "torch>=2.0",
+    "torchvision>=0.15",
     "pillow>=10.0",
     "numpy>=1.24",
     # Region extraction and the interior/persistence statistics.

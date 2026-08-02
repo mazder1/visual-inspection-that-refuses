@@ -13,7 +13,7 @@ WORKDIR /app
 
 # Torch CPU wheel first, pinned to its own index, so the layer caches well and
 # no CUDA dependency ever sneaks in.
-RUN pip install --index-url https://download.pytorch.org/whl/cpu torch==2.8.0
+RUN pip install --index-url https://download.pytorch.org/whl/cpu torch==2.8.0 torchvision==0.23.0
 
 COPY pyproject.toml ./
 COPY src ./src

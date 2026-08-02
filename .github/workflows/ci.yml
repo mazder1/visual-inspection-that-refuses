@@ -22,7 +22,7 @@ jobs:
       # CUDA and is an order of magnitude larger. Installed before the package
       # so pip sees torch>=2.0 already satisfied and does not replace it.
       - name: Install torch (CPU)
-        run: pip install --index-url https://download.pytorch.org/whl/cpu torch==2.8.0
+        run: pip install --index-url https://download.pytorch.org/whl/cpu torch==2.8.0 torchvision==0.23.0
 
       - name: Install package
         run: pip install .[serve,dev]
