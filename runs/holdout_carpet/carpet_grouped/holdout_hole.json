@@ -1,0 +1,109 @@
+{
+  "held_out": {
+    "n": 17,
+    "fail": 17,
+    "no_call": 0,
+    "pass": 0,
+    "silent_pass_keys": []
+  },
+  "known_defects": {
+    "n": 13,
+    "fail": 13,
+    "no_call": 0,
+    "pass": 0,
+    "silent_pass_keys": []
+  },
+  "clean": {
+    "n": 61,
+    "fail": 0,
+    "no_call": 4,
+    "pass": 57,
+    "silent_pass_keys": [
+      "carpet/train/good/009",
+      "carpet/train/good/016",
+      "carpet/train/good/024",
+      "carpet/train/good/036",
+      "carpet/train/good/054",
+      "carpet/train/good/063",
+      "carpet/train/good/067",
+      "carpet/train/good/070",
+      "carpet/train/good/076",
+      "carpet/train/good/079",
+      "carpet/train/good/080",
+      "carpet/train/good/081",
+      "carpet/train/good/087",
+      "carpet/train/good/089",
+      "carpet/train/good/092",
+      "carpet/train/good/096",
+      "carpet/train/good/099",
+      "carpet/train/good/100",
+      "carpet/train/good/104",
+      "carpet/train/good/107",
+      "carpet/train/good/112",
+      "carpet/train/good/116",
+      "carpet/train/good/121",
+      "carpet/train/good/127",
+      "carpet/train/good/130",
+      "carpet/train/good/133",
+      "carpet/train/good/139",
+      "carpet/train/good/143",
+      "carpet/train/good/144",
+      "carpet/train/good/149",
+      "carpet/train/good/150",
+      "carpet/train/good/151",
+      "carpet/train/good/165",
+      "carpet/train/good/166",
+      "carpet/train/good/173",
+      "carpet/train/good/177",
+      "carpet/train/good/183",
+      "carpet/train/good/189",
+      "carpet/train/good/194",
+      "carpet/train/good/195",
+      "carpet/train/good/199",
+      "carpet/train/good/207",
+      "carpet/train/good/215",
+      "carpet/train/good/216",
+      "carpet/train/good/236",
+      "carpet/train/good/238",
+      "carpet/train/good/239",
+      "carpet/train/good/246",
+      "carpet/train/good/251",
+      "carpet/train/good/252",
+      "carpet/train/good/255",
+      "carpet/train/good/259",
+      "carpet/train/good/263",
+      "carpet/train/good/266",
+      "carpet/train/good/271",
+      "carpet/test/good/006",
+      "carpet/test/good/014"
+    ]
+  },
+  "n_validation": 75,
+  "n_validation_defective": 13,
+  "weak_floor": 122.0,
+  "calibrator": {
+    "n_steps": 2,
+    "base_rate": 0.17333333333333334,
+    "pseudocount": 1.0,
+    "steps": [
+      {
+        "scores": [
+          0.0,
+          47.55412292480469
+        ],
+        "probability": 0.0027513227513227515,
+        "count": 62,
+        "raw_rate": 0.0
+      },
+      {
+        "scores": [
+          168.3031005859375,
+          25777.8671875
+        ],
+        "probability": 0.940952380952381,
+        "count": 13,
+        "raw_rate": 1.0
+      }
+    ]
+  }
+}

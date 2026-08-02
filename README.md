@@ -62,6 +62,36 @@ Calibration quality on test, fitted on validation: pooled Brier 0.019 against
 0.15 for always-guessing the base rate. When the system claims ~95%, the
 observed rate is 100%; when it claims under 1%, the observed rate is 1.4%.
 
+## The held-out-class experiments
+
+The question the project exists to answer: shown a defect *kind* it never
+trained on, does the system abstain, or does it confidently guess? Two
+experiments, with different evidential status, stated plainly:
+
+**Fresh confirmation — carpet `hole`, evaluated once with every rule frozen:**
+all 17 hole images moved to test, the class absent from training and
+calibration, first look was the final look.
+
+> **17 of 17 never-seen holes caught — all failed outright — with 0 silent
+> passes, at a cost of 4 of 61 clean parts (6.6%) routed to review.**
+
+**Development experiment — hazelnut `cut`:** 17 thin, faint scratches, the
+hardest kind of novelty. The final chain catches 15 of 17 (2 fail, 13 no-call)
+and ships 2. **This number is dev-flavoured**: the weak-evidence sensitivity
+level was chosen while inspecting these images, so they function as a
+development set, not a test set. The two shipped defects include one that
+produces no response in any of 20 MC passes — invisible, and reported rather
+than averaged away.
+
+Read together: novel classes vary enormously in difficulty, and these bracket
+the range. A plain classifier with no abstention ships 15 of 17 cuts; the
+no-call fires on 76% of novel cuts against 8% of clean parts, so the flag is
+selective, not a shrug. The verdict chain is layered — calibrated verdict,
+support-gap routing, hysteresis evidence merging, a weak-evidence floor set at
+the 95th percentile of clean validation whisper — and the easy novel class
+never needed the backstops while the hard one needed all of them.
+
+
 Two design findings behind the curve, both measured:
 
 - **Scores are two piles and a valley.** Most parts score near zero or clearly
