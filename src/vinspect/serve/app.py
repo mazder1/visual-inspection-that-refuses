@@ -58,6 +58,11 @@ def _rate_limit(request: Request) -> None:
     window.append(now)
 
 
+# Both paths serve the same check. /healthz is the conventional name and works
+# locally and in Docker, but Google's Front End reserves that exact path on
+# run.app domains and answers its own 404 before the request reaches the
+# container -- so the deployed health check lives at /health.
+@app.get("/health")
 @app.get("/healthz")
 def healthz() -> Dict:
     loaded = sorted(_predictors)

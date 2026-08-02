@@ -80,8 +80,11 @@ def _png_bytes(size=64, value=128):
     return buffer.getvalue()
 
 
-def test_healthz_lists_bundles(client):
-    response = client.get("/healthz")
+@pytest.mark.parametrize("path", ["/health", "/healthz"])
+def test_health_lists_bundles_on_both_paths(client, path):
+    # /healthz is blocked by Google's frontend on run.app domains, so the
+    # deployed check uses /health; both must serve the same body.
+    response = client.get(path)
     assert response.status_code == 200
     body = response.json()
     assert body["status"] == "ok"

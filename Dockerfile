@@ -5,8 +5,9 @@ FROM python:3.11-slim
 ENV PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
     VINSPECT_BUNDLES=/app/bundles \
-    # Cloud Run gives 1-4 vCPUs; let torch use what is there.
-    OMP_NUM_THREADS=4
+    # Matches the Cloud Run --cpu setting; torch saturates what is there.
+    OMP_NUM_THREADS=4 \
+    MKL_NUM_THREADS=4
 
 WORKDIR /app
 

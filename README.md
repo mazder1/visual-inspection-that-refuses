@@ -40,9 +40,45 @@ reject decision on its own. It is not qualified for production use.
 
 ## Status
 
-Modules 01 and 02 are built, tested and measured. Module 03 (abstention and
-calibration) is built and measured except for the held-out-defect-class
-experiment. Module 04 (the service) is not started.
+All four modules are built, tested and measured. The service is live.
+
+## The live service
+
+**https://vinspect-4ratrsacoq-lm.a.run.app** — drop an image on the page, or:
+
+```sh
+curl -X POST -F "file=@part.png" \
+  https://vinspect-4ratrsacoq-lm.a.run.app/inspect/hazelnut
+```
+
+One JSON response: verdict (**fail / pass / no-call** — no-call means *route
+this part to a human*), the calibrated probability and whether the calibrator
+actually has support for it, the region evidence, and the defect mask as a
+base64 PNG. Health at `/health`. Categories: bottle, carpet, hazelnut.
+
+Served CPU-only on Cloud Run (4 vCPU, 4 GiB, scale-to-zero, max 2 instances),
+running the **exact 20-pass MC-dropout chain the evaluation measured** —
+deliberately not a faster variant the published numbers would not describe.
+Measured latencies:
+
+| | measured |
+|---|---|
+| container image | 1.95 GB (CPU torch wheel; CUDA would add ~2.3 GB) |
+| local container boot to healthy | 4.7 s |
+| warm request, desktop 8-thread CPU | 3.4–3.7 s |
+| warm request, Cloud Run 4 vCPU | **8.0–8.9 s** |
+| first verdict after 17 min idle | 10.1 s (0.2 s health + 9.9 s inspect incl. model load) |
+
+A deeper cold start was not cleanly observable: Cloud Run retained a warm
+instance through 17 minutes of idle, which itself is a deployment property
+worth knowing. The container's own cold boot, measured locally, is 4.7 s to
+healthy; a fully cold Cloud Run hit would add image pull and provisioning on
+top of the numbers above.
+
+Malformed uploads get a 422 with a plain-language message, oversized a 413,
+and the per-IP rate limit a 429. The response carries the split digest and
+checkpoint provenance, the decision-support disclaimer, and the sentence the
+brief requires: the mask shows where the model looked, not what the defect is.
 
 ## The headline
 

@@ -1,0 +1,11 @@
+# Upload only what the container build needs: source, config, bundles.
+data/
+runs/
+scratch/
+splits/
+tests/
+.git/
+*.md
+__pycache__/
+*.tar.xz
+briefvisualinspection.md
