@@ -1,0 +1,72 @@
+{
+  "category": "bottle",
+  "model": {
+    "base_channels": 16,
+    "depth": 4,
+    "dropout": 0.1,
+    "image_size": 512,
+    "weights_sha256": "6c49bb8ca156affb23496780b080d0512d20ec78f10a91301259d621a13f63fb"
+  },
+  "chain": {
+    "mc_passes": 20,
+    "threshold": 0.5,
+    "weak_threshold": 0.33,
+    "weak_floor": 19442.75,
+    "no_call_band": [
+      0.2,
+      0.8
+    ],
+    "calibrator": {
+      "n_steps": 4,
+      "base_rate": 0.22033898305084745,
+      "pseudocount": 1.0,
+      "steps": [
+        {
+          "scores": [
+            0.0,
+            171.7892303466797
+          ],
+          "probability": 0.004896421845574388,
+          "count": 44,
+          "raw_rate": 0.0
+        },
+        {
+          "scores": [
+            3454.798828125,
+            3583.86572265625
+          ],
+          "probability": 0.4067796610169492,
+          "count": 2,
+          "raw_rate": 0.5
+        },
+        {
+          "scores": [
+            4256.84912109375,
+            5618.48095703125
+          ],
+          "probability": 0.5550847457627118,
+          "count": 3,
+          "raw_rate": 0.6666666666666666
+        },
+        {
+          "scores": [
+            6288.5546875,
+            38198.91796875
+          ],
+          "probability": 0.9291217257318952,
+          "count": 10,
+          "raw_rate": 1.0
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "split_digest": "952962b398bcdb0d3b359e3fab98feaa20fc06b83913d9a7c2c2d84a162355ab",
+    "split_kind": "grouped",
+    "trained_epoch": 100,
+    "val_dice": 0.6589506726998905,
+    "n_validation": 59,
+    "n_validation_defective": 13
+  },
+  "disclaimer": "Decision support only. Routes parts to an inspector; never makes a final accept or reject decision on its own. Not qualified for production use."
+}

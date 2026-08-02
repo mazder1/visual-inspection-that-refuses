@@ -1,0 +1,63 @@
+{
+  "category": "carpet",
+  "model": {
+    "base_channels": 16,
+    "depth": 4,
+    "dropout": 0.1,
+    "image_size": 512,
+    "weights_sha256": "569bdfd898bdcfaf688c2087677db0c79ea8969f75c2f23d9226fec43a78f8ac"
+  },
+  "chain": {
+    "mc_passes": 20,
+    "threshold": 0.5,
+    "weak_threshold": 0.33,
+    "weak_floor": 460.6499999999998,
+    "no_call_band": [
+      0.2,
+      0.8
+    ],
+    "calibrator": {
+      "n_steps": 3,
+      "base_rate": 0.225,
+      "pseudocount": 1.0,
+      "steps": [
+        {
+          "scores": [
+            0.0,
+            275.10394287109375
+          ],
+          "probability": 0.0036290322580645163,
+          "count": 61,
+          "raw_rate": 0.0
+        },
+        {
+          "scores": [
+            420.531494140625,
+            647.8511352539062
+          ],
+          "probability": 0.645,
+          "count": 4,
+          "raw_rate": 0.75
+        },
+        {
+          "scores": [
+            1552.863037109375,
+            21497.74609375
+          ],
+          "probability": 0.9515625,
+          "count": 15,
+          "raw_rate": 1.0
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "split_digest": "952962b398bcdb0d3b359e3fab98feaa20fc06b83913d9a7c2c2d84a162355ab",
+    "split_kind": "grouped",
+    "trained_epoch": 68,
+    "val_dice": 0.723050459391541,
+    "n_validation": 80,
+    "n_validation_defective": 18
+  },
+  "disclaimer": "Decision support only. Routes parts to an inspector; never makes a final accept or reject decision on its own. Not qualified for production use."
+}

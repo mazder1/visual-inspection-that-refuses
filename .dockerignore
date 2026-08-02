@@ -1,0 +1,9 @@
+data/
+runs/
+scratch/
+splits/
+tests/
+.git/
+*.md
+__pycache__/
+*.tar.xz

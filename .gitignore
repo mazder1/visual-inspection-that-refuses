@@ -15,6 +15,10 @@ venv/
 # Throwaway diagnostics: cluster contact sheets and similar
 scratch/
 
+# Serving bundles: chain.json is tracked (the frozen decision chain), the
+# model weights are rebuilt by `python -m vinspect.serve.export`.
+bundles/*/model.pt
+
 # Data, models, outputs
 data/
 datasets/
