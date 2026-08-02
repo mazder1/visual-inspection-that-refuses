@@ -67,13 +67,13 @@ Measured latencies:
 | local container boot to healthy | 4.7 s |
 | warm request, desktop 8-thread CPU | 3.4–3.7 s |
 | warm request, Cloud Run 4 vCPU | **8.0–8.9 s** |
-| first verdict after 17 min idle | 10.1 s (0.2 s health + 9.9 s inspect incl. model load) |
+| cold start (after 35 min idle): boot to healthy | **4.1 s** |
+| cold start to first verdict | **11.5 s** |
 
-A deeper cold start was not cleanly observable: Cloud Run retained a warm
-instance through 17 minutes of idle, which itself is a deployment property
-worth knowing. The container's own cold boot, measured locally, is 4.7 s to
-healthy; a fully cold Cloud Run hit would add image pull and provisioning on
-top of the numbers above.
+One deployment property worth knowing alongside those: Cloud Run retained a
+warm instance through 17 minutes of idle — a probe at that point still got a
+0.2 s health response — so genuine cold starts are rarer than scale-to-zero
+suggests.
 
 Malformed uploads get a 422 with a plain-language message, oversized a 413,
 and the per-IP rate limit a 429. The response carries the split digest and
