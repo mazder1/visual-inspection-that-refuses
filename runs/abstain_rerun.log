@@ -1,0 +1,34 @@
+
+=== bottle ===
+calibrator: 4 steps from 59 validation images (base rate 22.0%)
+test Brier 0.0675 against always-base-rate 0.1643; ECE 0.0736
+    score      0.0 ..    171.8 ->  0.5%  (44 images, raw 0.0%)
+    score   3454.8 ..   3583.9 -> 40.7%  (2 images, raw 50.0%)
+    score   4256.8 ..   5618.5 -> 55.5%  (3 images, raw 66.7%)
+    score   6288.6 ..  38198.9 -> 92.9%  (10 images, raw 100.0%)
+
+=== carpet ===
+calibrator: 3 steps from 80 validation images (base rate 22.5%)
+test Brier 0.0089 against always-base-rate 0.1759; ECE 0.0134
+    score      0.0 ..    275.1 ->  0.4%  (61 images, raw 0.0%)
+    score    420.5 ..    647.9 -> 64.5%  (4 images, raw 75.0%)
+    score   1552.9 ..  21497.7 -> 95.2%  (15 images, raw 100.0%)
+
+=== hazelnut ===
+calibrator: 2 steps from 100 validation images (base rate 14.0%)
+test Brier 0.0005 against always-base-rate 0.1204; ECE 0.0094
+    score      0.0 ..    181.4 ->  0.2%  (86 images, raw 0.0%)
+    score   1086.3 ..  21446.3 -> 94.3%  (14 images, raw 100.0%)
+
+=== pooled test reliability (237 images) ===
+ claimed  observed     n
+    0.2%      0.0%    86
+    0.4%      0.0%    60
+    0.5%      6.2%    48
+   48.1%     75.0%     4
+   64.5%     66.7%     3
+   94.3%    100.0%    29
+   95.2%    100.0%     7
+pooled Brier 0.0197, ECE 0.0264
+
+written to runs\calibration.json

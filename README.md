@@ -49,14 +49,25 @@ experiment. Module 04 (the service) is not started.
 On the pooled test set (237 images, 44 defective), with region-level scores
 calibrated per category on validation:
 
-> **At 100% coverage, defect recall is 93.2%. Routing the 5.1% least-confident
-> images to human review raises recall to 97.7%.**
+> **At 100% coverage, defect recall is 90.9%. Routing the 10.1%
+> least-confident images to human review raises recall to 97.7%.**
 
-The remaining missed defect is invisible to the model — score zero, no region
-in any of 20 MC-dropout passes — so no abstention rule can rank it above a
-clean part. Catching what the model cannot see at all is the held-out-class
-problem, not an abstention-tuning problem, and it is stated here rather than
-absorbed into an average.
+These are the deployed chain's numbers — hysteresis evidence merging, support
+gap routing and the weak-evidence floor — and they are *worse* than an earlier
+chain without the floor reported (93.2% and 5.1%). Two reasons, stated rather
+than smoothed over. The floor that catches never-seen defect classes also
+routes whispering clean parts, so review load roughly doubles: that is the
+price of novel-class safety, paid on the ordinary set. And bottle's marginal
+defects sit so close to the decision line that a fresh 20-pass MC run flips
+them: three defects (all bottle) score zero in this run — no region in any
+pass — and no abstention rule can rank an invisible defect above a clean part.
+Catching what the model cannot see at all is the held-out-class problem, not
+an abstention-tuning problem.
+
+Image-level confusion at p >= 0.5, pooled test: TP 40, FP 1, TN 192, FN 4 —
+accuracy 97.9%, precision 97.6%, recall 90.9%, F1 0.941. Per category, bottle
+is the weak point (recall 66.7% this run) and carpet and hazelnut are at or
+near perfect.
 
 Calibration quality on test, fitted on validation: pooled Brier 0.019 against
 0.15 for always-guessing the base rate. When the system claims ~95%, the

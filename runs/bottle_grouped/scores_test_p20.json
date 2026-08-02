@@ -3,13 +3,15 @@
     "key": "bottle/train/good/065",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 7.761164665222168,
-    "mass_score": 81.43951416015625,
-    "n_regions": 4,
-    "largest_area": 159,
-    "persistence": 0.5,
-    "area_cv": 0.9669149107222177,
-    "interior_std": 0.11090550571680069
+    "defect_score": 28.888282775878906,
+    "mass_score": 238.216064453125,
+    "n_regions": 1,
+    "largest_area": 462,
+    "largest_extent": 4746,
+    "persistence": 0.6,
+    "area_cv": 0.8363105840700094,
+    "interior_std": 0.11485031247138977,
+    "weak_evidence_px": 4957
   },
   {
     "key": "bottle/train/good/068",
@@ -19,45 +21,53 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "bottle/train/good/073",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 3148.80419921875,
-    "mass_score": 3540.736083984375,
-    "n_regions": 6,
-    "largest_area": 5583,
-    "persistence": 0.75,
-    "area_cv": 0.4966583134119159,
-    "interior_std": 0.14738309383392334
+    "defect_score": 3547.1298828125,
+    "mass_score": 4032.473876953125,
+    "n_regions": 1,
+    "largest_area": 6387,
+    "largest_extent": 41703,
+    "persistence": 0.8,
+    "area_cv": 0.3494882185278792,
+    "interior_std": 0.11366119235754013,
+    "weak_evidence_px": 42121
   },
   {
     "key": "bottle/train/good/076",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 453.9622802734375,
-    "mass_score": 964.8109130859375,
+    "defect_score": 357.7369689941406,
+    "mass_score": 835.89453125,
     "n_regions": 1,
-    "largest_area": 1706,
-    "persistence": 0.8,
-    "area_cv": 0.4864981811770931,
-    "interior_std": 0.10212008655071259
+    "largest_area": 1495,
+    "largest_extent": 3904,
+    "persistence": 0.65,
+    "area_cv": 0.6410249576357014,
+    "interior_std": 0.1525530219078064,
+    "weak_evidence_px": 3904
   },
   {
     "key": "bottle/train/good/079",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 190.5723419189453,
-    "mass_score": 672.9529418945312,
-    "n_regions": 3,
-    "largest_area": 1251,
+    "defect_score": 161.07723999023438,
+    "mass_score": 640.6337890625,
+    "n_regions": 1,
+    "largest_area": 1201,
+    "largest_extent": 6422,
     "persistence": 0.6,
-    "area_cv": 0.6396218813900839,
-    "interior_std": 0.10310206562280655
+    "area_cv": 0.788624643137366,
+    "interior_std": 0.11225838959217072,
+    "weak_evidence_px": 7245
   },
   {
     "key": "bottle/train/good/082",
@@ -67,9 +77,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 2020
   },
   {
     "key": "bottle/train/good/085",
@@ -79,9 +91,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "bottle/train/good/088",
@@ -91,9 +105,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 1153
   },
   {
     "key": "bottle/train/good/091",
@@ -103,9 +119,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 1709
   },
   {
     "key": "bottle/train/good/094",
@@ -115,9 +133,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 580
   },
   {
     "key": "bottle/train/good/097",
@@ -127,9 +147,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 920
   },
   {
     "key": "bottle/train/good/100",
@@ -139,9 +161,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 1548
   },
   {
     "key": "bottle/train/good/103",
@@ -151,9 +175,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "bottle/train/good/107",
@@ -163,9 +189,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "bottle/train/good/110",
@@ -175,33 +203,39 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 1345
   },
   {
     "key": "bottle/train/good/113",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 30.445446014404297,
-    "mass_score": 139.59442138671875,
-    "n_regions": 2,
-    "largest_area": 264,
-    "persistence": 0.65,
-    "area_cv": 0.7482410420082939,
-    "interior_std": 0.13277778029441833
+    "defect_score": 60.65385437011719,
+    "mass_score": 252.61807250976562,
+    "n_regions": 1,
+    "largest_area": 475,
+    "largest_extent": 3561,
+    "persistence": 0.6,
+    "area_cv": 0.7775833987930648,
+    "interior_std": 0.17461848258972168,
+    "weak_evidence_px": 3561
   },
   {
     "key": "bottle/train/good/116",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.004327575210481882,
-    "mass_score": 0.5010818839073181,
-    "n_regions": 2,
-    "largest_area": 1,
-    "persistence": 0.55,
-    "area_cv": 0.9045340337332907,
-    "interior_std": 0.12430620193481445
+    "defect_score": 0.0,
+    "mass_score": 0.0,
+    "n_regions": 0,
+    "largest_area": 0,
+    "largest_extent": 0,
+    "persistence": 0.0,
+    "area_cv": 0.0,
+    "interior_std": 0.0,
+    "weak_evidence_px": 2223
   },
   {
     "key": "bottle/train/good/119",
@@ -211,9 +245,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 863
   },
   {
     "key": "bottle/train/good/122",
@@ -223,9 +259,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "bottle/train/good/126",
@@ -235,9 +273,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 272
   },
   {
     "key": "bottle/train/good/129",
@@ -247,57 +287,67 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 3129
   },
   {
     "key": "bottle/train/good/132",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 2.4560556411743164,
-    "mass_score": 19.81949234008789,
-    "n_regions": 4,
-    "largest_area": 39,
-    "persistence": 0.6,
-    "area_cv": 0.8254792118542659,
-    "interior_std": 0.11966630816459656
+    "defect_score": 0.33306601643562317,
+    "mass_score": 5.083230495452881,
+    "n_regions": 1,
+    "largest_area": 10,
+    "largest_extent": 20061,
+    "persistence": 0.7,
+    "area_cv": 0.6738298295800094,
+    "interior_std": 0.15644414722919464,
+    "weak_evidence_px": 24046
   },
   {
     "key": "bottle/train/good/135",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 227.83905029296875,
-    "mass_score": 477.186767578125,
-    "n_regions": 5,
-    "largest_area": 842,
-    "persistence": 0.85,
-    "area_cv": 0.4353396247579221,
-    "interior_std": 0.08604426681995392
+    "defect_score": 108.3288803100586,
+    "mass_score": 320.3941650390625,
+    "n_regions": 2,
+    "largest_area": 587,
+    "largest_extent": 3714,
+    "persistence": 0.65,
+    "area_cv": 0.6553817073658621,
+    "interior_std": 0.14332401752471924,
+    "weak_evidence_px": 7836
   },
   {
     "key": "bottle/train/good/138",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 28.51027488708496,
-    "mass_score": 96.59611511230469,
+    "defect_score": 95.87075805664062,
+    "mass_score": 202.63174438476562,
     "n_regions": 1,
-    "largest_area": 179,
-    "persistence": 0.6,
-    "area_cv": 0.7624624033249453,
-    "interior_std": 0.12809798121452332
+    "largest_area": 358,
+    "largest_extent": 2229,
+    "persistence": 0.75,
+    "area_cv": 0.4233669673576532,
+    "interior_std": 0.11526329815387726,
+    "weak_evidence_px": 3394
   },
   {
     "key": "bottle/train/good/141",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 156.78445434570312,
-    "mass_score": 515.9931030273438,
+    "defect_score": 225.60873413085938,
+    "mass_score": 614.4954833984375,
     "n_regions": 1,
-    "largest_area": 954,
-    "persistence": 0.6,
-    "area_cv": 0.6991307387956615,
-    "interior_std": 0.1248120591044426
+    "largest_area": 1117,
+    "largest_extent": 5273,
+    "persistence": 0.65,
+    "area_cv": 0.5925961850956303,
+    "interior_std": 0.10695476830005646,
+    "weak_evidence_px": 5392
   },
   {
     "key": "bottle/train/good/144",
@@ -307,33 +357,39 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 2013
   },
   {
     "key": "bottle/train/good/147",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 75.71626281738281,
-    "mass_score": 370.3865966796875,
+    "defect_score": 153.7237548828125,
+    "mass_score": 529.26806640625,
     "n_regions": 1,
-    "largest_area": 703,
-    "persistence": 0.65,
-    "area_cv": 0.62532685359966,
-    "interior_std": 0.12870573997497559
+    "largest_area": 982,
+    "largest_extent": 3527,
+    "persistence": 0.7,
+    "area_cv": 0.6553835966861453,
+    "interior_std": 0.11525988578796387,
+    "weak_evidence_px": 3642
   },
   {
     "key": "bottle/train/good/150",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.013599846512079239,
-    "mass_score": 1.5033999681472778,
-    "n_regions": 1,
-    "largest_area": 3,
-    "persistence": 0.5,
-    "area_cv": 1.0,
-    "interior_std": 0.15171460807323456
+    "defect_score": 66.09517669677734,
+    "mass_score": 333.9900817871094,
+    "n_regions": 2,
+    "largest_area": 635,
+    "largest_extent": 6082,
+    "persistence": 0.6,
+    "area_cv": 0.6719789596190334,
+    "interior_std": 0.09616319835186005,
+    "weak_evidence_px": 9071
   },
   {
     "key": "bottle/train/good/153",
@@ -343,21 +399,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 1870
   },
   {
     "key": "bottle/train/good/156",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 98.35167694091797,
-    "mass_score": 275.650146484375,
-    "n_regions": 3,
-    "largest_area": 521,
+    "defect_score": 74.11067962646484,
+    "mass_score": 220.8941650390625,
+    "n_regions": 2,
+    "largest_area": 405,
+    "largest_extent": 2934,
     "persistence": 0.6,
-    "area_cv": 0.6692270617883038,
-    "interior_std": 0.12906931340694427
+    "area_cv": 0.5729133808774506,
+    "interior_std": 0.08980552852153778,
+    "weak_evidence_px": 11404
   },
   {
     "key": "bottle/train/good/159",
@@ -367,9 +427,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 1360
   },
   {
     "key": "bottle/train/good/162",
@@ -379,9 +441,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 6
   },
   {
     "key": "bottle/train/good/165",
@@ -391,9 +455,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 535
   },
   {
     "key": "bottle/train/good/168",
@@ -403,21 +469,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 6379
   },
   {
     "key": "bottle/train/good/171",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 2182.2197265625,
-    "mass_score": 3010.401123046875,
+    "defect_score": 1046.365234375,
+    "mass_score": 2126.36181640625,
     "n_regions": 1,
-    "largest_area": 4962,
-    "persistence": 0.85,
-    "area_cv": 0.35234421995339626,
-    "interior_std": 0.10757344961166382
+    "largest_area": 3737,
+    "largest_extent": 7512,
+    "persistence": 0.7,
+    "area_cv": 0.574850339915612,
+    "interior_std": 0.13683512806892395,
+    "weak_evidence_px": 8327
   },
   {
     "key": "bottle/train/good/175",
@@ -427,9 +497,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 202
   },
   {
     "key": "bottle/train/good/178",
@@ -439,9 +511,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 4306
   },
   {
     "key": "bottle/train/good/181",
@@ -451,9 +525,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "bottle/train/good/185",
@@ -463,21 +539,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 2333
   },
   {
     "key": "bottle/train/good/188",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 1.9053771495819092,
-    "mass_score": 35.976280212402344,
+    "defect_score": 27.79554557800293,
+    "mass_score": 165.93780517578125,
     "n_regions": 1,
-    "largest_area": 71,
+    "largest_area": 318,
+    "largest_extent": 2937,
     "persistence": 0.6,
-    "area_cv": 0.7578881603955957,
-    "interior_std": 0.142905592918396
+    "area_cv": 0.7384966169495586,
+    "interior_std": 0.12524211406707764,
+    "weak_evidence_px": 2939
   },
   {
     "key": "bottle/train/good/191",
@@ -487,33 +567,39 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 228
   },
   {
     "key": "bottle/train/good/194",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 304.1119384765625,
-    "mass_score": 1051.6527099609375,
-    "n_regions": 4,
-    "largest_area": 1952,
+    "defect_score": 279.0057373046875,
+    "mass_score": 1031.435302734375,
+    "n_regions": 1,
+    "largest_area": 1924,
+    "largest_extent": 8293,
     "persistence": 0.65,
-    "area_cv": 0.6542986589665805,
-    "interior_std": 0.10007046908140182
+    "area_cv": 0.6305429626516038,
+    "interior_std": 0.12647144496440887,
+    "weak_evidence_px": 8415
   },
   {
     "key": "bottle/train/good/197",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.0,
-    "mass_score": 0.0,
-    "n_regions": 0,
-    "largest_area": 0,
-    "persistence": 0.0,
-    "area_cv": 0.0,
-    "interior_std": 0.0
+    "defect_score": 0.006374147720634937,
+    "mass_score": 0.5015935301780701,
+    "n_regions": 1,
+    "largest_area": 1,
+    "largest_extent": 2147,
+    "persistence": 0.55,
+    "area_cv": 0.9045340337332908,
+    "interior_std": 0.12369509786367416,
+    "weak_evidence_px": 2565
   },
   {
     "key": "bottle/train/good/200",
@@ -523,9 +609,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 1097
   },
   {
     "key": "bottle/train/good/203",
@@ -535,141 +623,165 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "bottle/train/good/206",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 132.01309204101562,
-    "mass_score": 427.3558044433594,
-    "n_regions": 3,
-    "largest_area": 789,
-    "persistence": 0.6,
-    "area_cv": 0.6300365275741328,
-    "interior_std": 0.10297703742980957
+    "defect_score": 173.8900146484375,
+    "mass_score": 511.7138671875,
+    "n_regions": 2,
+    "largest_area": 937,
+    "largest_extent": 3307,
+    "persistence": 0.7,
+    "area_cv": 0.5713730876339442,
+    "interior_std": 0.07945733517408371,
+    "weak_evidence_px": 4080
   },
   {
     "key": "bottle/test/broken_small/005",
     "label": 1,
     "defect_type": "broken_small",
-    "defect_score": 678.6107788085938,
-    "mass_score": 987.8360595703125,
+    "defect_score": 420.3460693359375,
+    "mass_score": 792.4574584960938,
     "n_regions": 1,
-    "largest_area": 1645,
-    "persistence": 0.85,
-    "area_cv": 0.4288072437499093,
-    "interior_std": 0.11584217846393585
+    "largest_area": 1378,
+    "largest_extent": 2501,
+    "persistence": 0.7,
+    "area_cv": 0.48001684138655637,
+    "interior_std": 0.09502222388982773,
+    "weak_evidence_px": 2652
   },
   {
     "key": "bottle/test/broken_small/008",
     "label": 1,
     "defect_type": "broken_small",
-    "defect_score": 4655.4580078125,
-    "mass_score": 3826.189453125,
-    "n_regions": 4,
-    "largest_area": 5592,
+    "defect_score": 3935.1865234375,
+    "mass_score": 3556.07080078125,
+    "n_regions": 2,
+    "largest_area": 5333,
+    "largest_extent": 10547,
     "persistence": 0.95,
-    "area_cv": 0.23442925773502388,
-    "interior_std": 0.10414697229862213
+    "area_cv": 0.2983816701958643,
+    "interior_std": 0.13145126402378082,
+    "weak_evidence_px": 13897
   },
   {
     "key": "bottle/test/broken_small/011",
     "label": 1,
     "defect_type": "broken_small",
-    "defect_score": 9669.9599609375,
-    "mass_score": 5416.8388671875,
+    "defect_score": 9326.984375,
+    "mass_score": 5359.57958984375,
     "n_regions": 1,
-    "largest_area": 7108,
-    "persistence": 0.95,
-    "area_cv": 0.19244370390059995,
-    "interior_std": 0.11649908125400543
+    "largest_area": 7080,
+    "largest_extent": 10198,
+    "persistence": 0.9,
+    "area_cv": 0.2069617516863207,
+    "interior_std": 0.12321289628744125,
+    "weak_evidence_px": 10202
   },
   {
     "key": "bottle/test/broken_small/014",
     "label": 1,
     "defect_type": "broken_small",
-    "defect_score": 5318.3544921875,
-    "mass_score": 3838.9462890625,
+    "defect_score": 4903.67138671875,
+    "mass_score": 3680.123291015625,
     "n_regions": 1,
-    "largest_area": 5440,
-    "persistence": 0.9,
-    "area_cv": 0.2369239275427836,
-    "interior_std": 0.11584561318159103
+    "largest_area": 5262,
+    "largest_extent": 10045,
+    "persistence": 0.85,
+    "area_cv": 0.2889794652846415,
+    "interior_std": 0.13602778315544128,
+    "weak_evidence_px": 10121
   },
   {
     "key": "bottle/test/broken_small/017",
     "label": 1,
     "defect_type": "broken_small",
-    "defect_score": 11450.6533203125,
-    "mass_score": 5863.087890625,
+    "defect_score": 14311.34765625,
+    "mass_score": 6533.42919921875,
     "n_regions": 1,
-    "largest_area": 7509,
-    "persistence": 0.95,
-    "area_cv": 0.19306312879381898,
-    "interior_std": 0.12312223017215729
+    "largest_area": 8185,
+    "largest_extent": 11107,
+    "persistence": 1.0,
+    "area_cv": 0.12056085580361922,
+    "interior_std": 0.077651746571064,
+    "weak_evidence_px": 11333
   },
   {
     "key": "bottle/test/broken_small/020",
     "label": 1,
     "defect_type": "broken_small",
-    "defect_score": 14865.890625,
-    "mass_score": 8637.9990234375,
+    "defect_score": 19143.794921875,
+    "mass_score": 9969.125,
     "n_regions": 1,
-    "largest_area": 11444,
+    "largest_area": 12792,
+    "largest_extent": 17676,
     "persistence": 0.9,
-    "area_cv": 0.2103794033862292,
-    "interior_std": 0.12628173828125
+    "area_cv": 0.21848120656510875,
+    "interior_std": 0.1348876953125,
+    "weak_evidence_px": 18397
   },
   {
     "key": "bottle/test/contamination/001",
     "label": 1,
     "defect_type": "contamination",
-    "defect_score": 448.5567932128906,
-    "mass_score": 1374.2816162109375,
-    "n_regions": 36,
-    "largest_area": 2678,
-    "persistence": 0.5,
-    "area_cv": 0.8940802974179974,
-    "interior_std": 0.11307785660028458
+    "defect_score": 905.2886962890625,
+    "mass_score": 2982.119873046875,
+    "n_regions": 2,
+    "largest_area": 5517,
+    "largest_extent": 43827,
+    "persistence": 0.7,
+    "area_cv": 0.5912624071228221,
+    "interior_std": 0.11062301695346832,
+    "weak_evidence_px": 52090
   },
   {
     "key": "bottle/test/contamination/005",
     "label": 1,
     "defect_type": "contamination",
-    "defect_score": 54877.23046875,
-    "mass_score": 21634.837890625,
-    "n_regions": 2,
-    "largest_area": 25770,
+    "defect_score": 58619.0,
+    "mass_score": 22638.794921875,
+    "n_regions": 1,
+    "largest_area": 26943,
+    "largest_extent": 31593,
     "persistence": 1.0,
-    "area_cv": 0.0596254852338244,
-    "interior_std": 0.055137962102890015
+    "area_cv": 0.09459334008756876,
+    "interior_std": 0.06840919703245163,
+    "weak_evidence_px": 31597
   },
   {
     "key": "bottle/test/contamination/008",
     "label": 1,
     "defect_type": "contamination",
-    "defect_score": 6395.16748046875,
-    "mass_score": 17040.443359375,
-    "n_regions": 26,
-    "largest_area": 30920,
-    "persistence": 0.75,
-    "area_cv": 0.5264516013934698,
-    "interior_std": 0.08261141180992126
+    "defect_score": 5862.7783203125,
+    "mass_score": 17044.8203125,
+    "n_regions": 1,
+    "largest_area": 31188,
+    "largest_extent": 57794,
+    "persistence": 0.7,
+    "area_cv": 0.5786866804191946,
+    "interior_std": 0.10602831840515137,
+    "weak_evidence_px": 58022
   },
   {
     "key": "bottle/test/contamination/011",
     "label": 1,
     "defect_type": "contamination",
-    "defect_score": 16622.541015625,
-    "mass_score": 15983.5126953125,
-    "n_regions": 7,
-    "largest_area": 24220,
-    "persistence": 0.8,
-    "area_cv": 0.4482296220962199,
-    "interior_std": 0.17325353622436523
+    "defect_score": 18481.447265625,
+    "mass_score": 17064.9609375,
+    "n_regions": 1,
+    "largest_area": 25621,
+    "largest_extent": 39890,
+    "persistence": 0.95,
+    "area_cv": 0.215076381411959,
+    "interior_std": 0.10787337273359299,
+    "weak_evidence_px": 39995
   },
   {
     "key": "bottle/test/contamination/014",
@@ -679,20 +791,24 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 2275
   },
   {
     "key": "bottle/test/contamination/017",
     "label": 1,
     "defect_type": "contamination",
-    "defect_score": 13691.3642578125,
-    "mass_score": 9098.1181640625,
-    "n_regions": 2,
-    "largest_area": 12384,
-    "persistence": 1.0,
-    "area_cv": 0.09778049052319147,
-    "interior_std": 0.07474930584430695
+    "defect_score": 10379.8896484375,
+    "mass_score": 8006.1767578125,
+    "n_regions": 1,
+    "largest_area": 11376,
+    "largest_extent": 17064,
+    "persistence": 0.9,
+    "area_cv": 0.29707538354167556,
+    "interior_std": 0.15193700790405273,
+    "weak_evidence_px": 17093
   }
 ]

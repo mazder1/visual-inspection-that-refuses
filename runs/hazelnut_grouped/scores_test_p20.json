@@ -3,37 +3,43 @@
     "key": "hazelnut/train/good/005",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 4.792257785797119,
-    "mass_score": 14.692117691040039,
+    "defect_score": 5.253704071044922,
+    "mass_score": 17.30643081665039,
     "n_regions": 1,
-    "largest_area": 27,
+    "largest_area": 32,
+    "largest_extent": 111,
     "persistence": 0.65,
-    "area_cv": 0.49418076189479576,
-    "interior_std": 0.11733478307723999
+    "area_cv": 0.5962560902993446,
+    "interior_std": 0.12216497212648392,
+    "weak_evidence_px": 219
   },
   {
     "key": "hazelnut/train/good/008",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 2.8018250465393066,
-    "mass_score": 6.194238185882568,
+    "defect_score": 4.432863712310791,
+    "mass_score": 11.094269752502441,
     "n_regions": 3,
-    "largest_area": 11,
-    "persistence": 0.75,
-    "area_cv": 0.5641025641025642,
-    "interior_std": 0.1426546722650528
+    "largest_area": 20,
+    "largest_extent": 41,
+    "persistence": 0.7,
+    "area_cv": 0.5926891139908028,
+    "interior_std": 0.16831719875335693,
+    "weak_evidence_px": 135
   },
   {
     "key": "hazelnut/train/good/012",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.0,
-    "mass_score": 0.0,
-    "n_regions": 0,
-    "largest_area": 0,
-    "persistence": 0.0,
-    "area_cv": 0.0,
-    "interior_std": 0.0
+    "defect_score": 0.2554777264595032,
+    "mass_score": 1.0637800693511963,
+    "n_regions": 1,
+    "largest_area": 2,
+    "largest_extent": 12,
+    "persistence": 0.6,
+    "area_cv": 0.8164965809277261,
+    "interior_std": 0.11597548425197601,
+    "weak_evidence_px": 22
   },
   {
     "key": "hazelnut/train/good/015",
@@ -43,81 +49,95 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/020",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 37.948951721191406,
-    "mass_score": 50.655426025390625,
-    "n_regions": 17,
-    "largest_area": 83,
-    "persistence": 0.95,
-    "area_cv": 0.2866694446051438,
-    "interior_std": 0.09618620574474335
+    "defect_score": 30.1821231842041,
+    "mass_score": 51.86771774291992,
+    "n_regions": 9,
+    "largest_area": 89,
+    "largest_extent": 249,
+    "persistence": 0.75,
+    "area_cv": 0.5488841720449068,
+    "interior_std": 0.1841156780719757,
+    "weak_evidence_px": 1102
   },
   {
     "key": "hazelnut/train/good/023",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.0,
-    "mass_score": 0.0,
-    "n_regions": 0,
-    "largest_area": 0,
-    "persistence": 0.0,
-    "area_cv": 0.0,
-    "interior_std": 0.0
+    "defect_score": 0.028238268569111824,
+    "mass_score": 0.5070590972900391,
+    "n_regions": 1,
+    "largest_area": 1,
+    "largest_extent": 13,
+    "persistence": 0.5,
+    "area_cv": 1.0,
+    "interior_std": 0.10704191774129868,
+    "weak_evidence_px": 29
   },
   {
     "key": "hazelnut/train/good/026",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 10.150408744812012,
-    "mass_score": 25.016830444335938,
+    "defect_score": 7.786736488342285,
+    "mass_score": 22.4342041015625,
     "n_regions": 1,
-    "largest_area": 45,
-    "persistence": 0.6,
-    "area_cv": 0.5876607121078108,
-    "interior_std": 0.10203280299901962
+    "largest_area": 41,
+    "largest_extent": 103,
+    "persistence": 0.55,
+    "area_cv": 0.5173739187328055,
+    "interior_std": 0.09072180092334747,
+    "weak_evidence_px": 235
   },
   {
     "key": "hazelnut/train/good/029",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 304.74249267578125,
-    "mass_score": 326.18756103515625,
-    "n_regions": 2,
-    "largest_area": 513,
-    "persistence": 0.8,
-    "area_cv": 0.36717719196555676,
-    "interior_std": 0.1266053169965744
+    "defect_score": 570.4888916015625,
+    "mass_score": 520.4161987304688,
+    "n_regions": 1,
+    "largest_area": 790,
+    "largest_extent": 1471,
+    "persistence": 0.9,
+    "area_cv": 0.26177497149761525,
+    "interior_std": 0.08666503429412842,
+    "weak_evidence_px": 1753
   },
   {
     "key": "hazelnut/train/good/036",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 25.30320167541504,
-    "mass_score": 29.511795043945312,
+    "defect_score": 38.271728515625,
+    "mass_score": 38.35580062866211,
     "n_regions": 1,
-    "largest_area": 47,
-    "persistence": 0.75,
-    "area_cv": 0.3955907986913366,
-    "interior_std": 0.13398326933383942
+    "largest_area": 59,
+    "largest_extent": 92,
+    "persistence": 0.9,
+    "area_cv": 0.24838759401729038,
+    "interior_std": 0.10197679698467255,
+    "weak_evidence_px": 153
   },
   {
     "key": "hazelnut/train/good/039",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.6095765829086304,
-    "mass_score": 5.152257442474365,
+    "defect_score": 3.7804512977600098,
+    "mass_score": 16.94174575805664,
     "n_regions": 1,
-    "largest_area": 10,
+    "largest_area": 32,
+    "largest_extent": 449,
     "persistence": 0.5,
-    "area_cv": 0.8711394644048596,
-    "interior_std": 0.13934427499771118
+    "area_cv": 0.8327407363128609,
+    "interior_std": 0.13901570439338684,
+    "weak_evidence_px": 589
   },
   {
     "key": "hazelnut/train/good/043",
@@ -127,9 +147,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/048",
@@ -139,9 +161,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 1
   },
   {
     "key": "hazelnut/train/good/056",
@@ -151,9 +175,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 37
   },
   {
     "key": "hazelnut/train/good/062",
@@ -163,9 +189,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/078",
@@ -175,9 +203,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 216
   },
   {
     "key": "hazelnut/train/good/084",
@@ -187,9 +217,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 69
   },
   {
     "key": "hazelnut/train/good/090",
@@ -199,9 +231,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 54
   },
   {
     "key": "hazelnut/train/good/093",
@@ -211,9 +245,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/098",
@@ -223,9 +259,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 5
   },
   {
     "key": "hazelnut/train/good/106",
@@ -235,9 +273,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 14
   },
   {
     "key": "hazelnut/train/good/123",
@@ -247,9 +287,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 6
   },
   {
     "key": "hazelnut/train/good/128",
@@ -259,21 +301,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/133",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 32.387351989746094,
-    "mass_score": 62.277950286865234,
-    "n_regions": 11,
-    "largest_area": 113,
+    "defect_score": 99.02700805664062,
+    "mass_score": 208.34649658203125,
+    "n_regions": 2,
+    "largest_area": 369,
+    "largest_extent": 2930,
     "persistence": 0.6,
-    "area_cv": 0.6536494826529604,
-    "interior_std": 0.11949179321527481
+    "area_cv": 0.5265415814675886,
+    "interior_std": 0.12592647969722748,
+    "weak_evidence_px": 3564
   },
   {
     "key": "hazelnut/train/good/140",
@@ -283,9 +329,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/143",
@@ -295,9 +343,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 131
   },
   {
     "key": "hazelnut/train/good/151",
@@ -307,21 +357,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/156",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 10.333504676818848,
-    "mass_score": 15.519913673400879,
+    "defect_score": 5.6139726638793945,
+    "mass_score": 10.88615894317627,
     "n_regions": 1,
-    "largest_area": 26,
-    "persistence": 0.85,
-    "area_cv": 0.4275021138710691,
-    "interior_std": 0.17641912400722504
+    "largest_area": 19,
+    "largest_extent": 43,
+    "persistence": 0.65,
+    "area_cv": 0.6893475175845635,
+    "interior_std": 0.16586650907993317,
+    "weak_evidence_px": 43
   },
   {
     "key": "hazelnut/train/good/166",
@@ -331,21 +385,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/170",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 15.191323280334473,
-    "mass_score": 17.112211227416992,
+    "defect_score": 15.036413192749023,
+    "mass_score": 17.078357696533203,
     "n_regions": 1,
     "largest_area": 27,
-    "persistence": 0.9,
-    "area_cv": 0.35703580506495763,
-    "interior_std": 0.13128191232681274
+    "largest_extent": 58,
+    "persistence": 0.8,
+    "area_cv": 0.47261588296434887,
+    "interior_std": 0.140377938747406,
+    "weak_evidence_px": 68
   },
   {
     "key": "hazelnut/train/good/173",
@@ -355,9 +413,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 23
   },
   {
     "key": "hazelnut/train/good/177",
@@ -367,9 +427,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 82
   },
   {
     "key": "hazelnut/train/good/186",
@@ -379,33 +441,39 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 109
   },
   {
     "key": "hazelnut/train/good/191",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 9.635993003845215,
-    "mass_score": 21.88709259033203,
-    "n_regions": 3,
-    "largest_area": 39,
-    "persistence": 0.75,
-    "area_cv": 0.5842341592519326,
-    "interior_std": 0.14786463975906372
+    "defect_score": 11.469120025634766,
+    "mass_score": 24.33498764038086,
+    "n_regions": 4,
+    "largest_area": 43,
+    "largest_extent": 100,
+    "persistence": 0.8,
+    "area_cv": 0.5238298303045252,
+    "interior_std": 0.14601141214370728,
+    "weak_evidence_px": 394
   },
   {
     "key": "hazelnut/train/good/194",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.5465408563613892,
-    "mass_score": 3.1364519596099854,
-    "n_regions": 2,
-    "largest_area": 6,
-    "persistence": 0.6,
-    "area_cv": 0.8164965809277259,
-    "interior_std": 0.147804394364357
+    "defect_score": 6.574629783630371,
+    "mass_score": 20.634145736694336,
+    "n_regions": 4,
+    "largest_area": 38,
+    "largest_extent": 100,
+    "persistence": 0.65,
+    "area_cv": 0.5813375934966606,
+    "interior_std": 0.14252008497714996,
+    "weak_evidence_px": 381
   },
   {
     "key": "hazelnut/train/good/197",
@@ -415,33 +483,39 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 20
   },
   {
     "key": "hazelnut/train/good/202",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 4.942204475402832,
-    "mass_score": 21.732072830200195,
-    "n_regions": 2,
-    "largest_area": 41,
+    "defect_score": 0.01905512437224388,
+    "mass_score": 1.0047637224197388,
+    "n_regions": 1,
+    "largest_area": 2,
+    "largest_extent": 133,
     "persistence": 0.65,
-    "area_cv": 0.7081898614203638,
-    "interior_std": 0.10465695708990097
+    "area_cv": 0.7536577472566709,
+    "interior_std": 0.12034635990858078,
+    "weak_evidence_px": 236
   },
   {
     "key": "hazelnut/train/good/208",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 1.6351346969604492,
-    "mass_score": 4.406026363372803,
-    "n_regions": 2,
-    "largest_area": 8,
-    "persistence": 0.65,
-    "area_cv": 0.5073686458428707,
-    "interior_std": 0.08061537146568298
+    "defect_score": 3.9620654582977295,
+    "mass_score": 7.473113059997559,
+    "n_regions": 3,
+    "largest_area": 13,
+    "largest_extent": 34,
+    "persistence": 0.75,
+    "area_cv": 0.42957306254218025,
+    "interior_std": 0.10420434921979904,
+    "weak_evidence_px": 146
   },
   {
     "key": "hazelnut/train/good/214",
@@ -451,9 +525,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/217",
@@ -463,117 +539,137 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/220",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 13.306463241577148,
-    "mass_score": 25.77776527404785,
+    "defect_score": 16.53615379333496,
+    "mass_score": 28.05608367919922,
     "n_regions": 1,
-    "largest_area": 45,
-    "persistence": 0.8,
-    "area_cv": 0.4650562760279297,
-    "interior_std": 0.15333963930606842
+    "largest_area": 48,
+    "largest_extent": 100,
+    "persistence": 0.9,
+    "area_cv": 0.33879736398938204,
+    "interior_std": 0.144598126411438,
+    "weak_evidence_px": 100
   },
   {
     "key": "hazelnut/train/good/223",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 3.888601541519165,
-    "mass_score": 13.467978477478027,
+    "defect_score": 2.5309369564056396,
+    "mass_score": 9.131083488464355,
     "n_regions": 1,
-    "largest_area": 25,
+    "largest_area": 17,
+    "largest_extent": 70,
     "persistence": 0.75,
-    "area_cv": 0.5843043424670488,
-    "interior_std": 0.1434018313884735
+    "area_cv": 0.54934064834945,
+    "interior_std": 0.12704989314079285,
+    "weak_evidence_px": 70
   },
   {
     "key": "hazelnut/train/good/230",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.0,
-    "mass_score": 0.0,
-    "n_regions": 0,
-    "largest_area": 0,
-    "persistence": 0.0,
-    "area_cv": 0.0,
-    "interior_std": 0.0
+    "defect_score": 0.10336977988481522,
+    "mass_score": 1.0258309841156006,
+    "n_regions": 1,
+    "largest_area": 2,
+    "largest_extent": 13,
+    "persistence": 0.65,
+    "area_cv": 0.7337993857053428,
+    "interior_std": 0.11967646330595016,
+    "weak_evidence_px": 151
   },
   {
     "key": "hazelnut/train/good/236",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.0,
-    "mass_score": 0.0,
-    "n_regions": 0,
-    "largest_area": 0,
-    "persistence": 0.0,
-    "area_cv": 0.0,
-    "interior_std": 0.0
+    "defect_score": 0.011888600885868073,
+    "mass_score": 0.5029721260070801,
+    "n_regions": 1,
+    "largest_area": 1,
+    "largest_extent": 20,
+    "persistence": 0.45,
+    "area_cv": 1.1055415967851332,
+    "interior_std": 0.11961270123720169,
+    "weak_evidence_px": 93
   },
   {
     "key": "hazelnut/train/good/240",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 1.500512957572937,
-    "mass_score": 5.319796562194824,
-    "n_regions": 5,
-    "largest_area": 10,
+    "defect_score": 2.832841157913208,
+    "mass_score": 11.705301284790039,
+    "n_regions": 4,
+    "largest_area": 22,
+    "largest_extent": 77,
     "persistence": 0.6,
-    "area_cv": 0.7411650373553655,
-    "interior_std": 0.13852009177207947
+    "area_cv": 0.7027721091452659,
+    "interior_std": 0.12580303847789764,
+    "weak_evidence_px": 323
   },
   {
     "key": "hazelnut/train/good/243",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 6.9387054443359375,
-    "mass_score": 31.22910499572754,
-    "n_regions": 11,
-    "largest_area": 59,
-    "persistence": 0.55,
-    "area_cv": 0.7107430451814701,
-    "interior_std": 0.15035752952098846
+    "defect_score": 54.566436767578125,
+    "mass_score": 271.57537841796875,
+    "n_regions": 5,
+    "largest_area": 516,
+    "largest_extent": 4272,
+    "persistence": 0.6,
+    "area_cv": 0.7677688842437025,
+    "interior_std": 0.11159417778253555,
+    "weak_evidence_px": 5252
   },
   {
     "key": "hazelnut/train/good/251",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 18.712730407714844,
-    "mass_score": 13.43293571472168,
+    "defect_score": 15.26674747467041,
+    "mass_score": 10.77660083770752,
     "n_regions": 1,
-    "largest_area": 19,
-    "persistence": 0.9,
-    "area_cv": 0.29362934284586706,
-    "interior_std": 0.10235866904258728
+    "largest_area": 15,
+    "largest_extent": 26,
+    "persistence": 1.0,
+    "area_cv": 0.15625943044243693,
+    "interior_std": 0.09840405732393265,
+    "weak_evidence_px": 33
   },
   {
     "key": "hazelnut/train/good/258",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.0,
-    "mass_score": 0.0,
-    "n_regions": 0,
-    "largest_area": 0,
-    "persistence": 0.0,
-    "area_cv": 0.0,
-    "interior_std": 0.0
+    "defect_score": 0.06449611485004425,
+    "mass_score": 1.0161223411560059,
+    "n_regions": 1,
+    "largest_area": 2,
+    "largest_extent": 29,
+    "persistence": 0.4,
+    "area_cv": 1.2247448713915892,
+    "interior_std": 0.11230692267417908,
+    "weak_evidence_px": 45
   },
   {
     "key": "hazelnut/train/good/263",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 21.2716007232666,
-    "mass_score": 55.751426696777344,
-    "n_regions": 3,
-    "largest_area": 101,
-    "persistence": 0.65,
-    "area_cv": 0.5898278116560957,
-    "interior_std": 0.14935295283794403
+    "defect_score": 14.220219612121582,
+    "mass_score": 41.015811920166016,
+    "n_regions": 2,
+    "largest_area": 75,
+    "largest_extent": 625,
+    "persistence": 0.55,
+    "area_cv": 0.5305308872215254,
+    "interior_std": 0.11902002990245819,
+    "weak_evidence_px": 1404
   },
   {
     "key": "hazelnut/train/good/267",
@@ -583,21 +679,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/271",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 110.4586181640625,
-    "mass_score": 312.35546875,
-    "n_regions": 16,
-    "largest_area": 570,
-    "persistence": 0.55,
-    "area_cv": 0.6406336212626208,
-    "interior_std": 0.12796282768249512
+    "defect_score": 22.9414119720459,
+    "mass_score": 96.71016693115234,
+    "n_regions": 2,
+    "largest_area": 182,
+    "largest_extent": 2729,
+    "persistence": 0.6,
+    "area_cv": 0.632489660652422,
+    "interior_std": 0.11972565203905106,
+    "weak_evidence_px": 3958
   },
   {
     "key": "hazelnut/train/good/274",
@@ -607,21 +707,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 50
   },
   {
     "key": "hazelnut/train/good/277",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 56.74030303955078,
-    "mass_score": 135.5546417236328,
-    "n_regions": 18,
-    "largest_area": 243,
-    "persistence": 0.7,
-    "area_cv": 0.5569349620655838,
-    "interior_std": 0.13465619087219238
+    "defect_score": 96.34820556640625,
+    "mass_score": 290.3931884765625,
+    "n_regions": 4,
+    "largest_area": 533,
+    "largest_extent": 2374,
+    "persistence": 0.75,
+    "area_cv": 0.5417390337758935,
+    "interior_std": 0.1942373365163803,
+    "weak_evidence_px": 3347
   },
   {
     "key": "hazelnut/train/good/280",
@@ -631,9 +735,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/283",
@@ -643,9 +749,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 10
   },
   {
     "key": "hazelnut/train/good/286",
@@ -655,9 +763,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 51
   },
   {
     "key": "hazelnut/train/good/289",
@@ -667,45 +777,53 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 231
   },
   {
     "key": "hazelnut/train/good/292",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 164.22149658203125,
-    "mass_score": 261.0865478515625,
-    "n_regions": 17,
-    "largest_area": 443,
-    "persistence": 0.75,
-    "area_cv": 0.46851241904814095,
-    "interior_std": 0.12523403763771057
+    "defect_score": 252.9208984375,
+    "mass_score": 399.5552673339844,
+    "n_regions": 7,
+    "largest_area": 677,
+    "largest_extent": 1845,
+    "persistence": 0.8,
+    "area_cv": 0.5150283436405759,
+    "interior_std": 0.14308278262615204,
+    "weak_evidence_px": 3846
   },
   {
     "key": "hazelnut/train/good/295",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 6.274809837341309,
-    "mass_score": 9.012266159057617,
+    "defect_score": 6.963747024536133,
+    "mass_score": 9.675477981567383,
     "n_regions": 1,
-    "largest_area": 15,
-    "persistence": 0.75,
-    "area_cv": 0.4647291939014579,
-    "interior_std": 0.14735810458660126
+    "largest_area": 16,
+    "largest_extent": 27,
+    "persistence": 0.8,
+    "area_cv": 0.48398773529455624,
+    "interior_std": 0.15416809916496277,
+    "weak_evidence_px": 43
   },
   {
     "key": "hazelnut/train/good/298",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 2.7553391456604004,
-    "mass_score": 14.687029838562012,
-    "n_regions": 6,
-    "largest_area": 28,
-    "persistence": 0.65,
-    "area_cv": 0.7024347852062874,
-    "interior_std": 0.13223090767860413
+    "defect_score": 2.717177629470825,
+    "mass_score": 17.177976608276367,
+    "n_regions": 1,
+    "largest_area": 33,
+    "largest_extent": 997,
+    "persistence": 0.6,
+    "area_cv": 0.8471906312348143,
+    "interior_std": 0.1352638155221939,
+    "weak_evidence_px": 1137
   },
   {
     "key": "hazelnut/train/good/301",
@@ -715,69 +833,81 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 8
   },
   {
     "key": "hazelnut/train/good/304",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.08239799737930298,
-    "mass_score": 0.5205878615379333,
-    "n_regions": 1,
-    "largest_area": 1,
-    "persistence": 0.45,
-    "area_cv": 1.1055415967851332,
-    "interior_std": 0.13050833344459534
+    "defect_score": 0.0,
+    "mass_score": 0.0,
+    "n_regions": 0,
+    "largest_area": 0,
+    "largest_extent": 0,
+    "persistence": 0.0,
+    "area_cv": 0.0,
+    "interior_std": 0.0,
+    "weak_evidence_px": 9
   },
   {
     "key": "hazelnut/train/good/307",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 4.0209455490112305,
-    "mass_score": 16.001949310302734,
-    "n_regions": 5,
-    "largest_area": 30,
-    "persistence": 0.55,
-    "area_cv": 0.7820523386480901,
-    "interior_std": 0.11954507976770401
+    "defect_score": 0.02856515906751156,
+    "mass_score": 1.50714111328125,
+    "n_regions": 1,
+    "largest_area": 3,
+    "largest_extent": 108,
+    "persistence": 0.5,
+    "area_cv": 1.0,
+    "interior_std": 0.1434028148651123,
+    "weak_evidence_px": 564
   },
   {
     "key": "hazelnut/train/good/310",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 92.81836700439453,
-    "mass_score": 274.5491943359375,
-    "n_regions": 7,
-    "largest_area": 503,
-    "persistence": 0.7,
-    "area_cv": 0.5899482358850271,
-    "interior_std": 0.12954148650169373
+    "defect_score": 342.3854064941406,
+    "mass_score": 921.1134033203125,
+    "n_regions": 2,
+    "largest_area": 1673,
+    "largest_extent": 5367,
+    "persistence": 0.65,
+    "area_cv": 0.6141680543405915,
+    "interior_std": 0.11063500493764877,
+    "weak_evidence_px": 5676
   },
   {
     "key": "hazelnut/train/good/313",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.15140527486801147,
-    "mass_score": 2.0378308296203613,
-    "n_regions": 3,
-    "largest_area": 4,
-    "persistence": 0.5,
-    "area_cv": 1.0,
-    "interior_std": 0.10018883645534515
+    "defect_score": 0.015979677438735962,
+    "mass_score": 0.5039948225021362,
+    "n_regions": 1,
+    "largest_area": 1,
+    "largest_extent": 179,
+    "persistence": 0.4,
+    "area_cv": 1.2247448713915892,
+    "interior_std": 0.09640614688396454,
+    "weak_evidence_px": 509
   },
   {
     "key": "hazelnut/train/good/316",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.4848005473613739,
-    "mass_score": 4.0999674797058105,
-    "n_regions": 4,
-    "largest_area": 8,
-    "persistence": 0.6,
-    "area_cv": 0.7804470977851604,
-    "interior_std": 0.11734980344772339
+    "defect_score": 0.0,
+    "mass_score": 0.0,
+    "n_regions": 0,
+    "largest_area": 0,
+    "largest_extent": 0,
+    "persistence": 0.0,
+    "area_cv": 0.0,
+    "interior_std": 0.0,
+    "weak_evidence_px": 116
   },
   {
     "key": "hazelnut/train/good/319",
@@ -787,21 +917,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 76
   },
   {
     "key": "hazelnut/train/good/322",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 27.416210174560547,
-    "mass_score": 51.2174072265625,
-    "n_regions": 5,
-    "largest_area": 89,
+    "defect_score": 28.9466552734375,
+    "mass_score": 57.614715576171875,
+    "n_regions": 4,
+    "largest_area": 101,
+    "largest_extent": 242,
     "persistence": 0.8,
-    "area_cv": 0.4537250942672231,
-    "interior_std": 0.14261063933372498
+    "area_cv": 0.5107989035987999,
+    "interior_std": 0.15043477714061737,
+    "weak_evidence_px": 382
   },
   {
     "key": "hazelnut/train/good/325",
@@ -811,21 +945,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/328",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.008419140242040157,
-    "mass_score": 0.5021047592163086,
-    "n_regions": 1,
-    "largest_area": 1,
-    "persistence": 0.7,
-    "area_cv": 0.6546536707079771,
-    "interior_std": 0.09903338551521301
+    "defect_score": 0.0,
+    "mass_score": 0.0,
+    "n_regions": 0,
+    "largest_area": 0,
+    "largest_extent": 0,
+    "persistence": 0.0,
+    "area_cv": 0.0,
+    "interior_std": 0.0,
+    "weak_evidence_px": 201
   },
   {
     "key": "hazelnut/train/good/331",
@@ -835,9 +973,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 28
   },
   {
     "key": "hazelnut/train/good/334",
@@ -847,21 +987,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 14
   },
   {
     "key": "hazelnut/train/good/338",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.9310276508331299,
-    "mass_score": 4.232230186462402,
+    "defect_score": 2.0284383296966553,
+    "mass_score": 6.004373550415039,
     "n_regions": 1,
-    "largest_area": 8,
-    "persistence": 0.6,
-    "area_cv": 0.7324331596352894,
-    "interior_std": 0.15057116746902466
+    "largest_area": 11,
+    "largest_extent": 29,
+    "persistence": 0.55,
+    "area_cv": 0.7075250638502719,
+    "interior_std": 0.12759672105312347,
+    "weak_evidence_px": 520
   },
   {
     "key": "hazelnut/train/good/341",
@@ -871,21 +1015,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 1026
   },
   {
     "key": "hazelnut/train/good/344",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.5977333784103394,
-    "mass_score": 5.649330139160156,
-    "n_regions": 1,
-    "largest_area": 11,
-    "persistence": 0.6,
-    "area_cv": 0.7490559174291765,
-    "interior_std": 0.09858141094446182
+    "defect_score": 0.0,
+    "mass_score": 0.0,
+    "n_regions": 0,
+    "largest_area": 0,
+    "largest_extent": 0,
+    "persistence": 0.0,
+    "area_cv": 0.0,
+    "interior_std": 0.0,
+    "weak_evidence_px": 98
   },
   {
     "key": "hazelnut/train/good/347",
@@ -895,9 +1043,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/352",
@@ -907,21 +1057,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 68
   },
   {
     "key": "hazelnut/train/good/355",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.0,
-    "mass_score": 0.0,
-    "n_regions": 0,
-    "largest_area": 0,
-    "persistence": 0.0,
-    "area_cv": 0.0,
-    "interior_std": 0.0
+    "defect_score": 2.5218329429626465,
+    "mass_score": 11.62853717803955,
+    "n_regions": 2,
+    "largest_area": 22,
+    "largest_extent": 160,
+    "persistence": 0.55,
+    "area_cv": 0.8237657497164028,
+    "interior_std": 0.09750373661518097,
+    "weak_evidence_px": 321
   },
   {
     "key": "hazelnut/train/good/358",
@@ -931,9 +1085,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/362",
@@ -943,9 +1099,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 5
   },
   {
     "key": "hazelnut/train/good/365",
@@ -955,9 +1113,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/369",
@@ -967,33 +1127,39 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 195
   },
   {
     "key": "hazelnut/train/good/375",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 37.07553482055664,
-    "mass_score": 17.864383697509766,
-    "n_regions": 5,
-    "largest_area": 23,
-    "persistence": 1.0,
-    "area_cv": 0.1470465705480359,
-    "interior_std": 0.018050648272037506
+    "defect_score": 41.27989196777344,
+    "mass_score": 18.439903259277344,
+    "n_regions": 4,
+    "largest_area": 24,
+    "largest_extent": 470,
+    "persistence": 0.95,
+    "area_cv": 0.12870101948713025,
+    "interior_std": 0.029850061982870102,
+    "weak_evidence_px": 1029
   },
   {
     "key": "hazelnut/train/good/378",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 5.181013107299805,
-    "mass_score": 16.788793563842773,
-    "n_regions": 5,
-    "largest_area": 31,
-    "persistence": 0.6,
-    "area_cv": 0.6237910350508687,
-    "interior_std": 0.14408785104751587
+    "defect_score": 1.7688454389572144,
+    "mass_score": 8.441317558288574,
+    "n_regions": 2,
+    "largest_area": 16,
+    "largest_extent": 432,
+    "persistence": 0.7,
+    "area_cv": 0.576442107204687,
+    "interior_std": 0.11235664784908295,
+    "weak_evidence_px": 854
   },
   {
     "key": "hazelnut/train/good/381",
@@ -1003,9 +1169,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 28
   },
   {
     "key": "hazelnut/train/good/384",
@@ -1015,188 +1183,220 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "hazelnut/train/good/388",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 7.223273754119873,
-    "mass_score": 13.267770767211914,
+    "defect_score": 8.181305885314941,
+    "mass_score": 13.49636173248291,
     "n_regions": 3,
     "largest_area": 23,
-    "persistence": 0.7,
-    "area_cv": 0.5763019700603056,
-    "interior_std": 0.14504823088645935
+    "largest_extent": 50,
+    "persistence": 0.8,
+    "area_cv": 0.46590909090909083,
+    "interior_std": 0.14716316759586334,
+    "weak_evidence_px": 168
   },
   {
     "key": "hazelnut/test/cut/001",
     "label": 1,
     "defect_type": "cut",
-    "defect_score": 4135.38525390625,
-    "mass_score": 1741.9412841796875,
-    "n_regions": 3,
-    "largest_area": 2069,
+    "defect_score": 4104.943359375,
+    "mass_score": 1736.97265625,
+    "n_regions": 4,
+    "largest_area": 2062,
+    "largest_extent": 2348,
     "persistence": 1.0,
-    "area_cv": 0.06713762527638599,
-    "interior_std": 0.058915626257658005
+    "area_cv": 0.07868107780852632,
+    "interior_std": 0.07207577675580978,
+    "weak_evidence_px": 4387
   },
   {
     "key": "hazelnut/test/cut/004",
     "label": 1,
     "defect_type": "cut",
-    "defect_score": 1229.294189453125,
-    "mass_score": 900.3579711914062,
-    "n_regions": 3,
-    "largest_area": 1262,
+    "defect_score": 1148.98779296875,
+    "mass_score": 871.9329833984375,
+    "n_regions": 2,
+    "largest_area": 1235,
+    "largest_extent": 1593,
     "persistence": 0.9,
-    "area_cv": 0.282764177015373,
-    "interior_std": 0.14256344735622406
+    "area_cv": 0.3304692381975159,
+    "interior_std": 0.15691713988780975,
+    "weak_evidence_px": 2526
   },
   {
     "key": "hazelnut/test/cut/007",
     "label": 1,
     "defect_type": "cut",
-    "defect_score": 3541.430908203125,
-    "mass_score": 1687.0750732421875,
-    "n_regions": 12,
-    "largest_area": 2050,
+    "defect_score": 3697.20166015625,
+    "mass_score": 1733.726806640625,
+    "n_regions": 10,
+    "largest_area": 2097,
+    "largest_extent": 2436,
     "persistence": 1.0,
-    "area_cv": 0.06829868365623402,
-    "interior_std": 0.07633394747972488
+    "area_cv": 0.07266222662125654,
+    "interior_std": 0.08382298797369003,
+    "weak_evidence_px": 3763
   },
   {
     "key": "hazelnut/test/cut/010",
     "label": 1,
     "defect_type": "cut",
-    "defect_score": 2974.31103515625,
-    "mass_score": 1261.603759765625,
+    "defect_score": 2276.234375,
+    "mass_score": 1150.267333984375,
     "n_regions": 1,
-    "largest_area": 1477,
+    "largest_area": 1414,
+    "largest_extent": 1597,
     "persistence": 1.0,
-    "area_cv": 0.047055725107036414,
-    "interior_std": 0.060033753514289856
+    "area_cv": 0.08984095290148769,
+    "interior_std": 0.0938587561249733,
+    "weak_evidence_px": 1597
   },
   {
     "key": "hazelnut/test/cut/013",
     "label": 1,
     "defect_type": "cut",
-    "defect_score": 4373.05419921875,
-    "mass_score": 1673.3570556640625,
+    "defect_score": 3544.67236328125,
+    "mass_score": 1580.92041015625,
     "n_regions": 5,
-    "largest_area": 1930,
+    "largest_area": 1887,
+    "largest_extent": 2121,
     "persistence": 1.0,
-    "area_cv": 0.06600705202659994,
-    "interior_std": 0.059907615184783936
+    "area_cv": 0.13007479874341785,
+    "interior_std": 0.11000774055719376,
+    "weak_evidence_px": 2817
   },
   {
     "key": "hazelnut/test/cut/016",
     "label": 1,
     "defect_type": "cut",
-    "defect_score": 3493.322265625,
-    "mass_score": 1719.2919921875,
+    "defect_score": 2776.142578125,
+    "mass_score": 1563.995849609375,
     "n_regions": 1,
-    "largest_area": 2106,
-    "persistence": 1.0,
-    "area_cv": 0.08350743290937367,
-    "interior_std": 0.09009195864200592
+    "largest_area": 1996,
+    "largest_extent": 2305,
+    "persistence": 0.9,
+    "area_cv": 0.2003165468473557,
+    "interior_std": 0.13336093723773956,
+    "weak_evidence_px": 2305
   },
   {
     "key": "hazelnut/test/hole/002",
     "label": 1,
     "defect_type": "hole",
-    "defect_score": 5443.10986328125,
-    "mass_score": 1666.6676025390625,
+    "defect_score": 6488.193359375,
+    "mass_score": 1702.776611328125,
     "n_regions": 1,
-    "largest_area": 1818,
+    "largest_area": 1831,
+    "largest_extent": 1976,
     "persistence": 1.0,
-    "area_cv": 0.055565034186318335,
-    "interior_std": 0.05794321373105049
+    "area_cv": 0.036487705834957244,
+    "interior_std": 0.024763496592640877,
+    "weak_evidence_px": 1984
   },
   {
     "key": "hazelnut/test/hole/006",
     "label": 1,
     "defect_type": "hole",
-    "defect_score": 6819.142578125,
-    "mass_score": 2425.72265625,
-    "n_regions": 11,
-    "largest_area": 2795,
+    "defect_score": 7082.3916015625,
+    "mass_score": 2483.337158203125,
+    "n_regions": 5,
+    "largest_area": 2888,
+    "largest_extent": 3620,
     "persistence": 1.0,
-    "area_cv": 0.11267152135952087,
-    "interior_std": 0.08387456089258194
+    "area_cv": 0.09584288326693517,
+    "interior_std": 0.06215605512261391,
+    "weak_evidence_px": 5146
   },
   {
     "key": "hazelnut/test/hole/009",
     "label": 1,
     "defect_type": "hole",
-    "defect_score": 3890.19140625,
-    "mass_score": 1731.36669921875,
-    "n_regions": 1,
-    "largest_area": 2082,
+    "defect_score": 4367.48828125,
+    "mass_score": 1777.31787109375,
+    "n_regions": 2,
+    "largest_area": 2092,
+    "largest_extent": 2256,
     "persistence": 1.0,
-    "area_cv": 0.10867968163099,
-    "interior_std": 0.10614408552646637
+    "area_cv": 0.06019412578095294,
+    "interior_std": 0.07226364314556122,
+    "weak_evidence_px": 2503
   },
   {
     "key": "hazelnut/test/hole/012",
     "label": 1,
     "defect_type": "hole",
-    "defect_score": 10246.0439453125,
-    "mass_score": 3871.400390625,
-    "n_regions": 7,
-    "largest_area": 4438,
+    "defect_score": 10178.76953125,
+    "mass_score": 3979.73876953125,
+    "n_regions": 6,
+    "largest_area": 4600,
+    "largest_extent": 5289,
     "persistence": 1.0,
-    "area_cv": 0.08133321548495914,
-    "interior_std": 0.0928955152630806
+    "area_cv": 0.09619644220559646,
+    "interior_std": 0.10642974823713303,
+    "weak_evidence_px": 6454
   },
   {
     "key": "hazelnut/test/hole/015",
     "label": 1,
     "defect_type": "hole",
-    "defect_score": 5990.24560546875,
-    "mass_score": 2543.66015625,
-    "n_regions": 4,
-    "largest_area": 3150,
+    "defect_score": 6341.5009765625,
+    "mass_score": 2629.895751953125,
+    "n_regions": 1,
+    "largest_area": 3247,
+    "largest_extent": 4273,
     "persistence": 1.0,
-    "area_cv": 0.12859334998203803,
-    "interior_std": 0.08749249577522278
+    "area_cv": 0.11047233493794482,
+    "interior_std": 0.07405836135149002,
+    "weak_evidence_px": 4397
   },
   {
     "key": "hazelnut/test/print/003",
     "label": 1,
     "defect_type": "print",
-    "defect_score": 8814.498046875,
-    "mass_score": 3138.640380859375,
+    "defect_score": 8351.998046875,
+    "mass_score": 3042.295166015625,
     "n_regions": 1,
-    "largest_area": 3729,
+    "largest_area": 3628,
+    "largest_extent": 4461,
     "persistence": 1.0,
-    "area_cv": 0.12293466691749264,
-    "interior_std": 0.08010938763618469
+    "area_cv": 0.11354653089323775,
+    "interior_std": 0.07615853101015091,
+    "weak_evidence_px": 4485
   },
   {
     "key": "hazelnut/test/print/013",
     "label": 1,
     "defect_type": "print",
-    "defect_score": 12636.63671875,
-    "mass_score": 3718.410400390625,
+    "defect_score": 12814.3447265625,
+    "mass_score": 3691.150634765625,
     "n_regions": 1,
-    "largest_area": 4216,
+    "largest_area": 4186,
+    "largest_extent": 4554,
     "persistence": 1.0,
-    "area_cv": 0.087633611862029,
-    "interior_std": 0.0677414983510971
+    "area_cv": 0.08606154433232878,
+    "interior_std": 0.06597539782524109,
+    "weak_evidence_px": 4554
   },
   {
     "key": "hazelnut/test/print/016",
     "label": 1,
     "defect_type": "print",
-    "defect_score": 34489.44140625,
-    "mass_score": 8357.6474609375,
-    "n_regions": 8,
-    "largest_area": 9356,
+    "defect_score": 27537.298828125,
+    "mass_score": 8041.5712890625,
+    "n_regions": 6,
+    "largest_area": 9163,
+    "largest_extent": 10645,
     "persistence": 1.0,
-    "area_cv": 0.04450419637689868,
-    "interior_std": 0.02948172017931938
+    "area_cv": 0.10067184464973793,
+    "interior_std": 0.06928706914186478,
+    "weak_evidence_px": 11049
   }
 ]

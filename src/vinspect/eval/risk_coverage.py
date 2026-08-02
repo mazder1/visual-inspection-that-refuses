@@ -136,14 +136,32 @@ def main(argv: Optional[List[str]] = None) -> int:
             [row["label"] for row in validation],
         )
         test_scores = [row["defect_score"] for row in test]
-        all_probabilities.extend(float(p) for p in calibrator.predict(test_scores))
-        all_supported.extend(bool(s) for s in calibrator.supported(test_scores))
+        probabilities = calibrator.predict(test_scores)
+        supported = calibrator.supported(test_scores)
+
+        # The weak-evidence floor, from clean validation only: a would-be pass
+        # whose sub-threshold whisper exceeds what 95% of clean parts show is
+        # not a confident decision, so it routes with the unsupported scores.
+        clean_weak = [
+            row.get("weak_evidence_px", 0)
+            for row in validation
+            if row["label"] == 0
+        ]
+        floor = float(np.percentile(clean_weak, 95)) if clean_weak else float("inf")
+        weak = np.array([row.get("weak_evidence_px", 0) for row in test])
+        blocked_pass = (probabilities < 0.5) & (weak > floor)
+
+        all_probabilities.extend(float(p) for p in probabilities)
+        all_supported.extend(
+            bool(s and not b) for s, b in zip(supported, blocked_pass)
+        )
         all_labels.extend(int(row["label"]) for row in test)
 
-    n_unsupported = sum(1 for s in all_supported if not s)
+    n_routed_first = sum(1 for s in all_supported if not s)
     print(
-        f"{n_unsupported} of {len(all_supported)} test scores fall outside the "
-        f"calibrators' fitted steps and are routed first"
+        f"{n_routed_first} of {len(all_supported)} test images are not "
+        f"confidently decidable (unsupported score or weak evidence above the "
+        f"clean floor) and are routed first"
     )
     curve = risk_coverage_curve(
         all_probabilities, all_labels, supported=all_supported

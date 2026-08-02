@@ -7,9 +7,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 57
   },
   {
     "key": "carpet/train/good/016",
@@ -19,9 +21,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/024",
@@ -31,9 +35,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 6
   },
   {
     "key": "carpet/train/good/036",
@@ -43,21 +49,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 74
   },
   {
     "key": "carpet/train/good/051",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 404.06634521484375,
-    "mass_score": 382.4678649902344,
+    "defect_score": 466.46051025390625,
+    "mass_score": 419.34991455078125,
     "n_regions": 3,
-    "largest_area": 580,
-    "persistence": 0.75,
-    "area_cv": 0.40790756725469,
-    "interior_std": 0.17310914397239685
+    "largest_area": 628,
+    "largest_extent": 1030,
+    "persistence": 0.8,
+    "area_cv": 0.40553131130745873,
+    "interior_std": 0.16531935334205627,
+    "weak_evidence_px": 1958
   },
   {
     "key": "carpet/train/good/054",
@@ -67,9 +77,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/063",
@@ -79,9 +91,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/067",
@@ -91,9 +105,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 2
   },
   {
     "key": "carpet/train/good/070",
@@ -103,9 +119,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 119
   },
   {
     "key": "carpet/train/good/076",
@@ -115,9 +133,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/079",
@@ -127,9 +147,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/080",
@@ -139,9 +161,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/081",
@@ -151,9 +175,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/087",
@@ -163,9 +189,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 66
   },
   {
     "key": "carpet/train/good/089",
@@ -175,9 +203,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/092",
@@ -187,9 +217,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 1
   },
   {
     "key": "carpet/train/good/096",
@@ -199,9 +231,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/099",
@@ -211,9 +245,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 24
   },
   {
     "key": "carpet/train/good/100",
@@ -223,9 +259,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/104",
@@ -235,9 +273,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/107",
@@ -247,9 +287,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 4
   },
   {
     "key": "carpet/train/good/112",
@@ -259,21 +301,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 64
   },
   {
     "key": "carpet/train/good/113",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 104.53880310058594,
-    "mass_score": 135.46145629882812,
+    "defect_score": 153.614990234375,
+    "mass_score": 171.54034423828125,
     "n_regions": 1,
-    "largest_area": 221,
-    "persistence": 0.85,
-    "area_cv": 0.3931074398841531,
-    "interior_std": 0.15264561772346497
+    "largest_area": 271,
+    "largest_extent": 496,
+    "persistence": 0.75,
+    "area_cv": 0.43491199664541386,
+    "interior_std": 0.14191806316375732,
+    "weak_evidence_px": 496
   },
   {
     "key": "carpet/train/good/116",
@@ -283,21 +329,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 36
   },
   {
     "key": "carpet/train/good/120",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 260.91778564453125,
-    "mass_score": 252.12820434570312,
+    "defect_score": 162.80662536621094,
+    "mass_score": 192.69943237304688,
     "n_regions": 1,
-    "largest_area": 384,
-    "persistence": 0.9,
-    "area_cv": 0.34736840455810464,
-    "interior_std": 0.1417522430419922
+    "largest_area": 308,
+    "largest_extent": 584,
+    "persistence": 0.85,
+    "area_cv": 0.42849949638717044,
+    "interior_std": 0.20913255214691162,
+    "weak_evidence_px": 584
   },
   {
     "key": "carpet/train/good/121",
@@ -307,9 +357,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/127",
@@ -319,9 +371,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/130",
@@ -331,9 +385,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/133",
@@ -343,9 +399,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/139",
@@ -355,9 +413,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/143",
@@ -367,9 +427,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/144",
@@ -379,21 +441,25 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/149",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 11.139092445373535,
-    "mass_score": 23.750110626220703,
+    "defect_score": 0.9113807678222656,
+    "mass_score": 5.727593898773193,
     "n_regions": 1,
-    "largest_area": 42,
-    "persistence": 0.6,
-    "area_cv": 0.6197797868009122,
-    "interior_std": 0.1360951066017151
+    "largest_area": 11,
+    "largest_extent": 86,
+    "persistence": 0.65,
+    "area_cv": 0.6998542122237651,
+    "interior_std": 0.17371049523353577,
+    "weak_evidence_px": 96
   },
   {
     "key": "carpet/train/good/150",
@@ -403,9 +469,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/151",
@@ -415,9 +483,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/165",
@@ -427,9 +497,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/166",
@@ -439,9 +511,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/173",
@@ -451,9 +525,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/177",
@@ -463,33 +539,39 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/183",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.0,
-    "mass_score": 0.0,
-    "n_regions": 0,
-    "largest_area": 0,
-    "persistence": 0.0,
-    "area_cv": 0.0,
-    "interior_std": 0.0
+    "defect_score": 7.6163716316223145,
+    "mass_score": 42.40024185180664,
+    "n_regions": 1,
+    "largest_area": 81,
+    "largest_extent": 366,
+    "persistence": 0.6,
+    "area_cv": 0.816496580927726,
+    "interior_std": 0.09731375426054001,
+    "weak_evidence_px": 391
   },
   {
     "key": "carpet/train/good/189",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 0.5096145868301392,
-    "mass_score": 6.127358913421631,
+    "defect_score": 5.055896759033203,
+    "mass_score": 21.260459899902344,
     "n_regions": 1,
-    "largest_area": 12,
-    "persistence": 0.4,
-    "area_cv": 1.133176859593473,
-    "interior_std": 0.1628418117761612
+    "largest_area": 40,
+    "largest_extent": 343,
+    "persistence": 0.6,
+    "area_cv": 0.7468333147362938,
+    "interior_std": 0.19131919741630554,
+    "weak_evidence_px": 382
   },
   {
     "key": "carpet/train/good/194",
@@ -499,9 +581,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/195",
@@ -511,9 +595,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/199",
@@ -523,9 +609,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/207",
@@ -535,9 +623,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 9
   },
   {
     "key": "carpet/train/good/215",
@@ -547,9 +637,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 9
   },
   {
     "key": "carpet/train/good/216",
@@ -559,9 +651,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/236",
@@ -571,9 +665,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/238",
@@ -583,9 +679,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/239",
@@ -595,9 +693,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 51
   },
   {
     "key": "carpet/train/good/246",
@@ -607,33 +707,39 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/247",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 101.9657974243164,
-    "mass_score": 188.98829650878906,
+    "defect_score": 84.2608871459961,
+    "mass_score": 173.2444610595703,
     "n_regions": 1,
-    "largest_area": 328,
-    "persistence": 0.5,
-    "area_cv": 0.6295416000126625,
-    "interior_std": 0.11938000470399857
+    "largest_area": 305,
+    "largest_extent": 836,
+    "persistence": 0.6,
+    "area_cv": 0.6477828261539004,
+    "interior_std": 0.1880810558795929,
+    "weak_evidence_px": 836
   },
   {
     "key": "carpet/train/good/251",
     "label": 0,
     "defect_type": "good",
-    "defect_score": 3.706540107727051,
-    "mass_score": 13.923439025878906,
+    "defect_score": 10.134045600891113,
+    "mass_score": 24.5093994140625,
     "n_regions": 1,
-    "largest_area": 26,
-    "persistence": 0.55,
-    "area_cv": 0.8414075744263426,
-    "interior_std": 0.1690155267715454
+    "largest_area": 44,
+    "largest_extent": 126,
+    "persistence": 0.7,
+    "area_cv": 0.5840810836752282,
+    "interior_std": 0.16790848970413208,
+    "weak_evidence_px": 126
   },
   {
     "key": "carpet/train/good/252",
@@ -643,9 +749,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/255",
@@ -655,9 +763,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/259",
@@ -667,9 +777,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/263",
@@ -679,9 +791,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 234
   },
   {
     "key": "carpet/train/good/266",
@@ -691,9 +805,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/train/good/271",
@@ -703,93 +819,109 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 0
   },
   {
     "key": "carpet/test/color/017",
     "label": 1,
     "defect_type": "color",
-    "defect_score": 496.3702087402344,
-    "mass_score": 659.707275390625,
-    "n_regions": 3,
-    "largest_area": 1083,
-    "persistence": 0.7,
-    "area_cv": 0.6049770406196505,
-    "interior_std": 0.22900372743606567
+    "defect_score": 713.8984985351562,
+    "mass_score": 849.0081787109375,
+    "n_regions": 1,
+    "largest_area": 1364,
+    "largest_extent": 3068,
+    "persistence": 0.85,
+    "area_cv": 0.45455450413866855,
+    "interior_std": 0.1793012022972107,
+    "weak_evidence_px": 3132
   },
   {
     "key": "carpet/test/cut/001",
     "label": 1,
     "defect_type": "cut",
-    "defect_score": 7468.8681640625,
-    "mass_score": 4288.146484375,
-    "n_regions": 5,
-    "largest_area": 5697,
-    "persistence": 0.95,
-    "area_cv": 0.29416490727229405,
-    "interior_std": 0.18738089501857758
+    "defect_score": 10514.986328125,
+    "mass_score": 5402.3828125,
+    "n_regions": 1,
+    "largest_area": 7083,
+    "largest_extent": 9129,
+    "persistence": 0.9,
+    "area_cv": 0.2548968372257983,
+    "interior_std": 0.14542900025844574,
+    "weak_evidence_px": 9155
   },
   {
     "key": "carpet/test/cut/004",
     "label": 1,
     "defect_type": "cut",
-    "defect_score": 7384.474609375,
-    "mass_score": 3525.310546875,
+    "defect_score": 7845.7470703125,
+    "mass_score": 3595.22998046875,
     "n_regions": 1,
-    "largest_area": 4442,
-    "persistence": 0.95,
-    "area_cv": 0.20119865783468716,
-    "interior_std": 0.13508465886116028
+    "largest_area": 4500,
+    "largest_extent": 6107,
+    "persistence": 1.0,
+    "area_cv": 0.173878035593446,
+    "interior_std": 0.11514415591955185,
+    "weak_evidence_px": 6155
   },
   {
     "key": "carpet/test/cut/007",
     "label": 1,
     "defect_type": "cut",
-    "defect_score": 11074.0263671875,
-    "mass_score": 5846.2822265625,
+    "defect_score": 10031.0673828125,
+    "mass_score": 5434.5283203125,
     "n_regions": 2,
-    "largest_area": 7591,
-    "persistence": 0.9,
-    "area_cv": 0.2243179320919964,
-    "interior_std": 0.13527768850326538
+    "largest_area": 7106,
+    "largest_extent": 9701,
+    "persistence": 0.95,
+    "area_cv": 0.23086416663535173,
+    "interior_std": 0.13670609891414642,
+    "weak_evidence_px": 9897
   },
   {
     "key": "carpet/test/cut/010",
     "label": 1,
     "defect_type": "cut",
-    "defect_score": 13342.03515625,
-    "mass_score": 6659.14453125,
+    "defect_score": 20127.423828125,
+    "mass_score": 7941.92041015625,
     "n_regions": 1,
-    "largest_area": 8596,
-    "persistence": 0.9,
-    "area_cv": 0.24902233359993833,
-    "interior_std": 0.15162530541419983
+    "largest_area": 9779,
+    "largest_extent": 11475,
+    "persistence": 1.0,
+    "area_cv": 0.1355469874917439,
+    "interior_std": 0.0811476781964302,
+    "weak_evidence_px": 11479
   },
   {
     "key": "carpet/test/cut/013",
     "label": 1,
     "defect_type": "cut",
-    "defect_score": 13191.171875,
-    "mass_score": 6131.21435546875,
-    "n_regions": 4,
-    "largest_area": 7748,
-    "persistence": 0.95,
-    "area_cv": 0.15337360407249265,
-    "interior_std": 0.1008279100060463
+    "defect_score": 14887.3603515625,
+    "mass_score": 6807.478515625,
+    "n_regions": 2,
+    "largest_area": 8582,
+    "largest_extent": 11657,
+    "persistence": 0.9,
+    "area_cv": 0.19200670013383037,
+    "interior_std": 0.1152118593454361,
+    "weak_evidence_px": 12254
   },
   {
     "key": "carpet/test/cut/016",
     "label": 1,
     "defect_type": "cut",
-    "defect_score": 6742.69677734375,
-    "mass_score": 4299.0087890625,
-    "n_regions": 5,
-    "largest_area": 5960,
-    "persistence": 0.9,
-    "area_cv": 0.2742095003377516,
-    "interior_std": 0.13657531142234802
+    "defect_score": 11472.552734375,
+    "mass_score": 6004.46728515625,
+    "n_regions": 1,
+    "largest_area": 7949,
+    "largest_extent": 10344,
+    "persistence": 1.0,
+    "area_cv": 0.1324627069527452,
+    "interior_std": 0.08179771900177002,
+    "weak_evidence_px": 10344
   },
   {
     "key": "carpet/test/good/006",
@@ -799,9 +931,11 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 87
   },
   {
     "key": "carpet/test/good/014",
@@ -811,140 +945,164 @@
     "mass_score": 0.0,
     "n_regions": 0,
     "largest_area": 0,
+    "largest_extent": 0,
     "persistence": 0.0,
     "area_cv": 0.0,
-    "interior_std": 0.0
+    "interior_std": 0.0,
+    "weak_evidence_px": 18
   },
   {
     "key": "carpet/test/hole/002",
     "label": 1,
     "defect_type": "hole",
-    "defect_score": 6632.1572265625,
-    "mass_score": 3109.113525390625,
-    "n_regions": 2,
-    "largest_area": 3989,
+    "defect_score": 5541.02880859375,
+    "mass_score": 2800.011962890625,
+    "n_regions": 1,
+    "largest_area": 3648,
+    "largest_extent": 5640,
     "persistence": 0.9,
-    "area_cv": 0.22543871467728246,
-    "interior_std": 0.13716521859169006
+    "area_cv": 0.26303077480598797,
+    "interior_std": 0.1561354249715805,
+    "weak_evidence_px": 5824
   },
   {
     "key": "carpet/test/hole/005",
     "label": 1,
     "defect_type": "hole",
-    "defect_score": 7524.390625,
-    "mass_score": 3712.37158203125,
+    "defect_score": 8760.732421875,
+    "mass_score": 4069.52685546875,
     "n_regions": 1,
-    "largest_area": 4769,
+    "largest_area": 5175,
+    "largest_extent": 7151,
     "persistence": 0.95,
-    "area_cv": 0.18856263174257398,
-    "interior_std": 0.11688335239887238
+    "area_cv": 0.16210570435204044,
+    "interior_std": 0.10154399275779724,
+    "weak_evidence_px": 7151
   },
   {
     "key": "carpet/test/hole/010",
     "label": 1,
     "defect_type": "hole",
-    "defect_score": 10254.0400390625,
-    "mass_score": 4661.87158203125,
-    "n_regions": 3,
-    "largest_area": 5972,
+    "defect_score": 8927.029296875,
+    "mass_score": 4344.0576171875,
+    "n_regions": 1,
+    "largest_area": 5621,
+    "largest_extent": 8051,
     "persistence": 0.9,
-    "area_cv": 0.21291687790660044,
-    "interior_std": 0.12704648077487946
+    "area_cv": 0.23527800898455833,
+    "interior_std": 0.1428571343421936,
+    "weak_evidence_px": 8085
   },
   {
     "key": "carpet/test/hole/013",
     "label": 1,
     "defect_type": "hole",
-    "defect_score": 7995.423828125,
-    "mass_score": 3331.77294921875,
-    "n_regions": 2,
-    "largest_area": 4121,
-    "persistence": 1.0,
-    "area_cv": 0.1498926647330857,
-    "interior_std": 0.0896298885345459
+    "defect_score": 8391.0849609375,
+    "mass_score": 3805.7646484375,
+    "n_regions": 1,
+    "largest_area": 4809,
+    "largest_extent": 6876,
+    "persistence": 0.95,
+    "area_cv": 0.1944685500729142,
+    "interior_std": 0.12897393107414246,
+    "weak_evidence_px": 6876
   },
   {
     "key": "carpet/test/hole/016",
     "label": 1,
     "defect_type": "hole",
-    "defect_score": 4368.67333984375,
-    "mass_score": 2389.139892578125,
-    "n_regions": 4,
-    "largest_area": 3202,
-    "persistence": 0.9,
-    "area_cv": 0.2562377134368371,
-    "interior_std": 0.14552512764930725
+    "defect_score": 5065.7802734375,
+    "mass_score": 2524.07373046875,
+    "n_regions": 1,
+    "largest_area": 3351,
+    "largest_extent": 5704,
+    "persistence": 0.95,
+    "area_cv": 0.2161198108278455,
+    "interior_std": 0.09953910857439041,
+    "weak_evidence_px": 5705
   },
   {
     "key": "carpet/test/metal_contamination/004",
     "label": 1,
     "defect_type": "metal_contamination",
-    "defect_score": 5001.7392578125,
-    "mass_score": 2422.29345703125,
+    "defect_score": 3078.865234375,
+    "mass_score": 1916.24462890625,
     "n_regions": 1,
-    "largest_area": 3093,
-    "persistence": 0.95,
-    "area_cv": 0.17033025889850306,
-    "interior_std": 0.10476259887218475
+    "largest_area": 2608,
+    "largest_extent": 3857,
+    "persistence": 0.9,
+    "area_cv": 0.339203265041784,
+    "interior_std": 0.18895374238491058,
+    "weak_evidence_px": 3857
   },
   {
     "key": "carpet/test/thread/000",
     "label": 1,
     "defect_type": "thread",
-    "defect_score": 3407.447998046875,
-    "mass_score": 1889.10693359375,
-    "n_regions": 2,
-    "largest_area": 2549,
+    "defect_score": 3179.814453125,
+    "mass_score": 1903.8807373046875,
+    "n_regions": 1,
+    "largest_area": 2613,
+    "largest_extent": 5068,
     "persistence": 0.85,
-    "area_cv": 0.2798531838621438,
-    "interior_std": 0.14939233660697937
+    "area_cv": 0.3360491942708507,
+    "interior_std": 0.17889802157878876,
+    "weak_evidence_px": 5068
   },
   {
     "key": "carpet/test/thread/005",
     "label": 1,
     "defect_type": "thread",
-    "defect_score": 13922.6201171875,
-    "mass_score": 5936.419921875,
+    "defect_score": 12195.4326171875,
+    "mass_score": 5634.4248046875,
     "n_regions": 1,
-    "largest_area": 7400,
-    "persistence": 1.0,
-    "area_cv": 0.12472982871592109,
-    "interior_std": 0.07601005584001541
+    "largest_area": 7145,
+    "largest_extent": 10304,
+    "persistence": 0.95,
+    "area_cv": 0.1713028278246098,
+    "interior_std": 0.10511777549982071,
+    "weak_evidence_px": 10304
   },
   {
     "key": "carpet/test/thread/010",
     "label": 1,
     "defect_type": "thread",
-    "defect_score": 6865.9609375,
-    "mass_score": 4763.189453125,
-    "n_regions": 4,
-    "largest_area": 6688,
-    "persistence": 0.9,
-    "area_cv": 0.27138717833651416,
-    "interior_std": 0.13509923219680786
+    "defect_score": 4218.13623046875,
+    "mass_score": 3496.7861328125,
+    "n_regions": 1,
+    "largest_area": 5137,
+    "largest_extent": 9780,
+    "persistence": 0.65,
+    "area_cv": 0.4286244332405789,
+    "interior_std": 0.19501058757305145,
+    "weak_evidence_px": 9784
   },
   {
     "key": "carpet/test/thread/013",
     "label": 1,
     "defect_type": "thread",
-    "defect_score": 1510.9210205078125,
-    "mass_score": 1294.08154296875,
-    "n_regions": 8,
-    "largest_area": 1928,
+    "defect_score": 2851.166748046875,
+    "mass_score": 2475.60693359375,
+    "n_regions": 3,
+    "largest_area": 3707,
+    "largest_extent": 6552,
     "persistence": 0.85,
-    "area_cv": 0.294281704739294,
-    "interior_std": 0.11544214934110641
+    "area_cv": 0.3430151651770919,
+    "interior_std": 0.14307545125484467,
+    "weak_evidence_px": 9211
   },
   {
     "key": "carpet/test/thread/018",
     "label": 1,
     "defect_type": "thread",
-    "defect_score": 653.9681396484375,
-    "mass_score": 691.8849487304688,
+    "defect_score": 780.47802734375,
+    "mass_score": 749.3539428710938,
     "n_regions": 1,
-    "largest_area": 1075,
-    "persistence": 0.75,
-    "area_cv": 0.525364793125404,
-    "interior_std": 0.24747976660728455
+    "largest_area": 1137,
+    "largest_extent": 2009,
+    "persistence": 0.7,
+    "area_cv": 0.48621128702960936,
+    "interior_std": 0.18656061589717865,
+    "weak_evidence_px": 2009
   }
 ]
