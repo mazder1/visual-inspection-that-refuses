@@ -1,0 +1,47 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      # CPU wheel first, from torch's own index: the PyPI linux wheel bundles
+      # CUDA and is an order of magnitude larger. Installed before the package
+      # so pip sees torch>=2.0 already satisfied and does not replace it.
+      - name: Install torch (CPU)
+        run: pip install --index-url https://download.pytorch.org/whl/cpu torch==2.8.0
+
+      - name: Install package
+        run: pip install .[serve,dev]
+
+      # The full suite, slow tests included: the line-fitting test is the only
+      # one that can catch a missing skip connection, and CI is exactly where
+      # it should keep running.
+      - name: Tests
+        run: pytest -q
+
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      # Build-only check that the Dockerfile stays valid. Model weights are
+      # not in the repo (bundles/ carries only the chain.json files), so the
+      # image built here cannot serve -- deployable images are built from a
+      # working tree after `python -m vinspect.serve.export`.
+      - name: Build image
+        run: docker build -t vinspect:ci .
