@@ -28,7 +28,6 @@ arms measure whether that matters rather than assuming either way.
 
 from __future__ import annotations
 
-import json
 import random
 from collections import Counter
 from pathlib import Path
