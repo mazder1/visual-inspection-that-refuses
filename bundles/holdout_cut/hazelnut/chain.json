@@ -1,0 +1,54 @@
+{
+  "category": "hazelnut",
+  "model": {
+    "base_channels": 16,
+    "depth": 4,
+    "dropout": 0.1,
+    "image_size": 512,
+    "weights_sha256": "c96a10ec52eaea79ae29796ea9e8565f43a74d5dc704dbc2e30c5a6235530a78"
+  },
+  "chain": {
+    "mc_passes": 20,
+    "threshold": 0.5,
+    "weak_threshold": 0.33,
+    "weak_floor": 473.0,
+    "no_call_band": [
+      0.2,
+      0.8
+    ],
+    "calibrator": {
+      "n_steps": 2,
+      "base_rate": 0.0851063829787234,
+      "pseudocount": 1.0,
+      "steps": [
+        {
+          "scores": [
+            0.0,
+            60.035797119140625
+          ],
+          "probability": 0.0009782342871117633,
+          "count": 86,
+          "raw_rate": 0.0
+        },
+        {
+          "scores": [
+            575.6809692382812,
+            16443.0703125
+          ],
+          "probability": 0.8983451536643027,
+          "count": 8,
+          "raw_rate": 1.0
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "split_digest": "7aa3946e51331da5afcaf2e4fe70a125ef45eea8b3c479061ad4a303151a471f",
+    "split_kind": "grouped",
+    "trained_epoch": 19,
+    "val_dice": 0.8277484551072121,
+    "n_validation": 94,
+    "n_validation_defective": 8
+  },
+  "disclaimer": "Decision support only. Routes parts to an inspector; never makes a final accept or reject decision on its own. Not qualified for production use."
+}

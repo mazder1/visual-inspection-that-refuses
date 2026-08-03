@@ -1,0 +1,54 @@
+{
+  "category": "carpet",
+  "model": {
+    "base_channels": 16,
+    "depth": 4,
+    "dropout": 0.1,
+    "image_size": 512,
+    "weights_sha256": "92c5ad44f97bdc1e8035e01bee4bf020e972915a9ddcfa949e6ad356bf08bf6e"
+  },
+  "chain": {
+    "mc_passes": 20,
+    "threshold": 0.5,
+    "weak_threshold": 0.33,
+    "weak_floor": 122.0,
+    "no_call_band": [
+      0.2,
+      0.8
+    ],
+    "calibrator": {
+      "n_steps": 2,
+      "base_rate": 0.17333333333333334,
+      "pseudocount": 1.0,
+      "steps": [
+        {
+          "scores": [
+            0.0,
+            47.55412292480469
+          ],
+          "probability": 0.0027513227513227515,
+          "count": 62,
+          "raw_rate": 0.0
+        },
+        {
+          "scores": [
+            168.3031005859375,
+            25777.8671875
+          ],
+          "probability": 0.940952380952381,
+          "count": 13,
+          "raw_rate": 1.0
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "split_digest": "7258c372877a3b48a934d68d3edace5e5c126461d3b48037d7a6d777bf0d2fb0",
+    "split_kind": "grouped",
+    "trained_epoch": 96,
+    "val_dice": 0.7283909045732938,
+    "n_validation": 75,
+    "n_validation_defective": 13
+  },
+  "disclaimer": "Decision support only. Routes parts to an inspector; never makes a final accept or reject decision on its own. Not qualified for production use."
+}

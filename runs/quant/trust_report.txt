@@ -1,0 +1,20 @@
+﻿=== pooled main test set (237 images, 44 defective) ===
+arm                               brier     ece  no-call  fail  pass  silent FN
+torch published                  0.0197  0.0264       33    34   170          1
+fp32 onnx, frozen chain          0.0223  0.0305       32    34   171          1
+int8, frozen chain (drift)       0.0217  0.0298       22    35   180          1
+int8, refit chain (repair)       0.0173  0.0191       32    37   168          1
+
+=== holdout_hole (hole, 17 never-seen) ===
+arm                             fail  no-call  SILENT
+torch published                   17        0       0
+fp32 onnx, frozen chain           17        0       0
+int8, frozen chain (drift)        17        0       0
+int8, refit chain (repair)        17        0       0
+
+=== holdout_cut (cut, 17 never-seen) ===
+arm                             fail  no-call  SILENT
+torch published                    2       13       2
+fp32 onnx, frozen chain            4       10       3
+int8, frozen chain (drift)         1       14       2
+int8, refit chain (repair)         1       15       1
