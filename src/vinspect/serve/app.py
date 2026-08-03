@@ -18,7 +18,23 @@ from typing import Dict
 from fastapi import FastAPI, File, HTTPException, Request, UploadFile
 from fastapi.responses import HTMLResponse, JSONResponse
 
-from vinspect.serve.predictor import Predictor
+def _build_predictor(bundle: Path):
+    """Pick the engine from the bundle's own chain.json.
+
+    Lazy imports on purpose: the ONNX container has no torch, so the torch
+    predictor module must not be imported unless a bundle actually asks for it.
+    """
+    import json as _json
+
+    chain = _json.loads((bundle / "chain.json").read_text(encoding="utf-8"))
+    model_file = chain["model"].get("file", "model.pt")
+    if model_file.endswith(".onnx"):
+        from vinspect.serve.onnx_predictor import OnnxPredictor
+
+        return OnnxPredictor(bundle)
+    from vinspect.serve.predictor import Predictor
+
+    return Predictor(bundle)
 
 BUNDLE_DIR = Path(os.environ.get("VINSPECT_BUNDLES", "bundles"))
 MAX_UPLOAD_BYTES = 8 * 1024 * 1024
@@ -26,12 +42,12 @@ RATE_LIMIT = int(os.environ.get("VINSPECT_RATE_LIMIT", "10"))  # per minute per 
 
 app = FastAPI(title="Visual Inspection That Refuses", docs_url="/docs")
 
-_predictors: Dict[str, Predictor] = {}
+_predictors: Dict[str, object] = {}
 _predictor_lock = threading.Lock()
 _requests: Dict[str, deque] = defaultdict(deque)
 
 
-def _get_predictor(category: str) -> Predictor:
+def _get_predictor(category: str):
     with _predictor_lock:
         if category not in _predictors:
             bundle = BUNDLE_DIR / category
@@ -43,7 +59,7 @@ def _get_predictor(category: str) -> Predictor:
                     404,
                     f"unknown category {category!r}; available: {available}",
                 )
-            _predictors[category] = Predictor(bundle)
+            _predictors[category] = _build_predictor(bundle)
         return _predictors[category]
 
 

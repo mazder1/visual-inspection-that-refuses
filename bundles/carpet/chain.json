@@ -5,13 +5,15 @@
     "depth": 4,
     "dropout": 0.1,
     "image_size": 512,
-    "weights_sha256": "569bdfd898bdcfaf688c2087677db0c79ea8969f75c2f23d9226fec43a78f8ac"
+    "weights_sha256": "a87aedd4e9d7fd5c6ce1f781607f0ef3e6d8cc16d9291be3dfbf354505019cf2",
+    "file": "model.int8.onnx",
+    "engine": "onnxruntime-int8"
   },
   "chain": {
     "mc_passes": 20,
     "threshold": 0.5,
     "weak_threshold": 0.33,
-    "weak_floor": 460.6499999999998,
+    "weak_floor": 377.7499999999999,
     "no_call_band": [
       0.2,
       0.8
@@ -24,7 +26,7 @@
         {
           "scores": [
             0.0,
-            275.10394287109375
+            151.3819580078125
           ],
           "probability": 0.0036290322580645163,
           "count": 61,
@@ -32,8 +34,8 @@
         },
         {
           "scores": [
-            420.531494140625,
-            647.8511352539062
+            184.370361328125,
+            858.9609375
           ],
           "probability": 0.645,
           "count": 4,
@@ -41,8 +43,8 @@
         },
         {
           "scores": [
-            1552.863037109375,
-            21497.74609375
+            1406.16650390625,
+            17135.6328125
           ],
           "probability": 0.9515625,
           "count": 15,
@@ -57,7 +59,17 @@
     "trained_epoch": 68,
     "val_dice": 0.723050459391541,
     "n_validation": 80,
-    "n_validation_defective": 18
+    "n_validation_defective": 18,
+    "quantisation": {
+      "weights": "int8, per-channel, conv ops only",
+      "activation_calibration": "stratified training images, stochastic graph",
+      "chain_refit_on": "int8 validation scores (stage-3 arm B)",
+      "stage3": {
+        "pooled_brier": 0.0173,
+        "pooled_ece": 0.0191,
+        "review_no_calls": 32
+      }
+    }
   },
   "disclaimer": "Decision support only. Routes parts to an inspector; never makes a final accept or reject decision on its own. Not qualified for production use."
 }

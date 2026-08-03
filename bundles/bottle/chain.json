@@ -5,56 +5,49 @@
     "depth": 4,
     "dropout": 0.1,
     "image_size": 512,
-    "weights_sha256": "6c49bb8ca156affb23496780b080d0512d20ec78f10a91301259d621a13f63fb"
+    "weights_sha256": "d3eb891087908b0618f7c29d0873f7b0489dbcf354f44f50b86abfc0c2ee5f90",
+    "file": "model.int8.onnx",
+    "engine": "onnxruntime-int8"
   },
   "chain": {
     "mc_passes": 20,
     "threshold": 0.5,
     "weak_threshold": 0.33,
-    "weak_floor": 19442.75,
+    "weak_floor": 8997.0,
     "no_call_band": [
       0.2,
       0.8
     ],
     "calibrator": {
-      "n_steps": 4,
+      "n_steps": 3,
       "base_rate": 0.22033898305084745,
       "pseudocount": 1.0,
       "steps": [
         {
           "scores": [
             0.0,
-            171.7892303466797
+            8.669360160827637
           ],
-          "probability": 0.004896421845574388,
-          "count": 44,
+          "probability": 0.005007704160246533,
+          "count": 43,
           "raw_rate": 0.0
         },
         {
           "scores": [
-            3454.798828125,
-            3583.86572265625
+            237.90298461914062,
+            2984.621337890625
           ],
-          "probability": 0.4067796610169492,
-          "count": 2,
-          "raw_rate": 0.5
+          "probability": 0.3700564971751412,
+          "count": 5,
+          "raw_rate": 0.4
         },
         {
           "scores": [
-            4256.84912109375,
-            5618.48095703125
+            3654.966552734375,
+            55209.65234375
           ],
-          "probability": 0.5550847457627118,
-          "count": 3,
-          "raw_rate": 0.6666666666666666
-        },
-        {
-          "scores": [
-            6288.5546875,
-            38198.91796875
-          ],
-          "probability": 0.9291217257318952,
-          "count": 10,
+          "probability": 0.9350282485875706,
+          "count": 11,
           "raw_rate": 1.0
         }
       ]
@@ -66,7 +59,17 @@
     "trained_epoch": 100,
     "val_dice": 0.6589506726998905,
     "n_validation": 59,
-    "n_validation_defective": 13
+    "n_validation_defective": 13,
+    "quantisation": {
+      "weights": "int8, per-channel, conv ops only",
+      "activation_calibration": "stratified training images, stochastic graph",
+      "chain_refit_on": "int8 validation scores (stage-3 arm B)",
+      "stage3": {
+        "pooled_brier": 0.0173,
+        "pooled_ece": 0.0191,
+        "review_no_calls": 32
+      }
+    }
   },
   "disclaimer": "Decision support only. Routes parts to an inspector; never makes a final accept or reject decision on its own. Not qualified for production use."
 }

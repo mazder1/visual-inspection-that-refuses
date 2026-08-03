@@ -15,7 +15,7 @@ import hashlib
 import json
 import shutil
 from pathlib import Path
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 import numpy as np
 import torch
@@ -83,6 +83,53 @@ def export_category(
         json.dumps(chain, indent=2), encoding="utf-8"
     )
     return destination
+
+
+def refit_chain_for_int8(
+    bundle_dir: Path, int8_val_scores: Path, stage3_note: Optional[Dict] = None
+) -> Path:
+    """Rewrite a bundle's chain.json for the quantised engine, arm-B style.
+
+    Stage 3 measured that INT8 under the frozen fp32 chain silently cut the
+    review envelope by a third; refitting the staircase and floor on the INT8
+    model's own validation scores restored it and improved Brier. This writes
+    that refit chain: same validation images, same fitting code, scores from
+    the INT8 graph.
+    """
+    import hashlib
+
+    import numpy as np
+
+    from vinspect.eval.calibration import IsotonicCalibrator
+
+    bundle_dir = Path(bundle_dir)
+    chain_path = bundle_dir / "chain.json"
+    chain = json.loads(chain_path.read_text(encoding="utf-8"))
+    rows = json.loads(Path(int8_val_scores).read_text(encoding="utf-8"))
+
+    calibrator = IsotonicCalibrator().fit(
+        [row["defect_score"] for row in rows],
+        [row["label"] for row in rows],
+    )
+    clean_weak = [r["weak_evidence_px"] for r in rows if r["label"] == 0]
+    floor = float(np.percentile(clean_weak, 95))
+
+    int8_path = bundle_dir / "model.int8.onnx"
+    chain["model"]["file"] = "model.int8.onnx"
+    chain["model"]["engine"] = "onnxruntime-int8"
+    chain["model"]["weights_sha256"] = hashlib.sha256(
+        int8_path.read_bytes()
+    ).hexdigest()
+    chain["chain"]["calibrator"] = calibrator.summary()
+    chain["chain"]["weak_floor"] = floor
+    chain["provenance"]["quantisation"] = {
+        "weights": "int8, per-channel, conv ops only",
+        "activation_calibration": "stratified training images, stochastic graph",
+        "chain_refit_on": "int8 validation scores (stage-3 arm B)",
+        **({"stage3": stage3_note} if stage3_note else {}),
+    }
+    chain_path.write_text(json.dumps(chain, indent=2), encoding="utf-8")
+    return chain_path
 
 
 def main(argv: Optional[List[str]] = None) -> int:

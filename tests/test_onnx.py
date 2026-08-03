@@ -39,7 +39,23 @@ def bundle_dir(tmp_path_factory):
             "base_channels": 8, "depth": 2, "dropout": 0.2, "image_size": 64,
             "weights_sha256": "test",
         },
-        "chain": {}, "provenance": {}, "disclaimer": "test",
+        "chain": {
+            "mc_passes": 4,
+            "threshold": 0.5,
+            "weak_threshold": 0.33,
+            "weak_floor": 50.0,
+            "no_call_band": [0.2, 0.8],
+            "calibrator": {
+                "n_steps": 2,
+                "base_rate": 0.2,
+                "pseudocount": 1.0,
+                "steps": [
+                    {"scores": [0.0, 10.0], "probability": 0.01, "count": 40, "raw_rate": 0.0},
+                    {"scores": [100.0, 5000.0], "probability": 0.9, "count": 10, "raw_rate": 1.0},
+                ],
+            },
+        },
+        "provenance": {}, "disclaimer": "test",
     }
     (root / "chain.json").write_text(json.dumps(chain), encoding="utf-8")
     return root
@@ -115,6 +131,53 @@ def test_quantize_bundle_shrinks_and_stays_stochastic(bundle_dir):
     assert after.get("DequantizeLinear", 0) > 0
     # quantize_bundle itself raises if the graph went deterministic or fails
     # to run; reaching here means both held.
+
+
+def test_onnx_predictor_parity_and_engine_selection(bundle_dir, tmp_path):
+    """The factory must pick the ONNX engine from chain.json, and on an image
+    with no evidence both predictors must agree exactly -- score zero lands on
+    the same staircase step regardless of engine or MC randomness."""
+    import base64
+    import io
+    import shutil
+
+    from PIL import Image
+
+    from vinspect.serve.app import _build_predictor
+    from vinspect.serve.onnx_predictor import OnnxPredictor
+    from vinspect.serve.predictor import Predictor
+
+    onnx_path = bundle_dir / "model.onnx"
+    if not onnx_path.is_file():
+        export_onnx(bundle_dir)
+
+    # Two copies of the bundle: one chain pointing at torch, one at ONNX.
+    onnx_bundle = tmp_path / "widget_onnx"
+    shutil.copytree(bundle_dir, onnx_bundle)
+    chain = json.loads((onnx_bundle / "chain.json").read_text())
+    chain["model"]["file"] = "model.onnx"
+    chain["model"]["engine"] = "onnxruntime"
+    (onnx_bundle / "chain.json").write_text(json.dumps(chain))
+
+    torch_predictor = _build_predictor(bundle_dir)
+    onnx_predictor = _build_predictor(onnx_bundle)
+    assert isinstance(torch_predictor, Predictor)
+    assert isinstance(onnx_predictor, OnnxPredictor)
+
+    buffer = io.BytesIO()
+    Image.new("RGB", (64, 64), (30, 30, 30)).save(buffer, format="PNG")
+    payload = buffer.getvalue()
+
+    a = torch_predictor.inspect(payload)
+    b = onnx_predictor.inspect(payload)
+    for key in ("category", "mc_passes", "mask_size"):
+        assert a[key] == b[key]
+    # Response contract: identical keys apart from the engine tag.
+    assert set(a) | {"engine"} == set(b) | {"engine"}
+    # Mask decodes on both.
+    for body in (a, b):
+        mask = Image.open(io.BytesIO(base64.b64decode(body["mask_png_base64"])))
+        assert mask.size == (64, 64)
 
 
 def test_exported_graph_random_ops_survive_session_optimisation(bundle_dir):

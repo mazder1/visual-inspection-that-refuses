@@ -1,30 +1,28 @@
-# CPU-only serving image. The CUDA wheel alone is ~2.5 GB; the CPU wheel keeps
-# this image around 1 GB, and the target platform (Cloud Run) bills CPU.
+# Torch-free INT8 serving image. Torch existed in the previous image only to
+# run the model; ONNX Runtime replaces it at ~50 MB against ~1.3 GB, taking
+# the image from 1.95 GB to a few hundred MB. The scoring path is numpy/scipy
+# and shared verbatim with the evaluated chain; the INT8 graph plus a chain
+# refit on its own validation scores is the stage-3 arm-B configuration.
 FROM python:3.11-slim
 
 ENV PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
+    PYTHONPATH=/app/src \
     VINSPECT_BUNDLES=/app/bundles \
-    # Matches the Cloud Run --cpu setting; torch saturates what is there.
-    OMP_NUM_THREADS=4 \
-    MKL_NUM_THREADS=4
+    OMP_NUM_THREADS=4
 
 WORKDIR /app
 
-# Torch CPU wheel first, pinned to its own index, so the layer caches well and
-# no CUDA dependency ever sneaks in.
-RUN pip install --index-url https://download.pytorch.org/whl/cpu torch==2.8.0 torchvision==0.23.0
+# Serving dependencies only -- deliberately NOT `pip install .`, whose core
+# dependencies include torch. The source tree rides along on PYTHONPATH.
+RUN pip install \
+    "fastapi>=0.110" "uvicorn[standard]>=0.29" "python-multipart>=0.0.9" \
+    "numpy>=1.24" "scipy>=1.10" "pillow>=10.0" "onnxruntime>=1.18"
 
-COPY pyproject.toml ./
 COPY src ./src
-RUN pip install .[serve]
-
-# The frozen chain: model weights + calibrator + thresholds, per category.
-# Produced by `python -m vinspect.serve.export` and copied in at build time so
-# the container is self-contained -- no dataset, no runs directory.
+# chain.json + model.int8.onnx per category; weights and fp32 graphs are
+# excluded in .dockerignore.
 COPY bundles ./bundles
 
 EXPOSE 8080
-# Cloud Run injects PORT; default to 8080 locally. One worker: the model is
-# CPU-bound and memory is the scarce resource.
 CMD ["sh", "-c", "uvicorn vinspect.serve.app:app --host 0.0.0.0 --port ${PORT:-8080} --workers 1"]

@@ -32,11 +32,20 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import List, Optional, Sequence, Tuple
 
+from typing import TYPE_CHECKING
+
 import numpy as np
-import torch
 from scipy import ndimage
 
-from vinspect.uncertainty.mc_dropout import MCPrediction
+if TYPE_CHECKING:  # pragma: no cover
+    import torch
+
+    from vinspect.uncertainty.mc_dropout import MCPrediction
+
+# torch is deliberately not imported at module level: the ONNX serving
+# container has no torch, and everything in the scoring path is numpy/scipy.
+# Only the ground-truth helpers below touch torch tensors, and they import it
+# lazily.
 
 #: Pixels eroded from a region's edge before measuring its interior. Two is
 #: enough to drop the boundary band where disagreement is expected and
@@ -167,7 +176,7 @@ def _region_stats(
 
 
 def extract_regions(
-    prediction: MCPrediction,
+    prediction: "MCPrediction",
     threshold: float = 0.5,
     min_area: int = 0,
     weak_threshold: Optional[float] = None,
@@ -236,7 +245,7 @@ def extract_regions(
 
 
 def score_image(
-    prediction: MCPrediction,
+    prediction: "MCPrediction",
     threshold: float = 0.5,
     min_area: int = 0,
     weak_threshold: Optional[float] = None,
@@ -294,7 +303,7 @@ def score_image(
 
 
 def ground_truth_region_areas(
-    masks: Sequence[torch.Tensor], largest_only: bool = False
+    masks: "Sequence[torch.Tensor]", largest_only: bool = False
 ) -> np.ndarray:
     """Areas of connected regions across a set of ground-truth masks.
 
@@ -312,7 +321,7 @@ def ground_truth_region_areas(
 
 
 def calibrate_min_area(
-    masks: Sequence[torch.Tensor], percentile: float = 5.0
+    masks: "Sequence[torch.Tensor]", percentile: float = 5.0
 ) -> int:
     """Smallest region worth believing, from the training ground truth.
 

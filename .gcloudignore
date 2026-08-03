@@ -1,4 +1,4 @@
-# Upload only what the container build needs: source, config, bundles.
+# Upload only what the container build needs: source, config, int8 bundles.
 data/
 runs/
 scratch/
@@ -9,3 +9,9 @@ tests/
 __pycache__/
 *.tar.xz
 briefvisualinspection.md
+bundles/*/model.pt
+bundles/*/model.onnx
+bundles/*/model.eval.onnx
+bundles/holdout_cut/
+bundles/holdout_hole/
+.ccexplainer/

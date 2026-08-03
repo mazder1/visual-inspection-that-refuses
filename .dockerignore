@@ -7,3 +7,9 @@ tests/
 *.md
 __pycache__/
 *.tar.xz
+# Serving needs only chain.json + model.int8.onnx per main category.
+bundles/*/model.pt
+bundles/*/model.onnx
+bundles/*/model.eval.onnx
+bundles/holdout_cut/
+bundles/holdout_hole/
