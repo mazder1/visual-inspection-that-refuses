@@ -57,18 +57,56 @@ actually has support for it, the region evidence, and the defect mask as a
 base64 PNG. Health at `/health`. Categories: bottle, carpet, hazelnut.
 
 Served CPU-only on Cloud Run (4 vCPU, 4 GiB, scale-to-zero, max 2 instances),
-running the **exact 20-pass MC-dropout chain the evaluation measured** —
-deliberately not a faster variant the published numbers would not describe.
-Measured latencies:
+running the 20-pass MC-dropout chain. Since the quantisation study below, the
+engine is **INT8 ONNX Runtime with a recalibrated chain** — trust-verified
+before deployment, measurably faster, in a torch-free 675 MB container (down
+from 1.95 GB). Measured latencies:
 
-| | measured |
-|---|---|
-| container image | 1.95 GB (CPU torch wheel; CUDA would add ~2.3 GB) |
-| local container boot to healthy | 4.7 s |
-| warm request, desktop 8-thread CPU | 3.4–3.7 s |
-| warm request, Cloud Run 4 vCPU | **8.0–8.9 s** |
-| cold start (after 35 min idle): boot to healthy | **4.1 s** |
-| cold start to first verdict | **11.5 s** |
+| | torch fp32 (before) | **INT8 ONNX (deployed)** |
+|---|---|---|
+| container image | 1.95 GB | **675 MB** |
+| model file per category | 8.3 MB | **2.3 MB** |
+| warm request, Cloud Run 4 vCPU | 8.0–8.9 s | **5.8–7.6 s** |
+| cold start (after 35 min idle): boot to healthy | 4.1 s | see note |
+| cold start to first verdict | 11.5 s | see note |
+
+Instance heterogeneity is real and reported rather than averaged away: the
+benchmark drew a 2.60 GHz Xeon where the raw 20-pass workload ran 1.8× faster
+under INT8; the serving instance draws slower silicon and shows ~25–30%. The
+same INT8 artifact is a *pessimisation* on a desktop Ryzen with no VNNI —
+which CPU you deploy on decides whether quantisation helps at all.
+
+## The quantisation study: what compression does to trust
+
+The full experiment lives in `runs/quant/` (baseline, trust report, per-image
+scores). The short version:
+
+**Method.** Export to ONNX behind two gates — determinism parity at 4.6e-5, and
+a stochasticity gate that caught the exporter silently killing dropout, which
+would have made the system report zero uncertainty forever. Then static INT8,
+convs only, per-channel, calibrated on ~120 stratified *training* images
+through the stochastic graph. Attribution runs through a three-rung chain
+(torch → fp32 ONNX → INT8) so the engine swap and the compression are never
+confounded, and the fp32 rung's deviation defines the measurement noise floor.
+
+**The finding.** Under the frozen fp32 calibrator, INT8 moved pooled Brier by
+less than the noise floor — an accuracy dashboard signs off — while silently
+cutting the no-call count from 32 to 22: **a third of the human-review
+envelope vanished, invisible to accuracy metrics**, because the shifted score
+distribution pulled images out of the calibrator's support gaps and off the
+weak-evidence floor.
+
+**The repair.** Refitting the staircase and floor on the INT8 model's own
+validation scores — same images, same fitting code, minutes of compute —
+restored the envelope exactly and improved pooled Brier to 0.0173 (ECE
+0.0191). The damage was a monotone shift, not a reordering. The deployed
+service runs this refit chain.
+
+**Hard gates.** The never-seen-class experiments were unaffected: carpet/hole
+17/17 in every arm; hazelnut/cut within known MC wobble (1–3 silent across all
+arms, fp32 included). Speed: INT8 is 0.88× (slower) on a no-VNNI Ryzen and
+1.8× on a VNNI Xeon for the same workload — GroupNorm-after-every-conv makes
+this architecture quantisation-hostile without int8 dot-product hardware.
 
 One deployment property worth knowing alongside those: Cloud Run retained a
 warm instance through 17 minutes of idle — a probe at that point still got a
