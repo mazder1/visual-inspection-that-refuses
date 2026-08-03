@@ -93,6 +93,27 @@ def test_export_and_both_gates(bundle_dir):
     assert stochastic["passed_distribution"], stochastic
 
 
+def test_quantize_bundle_shrinks_and_stays_stochastic(bundle_dir):
+    import numpy as np
+
+    from vinspect.serve.quantize import op_histogram, quantize_bundle
+
+    onnx_path = bundle_dir / "model.onnx"
+    if not onnx_path.is_file():
+        onnx_path = export_onnx(bundle_dir)
+
+    rng = np.random.default_rng(0)
+    arrays = [rng.random((1, 3, 64, 64), dtype=np.float32) for _ in range(4)]
+    report = quantize_bundle(bundle_dir, arrays)
+
+    assert report["int8_bytes"] < report["fp32_bytes"] * 0.5
+    after = op_histogram(bundle_dir / "model.int8.onnx")
+    assert after.get("RandomUniform", 0) == report["ops_before"].get("RandomUniform", 0)
+    assert after.get("DequantizeLinear", 0) > 0
+    # quantize_bundle itself raises if the graph went deterministic or fails
+    # to run; reaching here means both held.
+
+
 def test_exported_graph_random_ops_survive_session_optimisation(bundle_dir):
     onnx_path = bundle_dir / "model.onnx"
     if not onnx_path.is_file():
