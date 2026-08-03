@@ -67,8 +67,8 @@ from 1.95 GB). Measured latencies:
 | container image | 1.95 GB | **675 MB** |
 | model file per category | 8.3 MB | **2.3 MB** |
 | warm request, Cloud Run 4 vCPU | 8.0–8.9 s | **5.8–7.6 s** |
-| cold start (after 35 min idle): boot to healthy | 4.1 s | see note |
-| cold start to first verdict | 11.5 s | see note |
+| cold start (after 35 min idle): boot to healthy | 4.1 s | **1.4 s** |
+| cold start to first verdict | 11.5 s | **6.4 s** |
 
 Instance heterogeneity is real and reported rather than averaged away: the
 benchmark drew a 2.60 GHz Xeon where the raw 20-pass workload ran 1.8× faster
